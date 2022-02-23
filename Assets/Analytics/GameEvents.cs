@@ -2,9 +2,9 @@ using System;
 
 public static class GameEvents {
     // Progression events
-    public static Action<int> onLevelStart;
-    public static Action<int> onLevelLose;
-    public static Action<int> onLevelWin;
+    public static Action<string> onLevelStart;
+    public static Action<string> onLevelLose;
+    public static Action<string> onLevelWin;
 
     // Custom events
     public static Action<string, float> onCustomEvent;

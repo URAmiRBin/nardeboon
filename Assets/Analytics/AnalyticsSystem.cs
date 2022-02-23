@@ -22,9 +22,9 @@ public class AnalyticsSystem {
         GameEvents.onAdShow -= SendAdShowEvent;
     }
 
-    void SendLevelStartEvent(int level) {}
-    void SendLevelWinEvent(int level) {}
-    void SendLevelLoseEvent(int level) {}
+    void SendLevelStartEvent(string level) {}
+    void SendLevelWinEvent(string level) {}
+    void SendLevelLoseEvent(string level) {}
     void SendCustomEvent(string type, float value) {}
     void SendCurrencySpendEvent(int value) {}
     void SendCurrencyEarnEvent(int value) {}
