@@ -1,28 +1,33 @@
 using GameAnalyticsSDK;
 
 public class GameAnalyticsSystem : AnalyticsSystem {
-    void SendLevelStartEvent(string level) {
+    public override void Initialize() {
+        base.Initialize();
+        GameAnalytics.Initialize();
+    }
+
+    protected override void SendLevelStartEvent(string level) {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, level);
     }
-    void SendLevelWinEvent(string level) {
+    protected override void SendLevelWinEvent(string level) {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level);
     }
-    void SendLevelLoseEvent(string level) {
+    protected override void SendLevelLoseEvent(string level) {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level);
     }
-    void SendCustomEvent(string eventName, float value) {
+    protected override void SendCustomEvent(string eventName, float value) {
         GameAnalytics.NewDesignEvent(eventName, value);
     }
-    void SendCurrencySpendEvent(int value) {
+    protected override void SendCurrencySpendEvent(int value) {
         GameAnalytics.NewResourceEvent(GAResourceFlowType.Sink, "", value, "", "");
     }
-    void SendCurrencyEarnEvent(int value) {
+    protected override void SendCurrencyEarnEvent(int value) {
         GameAnalytics.NewResourceEvent(GAResourceFlowType.Source, "", value, "", "");
     }
-    void SendAdFailEvent() {
+    protected override void SendAdFailEvent() {
         GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Undefined, "", "", GAAdError.Unknown);
     }
-    void SendAdShowEvent() {
+    protected override void SendAdShowEvent() {
         GameAnalytics.NewAdEvent(GAAdAction.Show, GAAdType.Undefined, "", "", GAAdError.Unknown);
     }
 }

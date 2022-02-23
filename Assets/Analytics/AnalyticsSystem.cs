@@ -1,6 +1,6 @@
-public class AnalyticsSystem {
+public abstract class AnalyticsSystem {
 
-    public void Initialize() {
+    public virtual void Initialize() {
         GameEvents.onLevelStart += SendLevelStartEvent;
         GameEvents.onLevelWin += SendLevelWinEvent;
         GameEvents.onLevelLose += SendLevelLoseEvent;
@@ -11,7 +11,7 @@ public class AnalyticsSystem {
         GameEvents.onAdShow += SendAdShowEvent;
     }
 
-    public void Destroy() {
+    public virtual void Destroy() {
         GameEvents.onLevelStart -= SendLevelStartEvent;
         GameEvents.onLevelWin -= SendLevelWinEvent;
         GameEvents.onLevelLose -= SendLevelLoseEvent;
@@ -22,12 +22,12 @@ public class AnalyticsSystem {
         GameEvents.onAdShow -= SendAdShowEvent;
     }
 
-    void SendLevelStartEvent(string level) {}
-    void SendLevelWinEvent(string level) {}
-    void SendLevelLoseEvent(string level) {}
-    void SendCustomEvent(string type, float value) {}
-    void SendCurrencySpendEvent(int value) {}
-    void SendCurrencyEarnEvent(int value) {}
-    void SendAdFailEvent() {}
-    void SendAdShowEvent() {}
+    protected abstract void SendLevelStartEvent(string level);
+    protected abstract void SendLevelWinEvent(string level);
+    protected abstract void SendLevelLoseEvent(string level);
+    protected abstract void SendCustomEvent(string type, float value);
+    protected abstract void SendCurrencySpendEvent(int value);
+    protected abstract void SendCurrencyEarnEvent(int value);
+    protected abstract void SendAdFailEvent();
+    protected abstract void SendAdShowEvent();
 }
