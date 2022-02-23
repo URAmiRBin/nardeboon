@@ -1,3 +1,5 @@
+using System;
+
 public static class GameEvents {
     // Progression events
     public static Action<int> onLevelStart;
