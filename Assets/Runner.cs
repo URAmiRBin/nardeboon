@@ -16,8 +16,11 @@ public class Runner : MonoBehaviour {
         if (useAnalytics) {
             // Set GA settings
             GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
+
+            // TODO: Multiplatform support
             gaSettings.AddPlatform(RuntimePlatform.Android);
-            gaSettings.SetKeys(gameAnalyticsGameKey, gameAnalyticsSecretKey);
+            gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
+            gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
             gaSettings.Build[0] = Application.version;
             
             // Initialize GA
