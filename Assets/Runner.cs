@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Runner : MonoBehaviour {
-    [SerializeField] CoreDouble core;
-
     // More analytics APIs might be added later
     [SerializeField] bool useAnalytics;
     [SerializeField] GameObject gameAnalytics;
@@ -18,7 +17,9 @@ public class Runner : MonoBehaviour {
             analyticsSystem = new GameAnalyticsSystem();
             analyticsSystem.Initialize();
         }
-        Instantiate(core);
+
+        //TODO: Do the loading progression here
+        SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
     }
 
     void OnDestroy() {
