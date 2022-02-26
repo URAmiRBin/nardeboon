@@ -43,7 +43,7 @@ MonoBehaviour:
   OrganizationName: 
   OrganizationIdentifier: 
   EmailGA: 
-  IntroScreen: 1
+  IntroScreen: 0
   InfoLogEditor: 1
   InfoLogBuild: 1
   VerboseLogBuild: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   ResourceCurrencies: []
   LastCreatedGamePlatform: 0
   Platforms: 
-  CurrentInspectorState: 0
+  CurrentInspectorState: 1
   ClosedHints: 
   DisplayHints: 0
   DisplayHintsScrollState: {x: 0, y: 0}
