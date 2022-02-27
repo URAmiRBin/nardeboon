@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System;
-using UnityEngine;
 
+
+[Serializable]
 public enum GameStates {
+    Empty,
     Splash,
     MainMenu,
     Win,
     Lose,
 }
 
-[System.Serializable]
+[Serializable]
 public class UIMaps : ReflectableClass {
     public UIElement Splash;
     public UIElement MainMenu;

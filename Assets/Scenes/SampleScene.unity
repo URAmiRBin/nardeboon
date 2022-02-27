@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8139864759764076179, guid: 3054586c519eb9c40b3be49d82cc695e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8257976461177688638, guid: 3054586c519eb9c40b3be49d82cc695e, type: 3}
       propertyPath: m_RootOrder
@@ -721,6 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cde3ac176ee15448bc3546ea13a22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: 1
   maps:
     Splash: {fileID: 909490080}
     MainMenu: {fileID: 4361559}

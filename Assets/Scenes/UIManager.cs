@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour {
-    GameStates currentState = GameStates.Splash;
-    UIElement currentPanel;
+    [SerializeField] GameStates defaultState;
     [SerializeField] UIMaps maps;
+    GameStates currentState;
+    UIElement currentPanel;
 
-    void Start() => currentPanel = maps[GameStates.MainMenu.ToString()] as UIElement;
+    void Awake() => UpdateState(defaultState);
     
     void Update() {
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
@@ -26,10 +28,14 @@ public class UIManager : MonoBehaviour {
     
     void UpdateState(GameStates state) {
         if (state == currentState) return;
-        currentPanel.Close();
+        currentPanel?.Close();
         currentState = state;
-        currentPanel = maps[state.ToString()] as UIElement;
-        currentPanel.Open();
+        try {
+            currentPanel = maps[state.ToString()] as UIElement;
+            currentPanel.Open();
+        } catch (NullReferenceException) {
+            Debug.LogWarning("State " + state.ToString() + " is not defined.");
+        }
     }
 }
 
