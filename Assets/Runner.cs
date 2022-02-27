@@ -11,7 +11,7 @@ public class Runner : MonoBehaviour {
     [SerializeField] string gameAnalyticsSecretKey;
 
     [Header("UI")]
-    [SerializeField] GameObject loadingPanel;
+    [SerializeField] LoadingScreen loadingPanel;
 
     // Dependencies
     public static AnalyticsSystem Analytics {get; private set;}
@@ -43,13 +43,11 @@ public class Runner : MonoBehaviour {
     IEnumerator LoadGameScene() {
         AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
 
-        //TODO: Add support for progress bar loading screen
-        while (!gameLoadOperation.isDone)
+        while (!gameLoadOperation.isDone) {
+            loadingPanel.SetProgress(gameLoadOperation.progress);
             yield return null;
-
-        // TODO: Connect to UI animation system
-        // FIXME: Seperate loading panel from runner and add it to UI system
-        loadingPanel.SetActive(false);
+        }
+        loadingPanel.SetProgress(gameLoadOperation.progress);
     }
 
     void OnDestroy() {
