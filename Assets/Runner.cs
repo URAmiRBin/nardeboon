@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ public class Runner : MonoBehaviour {
     [SerializeField] GameObject gameAnalytics;
     [SerializeField] string gameAnalyticsGameKey;
     [SerializeField] string gameAnalyticsSecretKey;
+
+    [Header("UI")]
+    [SerializeField] GameObject loadingPanel;
 
     // Dependencies
     AnalyticsSystem analyticsSystem;
@@ -29,8 +33,19 @@ public class Runner : MonoBehaviour {
             analyticsSystem.Initialize();
         }
 
-        //TODO: Do the loading progression here
-        SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+        StartCoroutine(LoadGameScene());
+    }
+
+    IEnumerator LoadGameScene() {
+        AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+
+        //TODO: Add support for progress bar loading screen
+        while (!gameLoadOperation.isDone)
+            yield return null;
+
+        // TODO: Connect to UI animation system
+        // FIXME: Seperate loading panel from runner and add it to UI system
+        loadingPanel.SetActive(false);
     }
 
     void OnDestroy() {
