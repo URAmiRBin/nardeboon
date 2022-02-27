@@ -10,8 +10,8 @@ public class Runner : MonoBehaviour {
     [SerializeField] string gameAnalyticsGameKey;
     [SerializeField] string gameAnalyticsSecretKey;
 
-    [Header("UI")]
-    [SerializeField] LoadingScreen loadingPanel;
+    [Header("Loading Screen")]
+    [SerializeField] ProgressLoadingScreen loadingPanel;
 
     // Dependencies
     public static AnalyticsSystem Analytics {get; private set;}
@@ -42,12 +42,13 @@ public class Runner : MonoBehaviour {
 
     IEnumerator LoadGameScene() {
         AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
-
+        
+        loadingPanel.StartProgress();
         while (!gameLoadOperation.isDone) {
             loadingPanel.SetProgress(gameLoadOperation.progress);
             yield return null;
         }
-        loadingPanel.SetProgress(gameLoadOperation.progress);
+        loadingPanel.FinishProgress();
     }
 
     void OnDestroy() {
