@@ -18,6 +18,11 @@ public class Runner : MonoBehaviour {
     
     void Awake() {
         DontDestroyOnLoad(this);
+        SetupServices();
+        StartCoroutine(LoadGameScene());
+    }
+
+    void SetupServices() {
         if (useAnalytics) {
             // Set GA settings
             GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
@@ -33,8 +38,6 @@ public class Runner : MonoBehaviour {
             Analytics = new GameAnalyticsSystem();
             Analytics.Initialize();
         }
-
-        StartCoroutine(LoadGameScene());
     }
 
     IEnumerator LoadGameScene() {
