@@ -34,7 +34,7 @@ public class Runner : MonoBehaviour {
             gaSettings.Build[0] = Application.version;
             
             // Initialize GA
-            Instantiate(gameAnalytics);
+            Instantiate(gameAnalytics, transform);
             Analytics = new GameAnalyticsSystem();
             Analytics.Initialize();
         }
