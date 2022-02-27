@@ -14,9 +14,10 @@ public class Runner : MonoBehaviour {
     [SerializeField] GameObject loadingPanel;
 
     // Dependencies
-    AnalyticsSystem analyticsSystem;
+    public static AnalyticsSystem Analytics {get; private set;}
     
     void Awake() {
+        DontDestroyOnLoad(this);
         if (useAnalytics) {
             // Set GA settings
             GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
@@ -29,8 +30,8 @@ public class Runner : MonoBehaviour {
             
             // Initialize GA
             Instantiate(gameAnalytics);
-            analyticsSystem = new GameAnalyticsSystem();
-            analyticsSystem.Initialize();
+            Analytics = new GameAnalyticsSystem();
+            Analytics.Initialize();
         }
 
         StartCoroutine(LoadGameScene());
@@ -49,6 +50,6 @@ public class Runner : MonoBehaviour {
     }
 
     void OnDestroy() {
-        analyticsSystem.Destroy();
+        Analytics.Destroy();
     }
 }
