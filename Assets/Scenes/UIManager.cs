@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
     [SerializeField] GameStates defaultState;
     [SerializeField] UIMaps maps;
+    [SerializeField] GameObject backgroundPanel;
     GameStates currentState;
     UIElement currentPanel;
 
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour {
         try {
             currentPanel = maps[state.ToString()] as UIElement;
             currentPanel.Open();
+            backgroundPanel.SetActive(currentPanel.hasBackground);
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
