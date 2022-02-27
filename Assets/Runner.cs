@@ -41,7 +41,7 @@ public class Runner : MonoBehaviour {
     }
 
     IEnumerator LoadGameScene() {
-        AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
+        AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main");
         
         loadingPanel.StartProgress();
         while (!gameLoadOperation.isDone) {
