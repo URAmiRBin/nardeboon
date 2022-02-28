@@ -46,9 +46,8 @@ public class UIManager : MonoBehaviour {
     }
 
     void ShowPopup(string message) {
-        // TODO: Handle multiple popup requests
-        if (popup.IsActive) return; 
-        
+        // TODO: Connect to animation system
+        if (popup.IsActive) ClosePopup();
         popup.AssemblePopup(message);
         popup.Open();
     }
