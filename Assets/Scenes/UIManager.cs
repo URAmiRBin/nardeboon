@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] GameStates defaultState;
     [SerializeField] UIMaps maps;
     [SerializeField] GameObject backgroundPanel;
+    [SerializeField] Popup popup;
     GameStates currentState;
     UIElement currentPanel;
 
@@ -25,6 +26,10 @@ public class UIManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Keypad4)) {
             UpdateState(GameStates.Splash);
         }
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            ShowPopup("HI THERE MF!");
+        }
     }
     
     void UpdateState(GameStates state) {
@@ -38,6 +43,18 @@ public class UIManager : MonoBehaviour {
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
+    }
+
+    void ShowPopup(string message) {
+        // TODO: Handle multiple popup requests
+        if (popup.IsActive) return; 
+        
+        popup.AssemblePopup(message);
+        popup.Open();
+    }
+
+    void ClosePopup() {
+        popup.Close();
     }
 }
 
