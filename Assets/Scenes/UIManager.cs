@@ -57,4 +57,3 @@ public class UIManager : MonoBehaviour {
         popup.Close();
     }
 }
-
