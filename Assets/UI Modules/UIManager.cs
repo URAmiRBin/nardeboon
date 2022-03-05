@@ -12,25 +12,9 @@ public class UIManager : MonoBehaviour {
     UIElement currentPanel;
 
     void Awake() => UpdateState(defaultState);
-    
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Keypad1)) {
-            UpdateState(GameStates.Lose);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2)) {
-            UpdateState(GameStates.Win);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3)) {
-            UpdateState(GameStates.MainMenu);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4)) {
-            UpdateState(GameStates.Splash);
-        }
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            ShowPopup("HI THERE!");
-        }
-    }
+    void OnEnable() => GameEvents.onStateChange += UpdateState;
+    void OnDisable() => GameEvents.onStateChange -= UpdateState;
     
     void UpdateState(GameStates state) {
         if (state == currentState) return;
@@ -44,6 +28,8 @@ public class UIManager : MonoBehaviour {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
     }
+
+    void LevelStart() => UpdateState(GameStates.MainMenu);
 
     void ShowPopup(string message) {
         // TODO: Connect to animation system
