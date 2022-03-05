@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.P)) {
-            ShowPopup("HI THERE MF!");
+            ShowPopup("HI THERE!");
         }
     }
     
