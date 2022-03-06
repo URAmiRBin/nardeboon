@@ -7,11 +7,16 @@ public class UIManager : MonoBehaviour {
     [SerializeField] GameStates defaultState;
     [SerializeField] UIMaps maps;
     [SerializeField] GameObject backgroundPanel;
-    [SerializeField] Popup popup;
+    [SerializeField] Popup popupInstance;
+
+    static Popup popup;
     GameStates currentState;
     UIElement currentPanel;
 
-    void Awake() => UpdateState(defaultState);
+    void Awake() {
+        UpdateState(defaultState);
+        popup =  Instantiate(popupInstance, transform);
+    }
 
     void OnEnable() => GameEvents.onStateChange += UpdateState;
     void OnDisable() => GameEvents.onStateChange -= UpdateState;
@@ -31,14 +36,14 @@ public class UIManager : MonoBehaviour {
 
     void LevelStart() => UpdateState(GameStates.MainMenu);
 
-    void ShowPopup(string message) {
+    public static void ShowPopup(string message) {
         // TODO: Connect to animation system
         if (popup.IsActive) ClosePopup();
         popup.AssemblePopup(message);
         popup.Open();
     }
 
-    void ClosePopup() {
+    public static void ClosePopup() {
         popup.Close();
     }
 }

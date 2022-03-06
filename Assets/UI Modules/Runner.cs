@@ -17,8 +17,8 @@ public class Runner : MonoBehaviour {
             GameEvents.onStateChange?.Invoke(GameStates.MainMenu);
         }
 
-        // if (Input.GetKeyDown(KeyCode.P)) {
-        //     ShowPopup("HI THERE!");
-        // }
+        if (Input.GetKeyDown(KeyCode.P)) {
+            UIManager.ShowPopup("HI THERE!");
+        }
     }
 }
