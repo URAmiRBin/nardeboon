@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90f9cc3a125ace4282d2ed9656ed352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAnalytics: 0
+  useAnalytics: 1
   gameAnalytics: {fileID: 1602661936230679842, guid: 5f31bec79b92fb84788a5072b9719522, type: 3}
   gameAnalyticsGameKey: 
   gameAnalyticsSecretKey: 
@@ -260,10 +260,6 @@ PrefabInstance:
     - target: {fileID: 5176213419815781094, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5176213419815781094, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5176213419815781095, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: m_Pivot.x
