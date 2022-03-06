@@ -19,6 +19,7 @@ public class ProgressLoadingScreen : MonoBehaviour {
 
     public void FinishProgress() {
         foreach(Transform child in transform)
-            child.gameObject.SetActive(false); 
+            child.gameObject.SetActive(false);
+        GameEvents.onStateChange(GameStates.MainMenu);
     }
 }
