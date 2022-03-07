@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class Runner : MonoBehaviour {
 
     [Header("Advertisement")]
     [SerializeField] AdConfig adConfig;
+    AdManager adManager;
     
 
     [Header("Loading Screen")]
@@ -38,19 +40,14 @@ public class Runner : MonoBehaviour {
             gaSettings.Build[0] = Application.version;
             
             // Initialize GA
-            Instantiate(gameAnalytics, transform);
+            Instantiate(gameAnalytics);
             Analytics = new GameAnalyticsSystem();
             Analytics.Initialize();
         }
 
-        var adManager = new GameObject("AdManager", typeof(AdManager));
-        adManager.transform.parent = transform;
-        if (adConfig.useAdmob) {
-            var admobGameObject = Instantiate(new GameObject("Admob"), adManager.transform);
-            var admobAdService = admobGameObject.AddComponent<AdmobAdService>();
-            admobAdService.SetUnitIds(adConfig.admobUnits);
-            AdManager.Instance.InitializeAds(new AdService[] {admobAdService}, adConfig.isTestBuild);
-        }
+        adManager = new GameObject("AdManager").AddComponent<AdManager>();
+        adManager.BuildServices(adConfig);
+        adManager.InitializeAds(adConfig.isTestBuild);
     }
 
     IEnumerator LoadGameScene() {

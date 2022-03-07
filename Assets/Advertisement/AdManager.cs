@@ -3,9 +3,9 @@ using UnityEngine;
 using System;
 
 public class AdManager : MonoBehaviour {
-    public readonly int maxTries = 3;
-    [SerializeField] AdService[] services;
     [SerializeField] AdService bannerProvider;
+    public readonly int maxTries = 3;
+    List<AdService> services;
 
     static AdManager _instance;
     List<AdService> _rewardedServices, _interstitialServices;
@@ -34,9 +34,22 @@ public class AdManager : MonoBehaviour {
         _bypassForceAds = PlayerPrefs.GetInt("NoAds", 0) != 0;
     }
 
-    public void InitializeAds(AdService[] services, bool testMode) {
-        this.services = services;
-        for (int i = 0; i < services.Length; i++) {
+    public void BuildServices(AdConfig adConfig) {
+        services = new List<AdService>();
+        if (adConfig.useAdmob) {
+            var admobAdService = gameObject.AddComponent<AdmobAdService>();
+            admobAdService.SetUnitIds(adConfig.admobUnits);
+            services.Add(admobAdService);
+        }
+        if (adConfig.useUnityAds) {
+            var unityAdsService = gameObject.AddComponent<UnityAdService>();
+            unityAdsService.SetUnitIds(adConfig.unityAdUnits);
+            services.Add(unityAdsService);
+        }
+    }
+
+    public void InitializeAds(bool testMode) {
+        for (int i = 0; i < services.Count; i++) {
             if (!services[i].excludeInterstital) _interstitialServices.Add(services[i]);
             if (!services[i].excludeRewarded) _rewardedServices.Add(services[i]);
             services[i].Initialize(testMode);
