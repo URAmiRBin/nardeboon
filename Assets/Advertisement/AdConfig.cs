@@ -8,10 +8,12 @@ public class AdConfig {
 
     [Header("Admob")]
     public bool useAdmob;
+    public string admobAppID;
     public AdUnits admobUnits;
 
     [Header("UnityAds")]
     public bool useUnityAds;
+    public string unityAdsAppID;
     public AdUnits unityAdUnits;
 }
 

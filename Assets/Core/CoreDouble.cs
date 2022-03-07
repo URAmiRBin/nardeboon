@@ -25,5 +25,13 @@ public class CoreDouble : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.P)) {
             UIManager.ShowPopup("HI THERE!");
         }
+
+        if (Input.GetKeyDown(KeyCode.A)) {
+            AdManager.Instance.ShowInterstitial();
+        } if (Input.GetKeyDown(KeyCode.R)) {
+            AdManager.Instance.ShowRewarded(() => Debug.Log("THIS IS YOUR REWARD!!"), null);
+        } if (Input.GetKeyDown(KeyCode.B)) {
+            AdManager.Instance.ShowBanner();
+        }
     }
 }

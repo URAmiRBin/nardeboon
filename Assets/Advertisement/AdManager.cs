@@ -44,6 +44,7 @@ public class AdManager : MonoBehaviour {
         if (adConfig.useUnityAds) {
             var unityAdsService = gameObject.AddComponent<UnityAdService>();
             unityAdsService.SetUnitIds(adConfig.unityAdUnits);
+            unityAdsService.gameId = adConfig.unityAdsAppID;
             services.Add(unityAdsService);
         }
     }

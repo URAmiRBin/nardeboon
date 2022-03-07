@@ -236,11 +236,13 @@ MonoBehaviour:
   adConfig:
     isTestBuild: 1
     useAdmob: 1
+    admobAppID: 
     admobUnits:
       banner: 
       interstitial: 
       rewarded: 
-    useUnityAds: 0
+    useUnityAds: 1
+    unityAdsAppID: 4402151
     unityAdUnits:
       banner: 
       interstitial: 

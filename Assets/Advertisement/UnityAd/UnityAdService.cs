@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 
 public class UnityAdService : AdService, IUnityAdsListener {
-    [SerializeField] string gameId;
+    public string gameId;
 
     public override bool IsRewardedReady => Advertisement.IsReady();
     public override bool IsInterstitialReady => Advertisement.IsReady();
