@@ -10,6 +10,9 @@ public class Runner : MonoBehaviour {
     [SerializeField] string gameAnalyticsGameKey;
     [SerializeField] string gameAnalyticsSecretKey;
 
+    [Header("Advertisement")]
+    [SerializeField] GameObject adManager;
+
     [Header("Loading Screen")]
     [SerializeField] ProgressLoadingScreen loadingPanel;
 
@@ -38,6 +41,8 @@ public class Runner : MonoBehaviour {
             Analytics = new GameAnalyticsSystem();
             Analytics.Initialize();
         }
+
+        Instantiate(adManager, transform);
     }
 
     IEnumerator LoadGameScene() {
