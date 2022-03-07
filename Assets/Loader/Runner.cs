@@ -11,7 +11,10 @@ public class Runner : MonoBehaviour {
     [SerializeField] string gameAnalyticsSecretKey;
 
     [Header("Advertisement")]
-    [SerializeField] GameObject adManager;
+    [SerializeField] bool useAdmob;
+    [SerializeField] bool isTestBuild;
+    [SerializeField] string bannerUnit, interstitialUnit, RewardedUnit;
+    
 
     [Header("Loading Screen")]
     [SerializeField] ProgressLoadingScreen loadingPanel;
@@ -42,7 +45,14 @@ public class Runner : MonoBehaviour {
             Analytics.Initialize();
         }
 
-        Instantiate(adManager, transform);
+        var adManager = new GameObject("AdManager", typeof(AdManager));
+        adManager.transform.parent = transform;
+        if (useAdmob) {
+            var admobGameObject = Instantiate(new GameObject("Admob"), adManager.transform);
+            var admobAdService = admobGameObject.AddComponent<AdmobAdService>();
+            admobAdService.SetUnitIds(bannerUnit, interstitialUnit, RewardedUnit);
+            AdManager.Instance.InitializeAds(new AdService[] {admobAdService}, isTestBuild);
+        }
     }
 
     IEnumerator LoadGameScene() {

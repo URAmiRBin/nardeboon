@@ -6,7 +6,6 @@ public class AdManager : MonoBehaviour {
     public readonly int maxTries = 3;
     [SerializeField] AdService[] services;
     [SerializeField] AdService bannerProvider;
-    [SerializeField] bool testMode;
 
     static AdManager _instance;
     List<AdService> _rewardedServices, _interstitialServices;
@@ -35,12 +34,14 @@ public class AdManager : MonoBehaviour {
         _bypassForceAds = PlayerPrefs.GetInt("NoAds", 0) != 0;
     }
 
-    public void InitializeAds() {
+    public void InitializeAds(AdService[] services, bool testMode) {
+        this.services = services;
         for (int i = 0; i < services.Length; i++) {
             if (!services[i].excludeInterstital) _interstitialServices.Add(services[i]);
             if (!services[i].excludeRewarded) _rewardedServices.Add(services[i]);
             services[i].Initialize(testMode);
         }
+        bannerProvider = services[0] ?? null;
     }
 
     public void ShowInterstitial(Action success = null, Action fail = null) {

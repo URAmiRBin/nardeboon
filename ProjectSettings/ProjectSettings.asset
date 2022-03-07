@@ -591,7 +591,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    4: gameanalytics_admob_enabled
+    7: gameanalytics_admob_enabled
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
