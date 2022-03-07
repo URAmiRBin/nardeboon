@@ -1426,6 +1426,9 @@ MonoBehaviour:
     Lose: {fileID: 8766996088075964665}
   backgroundPanel: {fileID: 5176213419769250639}
   popupInstance: {fileID: 9113722899384250017, guid: f070a2cc5e7e4a94c908c77010fbb12c, type: 3}
+  elements:
+    retryButton: {fileID: 5728665007605614362}
+    nextLevelButton: {fileID: 4473026138298409218}
 --- !u!1 &5366107802260835672
 GameObject:
   m_ObjectHideFlags: 0
