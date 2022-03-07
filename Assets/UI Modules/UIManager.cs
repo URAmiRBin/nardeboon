@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour {
     void Awake() {
         UpdateState(defaultState);
         popup =  Instantiate(popupInstance, transform);
+        DontDestroyOnLoad(this);
     }
 
     void OnEnable() => GameEvents.onStateChange += UpdateState;
