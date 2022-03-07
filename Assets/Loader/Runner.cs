@@ -11,9 +11,7 @@ public class Runner : MonoBehaviour {
     [SerializeField] string gameAnalyticsSecretKey;
 
     [Header("Advertisement")]
-    [SerializeField] bool useAdmob;
-    [SerializeField] bool isTestBuild;
-    [SerializeField] string bannerUnit, interstitialUnit, RewardedUnit;
+    [SerializeField] AdConfig adConfig;
     
 
     [Header("Loading Screen")]
@@ -47,11 +45,11 @@ public class Runner : MonoBehaviour {
 
         var adManager = new GameObject("AdManager", typeof(AdManager));
         adManager.transform.parent = transform;
-        if (useAdmob) {
+        if (adConfig.useAdmob) {
             var admobGameObject = Instantiate(new GameObject("Admob"), adManager.transform);
             var admobAdService = admobGameObject.AddComponent<AdmobAdService>();
-            admobAdService.SetUnitIds(bannerUnit, interstitialUnit, RewardedUnit);
-            AdManager.Instance.InitializeAds(new AdService[] {admobAdService}, isTestBuild);
+            admobAdService.SetUnitIds(adConfig.admobUnits);
+            AdManager.Instance.InitializeAds(new AdService[] {admobAdService}, adConfig.isTestBuild);
         }
     }
 

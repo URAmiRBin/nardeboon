@@ -22,10 +22,10 @@ public abstract class AdService : MonoBehaviour {
     public abstract void ShowInterstitial(Action success, Action fail);
     public abstract void ShowBanner();
     public abstract void HideBanner();
-    public void SetUnitIds(string banner, string interstitial, string rewarded) {
-        bannerUnit = banner;
-        interstitialUnit = interstitial;
-        RewardedUnit = rewarded;
+    public void SetUnitIds(AdUnits units) {
+        bannerUnit = units.banner;
+        interstitialUnit = units.interstitial;
+        RewardedUnit = units.rewarded;
     }
 }
 

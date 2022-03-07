@@ -233,11 +233,18 @@ MonoBehaviour:
   gameAnalytics: {fileID: 1602661936230679842, guid: 5f31bec79b92fb84788a5072b9719522, type: 3}
   gameAnalyticsGameKey: 
   gameAnalyticsSecretKey: 
-  useAdmob: 1
-  isTestBuild: 1
-  bannerUnit: 
-  interstitialUnit: 
-  RewardedUnit: 
+  adConfig:
+    isTestBuild: 1
+    useAdmob: 1
+    admobUnits:
+      banner: 
+      interstitial: 
+      rewarded: 
+    useUnityAds: 0
+    unityAdUnits:
+      banner: 
+      interstitial: 
+      rewarded: 
   loadingPanel: {fileID: 587626224}
 --- !u!4 &1520353211
 Transform:
