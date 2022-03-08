@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreDouble : MonoBehaviour {
+    int level = 0;
+
     void Awake() {
         UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => Debug.Log("jdsa"));
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount >= 1) {
-            GameEvents.onLevelStart?.Invoke("0");
-            GameEvents.onStateChange(GameStates.Gameplay);
+            GameEvents.onLevelStart?.Invoke(level.ToString());
+            UIManager.Instance.Elements.levelProgressIndicator.SetLevel(level++);
         }
+
+        // TODO: Handle going into gameplay mode
+        // GameEvents.onStateChange(GameStates.Gameplay);
     
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
             GameEvents.onStateChange?.Invoke(GameStates.Splash);
