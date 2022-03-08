@@ -21,8 +21,15 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         DontDestroyOnLoad(this);
     }
 
-    void OnEnable() => GameEvents.onStateChange += UpdateState;
-    void OnDisable() => GameEvents.onStateChange -= UpdateState;
+    void OnEnable() {
+        GameEvents.onStateChange += UpdateState;
+        GameEvents.onLevelStart += SetLevelText;
+    }
+
+    void OnDisable() {
+        GameEvents.onStateChange -= UpdateState;
+        GameEvents.onLevelStart -= SetLevelText;
+    }
     
     void UpdateState(GameStates state) {
         if (state == currentState) return;
@@ -35,6 +42,10 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
+    }
+
+    void SetLevelText(string level) {
+        elements.levelText.text = "LEVEL " + level;
     }
 
     void LevelStart() => UpdateState(GameStates.MainMenu);

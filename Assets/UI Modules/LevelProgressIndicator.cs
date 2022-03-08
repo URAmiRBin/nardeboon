@@ -15,8 +15,10 @@ public class LevelProgressIndicator : MonoBehaviour {
         progressImages = transform.GetComponentsInChildren<Image>();  
     }
 
-    public void SetLevel(int level = 0) {
-        level = level % cap;
+    void Start() => SetLevel(0);
+
+    public void SetLevel(int level) {
+        level = (level - 1) % cap;
         for (int i = 0; i < cap; i++) {
             progressImages[i].sprite = i > level ? notPassedSprite : passedSprite;
         }

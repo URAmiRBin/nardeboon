@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoreDouble : MonoBehaviour {
-    int level = 0;
+    int level = 1;
 
     void Awake() {
         UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => Debug.Log("jdsa"));
