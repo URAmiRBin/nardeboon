@@ -6,9 +6,10 @@ using System;
 
 [Serializable]
 public enum GameStates {
-    Empty,
+    Freeze,
     Splash,
     MainMenu,
+    Gameplay,
     Win,
     Lose,
 }
@@ -17,6 +18,7 @@ public enum GameStates {
 public class UIMaps : ReflectableClass {
     public UIElement Splash;
     public UIElement MainMenu;
+    public UIElement Gameplay;
     public UIElement Win;
     public UIElement Lose;
 }

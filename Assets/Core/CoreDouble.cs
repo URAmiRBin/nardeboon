@@ -10,7 +10,7 @@ public class CoreDouble : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount >= 1) {
             GameEvents.onLevelStart?.Invoke("0");
-            Debug.Log("Send on level start event");
+            GameEvents.onStateChange(GameStates.Gameplay);
         }
     
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
