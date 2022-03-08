@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviourSingletion<UIManager> {
     [SerializeField] GameStates defaultState;
@@ -47,7 +48,9 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     }
 
     void SetLevelText(string level) {
-        elements.levelText.text = "LEVEL " + level;
+        foreach(Text levelText in elements.levelTexts) {
+            levelText.text = "LEVEL " + level;
+        }
     }
 
     void LevelStart() => UpdateState(GameStates.MainMenu);

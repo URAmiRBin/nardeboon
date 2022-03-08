@@ -2179,8 +2179,11 @@ MonoBehaviour:
   popupInstance: {fileID: 9113722899384250017, guid: f070a2cc5e7e4a94c908c77010fbb12c, type: 3}
   elements:
     retryButton: {fileID: 5728665007605614362}
+    reviveButton: {fileID: 5215596563338900027}
     nextLevelButton: {fileID: 4473026138298409218}
-    levelText: {fileID: 467391008973468395}
+    levelTexts:
+    - {fileID: 7889854866325412031}
+    - {fileID: 467391008973468395}
     levelProgressIndicator: {fileID: 5150223500361336041}
     startGame: {fileID: 8782801461326030862}
 --- !u!1 &5366107802260835672
