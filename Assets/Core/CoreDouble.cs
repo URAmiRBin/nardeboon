@@ -14,9 +14,6 @@ public class CoreDouble : MonoBehaviour {
             GameEvents.onLevelStart?.Invoke(level.ToString());
             UIManager.Instance.Elements.levelProgressIndicator.SetLevel(level++);
         }
-
-        // TODO: Handle going into gameplay mode
-        // GameEvents.onStateChange(GameStates.Gameplay);
     
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
             GameEvents.onStateChange?.Invoke(GameStates.Splash);

@@ -7,4 +7,5 @@ public class UIElements {
     public Button nextLevelButton;
     public Text levelText;
     public LevelProgressIndicator levelProgressIndicator;
+    public ButtonDown startGame;
 }

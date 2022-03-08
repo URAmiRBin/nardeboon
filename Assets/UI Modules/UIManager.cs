@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         UpdateState(defaultState);
         popup =  Instantiate(popupInstance, transform);
         DontDestroyOnLoad(this);
+
+        elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
     }
 
     void OnEnable() {
