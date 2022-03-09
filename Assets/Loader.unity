@@ -270,6 +270,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 795894306323123152, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3625342a449601544b410357b8e7f201, type: 2}
+    - target: {fileID: 1199078607460131739, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -454
+      objectReference: {fileID: 0}
     - target: {fileID: 2901834915362057929, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -453,6 +461,58 @@ PrefabInstance:
     - target: {fileID: 7322511766257415462, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898625098553, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898625099273, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898625127659, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898625376273, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898625376273, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644766007, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644766007, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644766007, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644766007, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644783417, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644783417, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644783417, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599411898644783417, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
