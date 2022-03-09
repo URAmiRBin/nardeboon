@@ -34,6 +34,7 @@ public class Runner : MonoBehaviour {
             GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
 
             // TODO: Multiplatform support
+            // FIXME: This does not override and add multiple platform per game run
             gaSettings.AddPlatform(RuntimePlatform.Android);
             gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
             gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
