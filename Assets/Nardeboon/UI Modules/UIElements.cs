@@ -9,4 +9,5 @@ public class UIElements {
     public Text[] levelTexts;
     public LevelProgressIndicator levelProgressIndicator;
     public ButtonDown startGame;
+    public Text coin;
 }

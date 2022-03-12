@@ -2435,6 +2435,7 @@ MonoBehaviour:
     - {fileID: 467391008973468395}
     levelProgressIndicator: {fileID: 5150223500361336041}
     startGame: {fileID: 8782801461326030862}
+    coin: {fileID: 988392779130481935}
 --- !u!1 &5366107802260835672
 GameObject:
   m_ObjectHideFlags: 0
