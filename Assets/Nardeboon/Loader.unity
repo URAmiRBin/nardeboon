@@ -308,9 +308,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3625342a449601544b410357b8e7f201, type: 2}
+    - target: {fileID: 795894306324513326, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324513326, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324513326, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324513326, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 795894306324518082, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: prewarm
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324545056, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324545056, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324545056, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 795894306324545056, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1199078607460131739, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
       propertyPath: m_LocalPosition.z
