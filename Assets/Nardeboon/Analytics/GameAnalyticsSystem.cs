@@ -6,14 +6,14 @@ public class GameAnalyticsSystem : AnalyticsSystem {
         GameAnalytics.Initialize();
     }
 
-    protected override void SendLevelStartEvent(string level) {
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, level);
+    protected override void SendLevelStartEvent(int level) {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, level.ToString());
     }
-    protected override void SendLevelWinEvent(string level) {
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level);
+    protected override void SendLevelWinEvent(int level) {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level.ToString());
     }
-    protected override void SendLevelLoseEvent(string level) {
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level);
+    protected override void SendLevelLoseEvent(int level) {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level.ToString());
     }
     protected override void SendCustomEvent(string eventName, float value) {
         GameAnalytics.NewDesignEvent(eventName, value);

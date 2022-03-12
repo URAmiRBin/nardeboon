@@ -26,12 +26,12 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
 
     void OnEnable() {
         GameEvents.onStateChange += UpdateState;
-        GameEvents.onLevelStart += SetLevelText;
+        GameEvents.onLevelWin += SetLevelText;
     }
 
     void OnDisable() {
         GameEvents.onStateChange -= UpdateState;
-        GameEvents.onLevelStart -= SetLevelText;
+        GameEvents.onLevelWin -= SetLevelText;
     }
     
     void UpdateState(GameStates state) {
@@ -47,9 +47,9 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         }
     }
 
-    void SetLevelText(string level) {
+    void SetLevelText(int level) {
         foreach(Text levelText in elements.levelTexts) {
-            levelText.text = "LEVEL " + level;
+            levelText.text = "LEVEL " + (level + 1).ToString();
         }
     }
 

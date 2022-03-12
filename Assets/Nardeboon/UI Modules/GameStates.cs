@@ -45,9 +45,9 @@ public abstract class ReflectableClass
 
 public static class GameEvents {
     // Progression events
-    public static Action<string> onLevelStart;
-    public static Action<string> onLevelLose;
-    public static Action<string> onLevelWin;
+    public static Action<int> onLevelStart;
+    public static Action<int> onLevelLose;
+    public static Action<int> onLevelWin;
 
     // Custom events
     public static Action<string, float> onCustomEvent;

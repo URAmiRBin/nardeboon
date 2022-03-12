@@ -13,7 +13,7 @@ public class CoreDouble : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount >= 1) {
-            GameEvents.onLevelStart?.Invoke(level.ToString());
+            GameEvents.onLevelStart?.Invoke(level);
             UIManager.Instance.Elements.levelProgressIndicator.SetLevel(level++);
         }
     

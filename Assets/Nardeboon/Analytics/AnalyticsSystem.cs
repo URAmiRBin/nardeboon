@@ -22,9 +22,9 @@ public abstract class AnalyticsSystem {
         GameEvents.onAdShow -= SendAdShowEvent;
     }
 
-    protected abstract void SendLevelStartEvent(string level);
-    protected abstract void SendLevelWinEvent(string level);
-    protected abstract void SendLevelLoseEvent(string level);
+    protected abstract void SendLevelStartEvent(int level);
+    protected abstract void SendLevelWinEvent(int level);
+    protected abstract void SendLevelLoseEvent(int level);
     protected abstract void SendCustomEvent(string type, float value);
     protected abstract void SendCurrencySpendEvent(int value);
     protected abstract void SendCurrencyEarnEvent(int value);
