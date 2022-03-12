@@ -271,7 +271,7 @@ MonoBehaviour:
       banner: 
       interstitial: 
       rewarded: 
-    useUnityAds: 1
+    useUnityAds: 0
     unityAdsAppID: 4402151
     unityAdUnits:
       banner: 

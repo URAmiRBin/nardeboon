@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Loader.unity
+    path: Assets/Nardeboon/Loader.unity
     guid: 2f54435406ae54c4788b2879327dbf06
   - enabled: 1
     path: Assets/Core/Main.unity
