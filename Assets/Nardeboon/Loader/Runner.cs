@@ -44,6 +44,7 @@ public class Runner : MonoBehaviour {
 
                 // TODO: Multiplatform support
                 if (gaSettings.Platforms.Count == 0) {
+                    gaSettings.InfoLogEditor = false;
                     gaSettings.AddPlatform(RuntimePlatform.Android);
                     gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
                     gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
