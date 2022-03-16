@@ -59,9 +59,13 @@ public class Runner : MonoBehaviour {
             }
         }
 
-        adManager = new GameObject("AdManager").AddComponent<AdManager>();
-        adManager.BuildServices(adConfig);
-        adManager.InitializeAds(adConfig.isTestBuild);
+        try {
+            adManager = new GameObject("AdManager").AddComponent<AdManager>();
+            adManager.BuildServices(adConfig);
+            adManager.InitializeAds(adConfig.isTestBuild);
+        } catch (Exception) {
+            Debug.LogError("Can not initialize ad services!");
+        }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
 
