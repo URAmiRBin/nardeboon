@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,21 +38,25 @@ public class Runner : MonoBehaviour {
 
     void SetupServices() {
         if (useAnalytics) {
-            // Set GA settings
-            GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
+            try {
+                // Set GA settings
+                GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
 
-            // TODO: Multiplatform support
-            if (gaSettings.Platforms.Count == 0) {
-                gaSettings.AddPlatform(RuntimePlatform.Android);
-                gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
-                gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
-                gaSettings.Build[0] = Application.version;    
+                // TODO: Multiplatform support
+                if (gaSettings.Platforms.Count == 0) {
+                    gaSettings.AddPlatform(RuntimePlatform.Android);
+                    gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
+                    gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
+                    gaSettings.Build[0] = Application.version;    
+                }
+
+                // Initialize GA
+                Instantiate(gameAnalytics);
+                Analytics = new GameAnalyticsSystem();
+                Analytics.Initialize();
+            } catch (Exception) {
+                Debug.LogError("Can not initialize Analytics!");
             }
-
-            // Initialize GA
-            Instantiate(gameAnalytics);
-            Analytics = new GameAnalyticsSystem();
-            Analytics.Initialize();
         }
 
         adManager = new GameObject("AdManager").AddComponent<AdManager>();
