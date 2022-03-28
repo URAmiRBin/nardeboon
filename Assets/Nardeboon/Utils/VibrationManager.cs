@@ -1,38 +1,38 @@
 using UnityEngine;
 
 public class VibrationManager {
-    private static long _shortVibrationTimeInMilliseconds = 50;
-    private static long _longVibrationTimeInMilliseconds = 150;
-    private static bool _vibration = false;
+    private long _shortVibrationTimeInMilliseconds = 50;
+    private long _longVibrationTimeInMilliseconds = 150;
+    private bool _vibration = false;
 
-    VibrationManager(long shortVibrationDurationInMilliseconds, long longVibrationDurationInMilliseconds) {
+    public VibrationManager(long shortVibrationDurationInMilliseconds, long longVibrationDurationInMilliseconds) {
         _shortVibrationTimeInMilliseconds = shortVibrationDurationInMilliseconds;
         _longVibrationTimeInMilliseconds = longVibrationDurationInMilliseconds;
         Vibration.Init();
-        UIEvents.OnVibrationSetEvent += SetVibrationStatus;
+        UIEvents.onVibrationSetEvent += SetVibrationStatus;
     }
 
     ~VibrationManager() {
-        UIEvents.OnVibrationSetEvent -= SetVibrationStatus;
+        UIEvents.onVibrationSetEvent -= SetVibrationStatus;
     }
 
-    public static bool VibrationStatus {
+    public bool VibrationStatus {
         get => _vibration;
         private set {
             _vibration = value;
-            PlayerPrefs.SetInt(PrefsKeyManager.vibration, IntBoolConverter.BoolToInt(_vibration));
+            PlayerPrefs.SetInt("VIBRATION", _vibration ? 1 : 0);
         }
     }
  
     void SetVibrationStatus(bool status) => VibrationStatus = status;
 
-    public static void Vibrate(long vibrationDuration) {
+    public void Vibrate(long vibrationDuration) {
         if (!_vibration) return;
         // Cancel previous vibration to avoid annoying multi vibrations
         Vibration.Cancel();
         Vibration.Vibrate(vibrationDuration);
     }
 
-    public static void ShortVibrate() => Vibrate(_shortVibrationTimeInMilliseconds);
-    public static void LongVibrate() => Vibrate(_longVibrationTimeInMilliseconds);
+    public void ShortVibrate() => Vibrate(_shortVibrationTimeInMilliseconds);
+    public void LongVibrate() => Vibrate(_longVibrationTimeInMilliseconds);
 }

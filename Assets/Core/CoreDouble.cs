@@ -32,6 +32,7 @@ public class CoreDouble : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.P)) {
             UIManager.ShowPopup("HI THERE!");
+            Runner.vibrationManager.ShortVibrate();
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
