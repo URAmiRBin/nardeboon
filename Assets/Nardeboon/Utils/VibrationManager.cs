@@ -20,7 +20,7 @@ public class VibrationManager {
         get => _vibration;
         private set {
             _vibration = value;
-            PlayerPrefs.SetInt("VIBRATION", _vibration ? 1 : 0);
+            PlayerPrefs.SetInt(PlayerPrefKeys.VIBRATION, _vibration ? 1 : 0);
         }
     }
  
