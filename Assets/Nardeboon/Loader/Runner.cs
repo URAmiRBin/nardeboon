@@ -14,6 +14,11 @@ public class Runner : MonoBehaviour {
     [Header("Advertisement")]
     [SerializeField] AdConfig adConfig;
     AdManager adManager;
+
+    [Header("Vibration")]
+    [SerializeField] long shortVibrationDurationInMilliseconds;
+    [SerializeField] long longVibrationDurationInMilliseconds;
+    public static VibrationManager vibrationManager;
     
 
     [Header("Loading Screen")]
@@ -50,6 +55,8 @@ public class Runner : MonoBehaviour {
         adManager = new GameObject("AdManager").AddComponent<AdManager>();
         adManager.BuildServices(adConfig);
         adManager.InitializeAds(adConfig.isTestBuild);
+
+        vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
     }
 
     IEnumerator LoadGameScene() {
