@@ -74,6 +74,10 @@ public class Runner : MonoBehaviour {
     }
 
     IEnumerator LoadGameScene() {
+        if (SceneManager.sceneCount <= 1) {
+            Debug.LogError("Core game scene is not added to the build settings!");
+            yield break;
+        }
         AsyncOperation gameLoadOperation = SceneManager.LoadSceneAsync("Main");
         
         loadingPanel.StartProgress();
