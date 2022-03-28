@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoreDouble : MonoBehaviour {
     int level = 1;
@@ -8,6 +9,7 @@ public class CoreDouble : MonoBehaviour {
     void Awake() {
         UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => Debug.Log("jdsa"));
         UIManager.Instance.Elements.retryButton.onClick.AddListener(() => GameEvents.onStateChange(GameStates.MainMenu));
+        UIManager.Instance.Elements.retryButton.onClick.AddListener(() => SceneManager.LoadScene(1));
         UIManager.Instance.Elements.reviveButton.onClick.AddListener(() => AdManager.Instance.ShowRewarded(() => GameEvents.onStateChange(GameStates.Gameplay), () => UIManager.ShowPopup("NO INTERNET BIATCH")));
     }
 

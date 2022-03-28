@@ -61,7 +61,7 @@ public class Runner : MonoBehaviour {
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
 
-        UIManager.Instance.Elements.privacyButton.onClick.AddListener(() => Application.OpenURL(privacyURL));
+        UIManager.Instance.Elements.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
     IEnumerator LoadGameScene() {
