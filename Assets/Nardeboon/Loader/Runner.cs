@@ -19,6 +19,9 @@ public class Runner : MonoBehaviour {
     [SerializeField] long shortVibrationDurationInMilliseconds;
     [SerializeField] long longVibrationDurationInMilliseconds;
     public static VibrationManager vibrationManager;
+
+    [Header("Privacy")]
+    [SerializeField] string privacyURL;
     
 
     [Header("Loading Screen")]
@@ -57,6 +60,8 @@ public class Runner : MonoBehaviour {
         adManager.InitializeAds(adConfig.isTestBuild);
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
+
+        UIManager.Instance.Elements.privacyButton.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
     IEnumerator LoadGameScene() {
