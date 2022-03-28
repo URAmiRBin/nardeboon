@@ -63,3 +63,7 @@ public static class GameEvents {
     // TODO: This should be bound to analytics events like onLevelStart
     public static Action<GameStates> onStateChange;
 }
+
+public static class UIEvents {
+    public static Action<bool> onVibrationSetEvent;
+}
