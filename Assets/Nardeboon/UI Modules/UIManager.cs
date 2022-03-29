@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         DontDestroyOnLoad(this);
 
         elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
+        elements.settingsButton.onClick.AddListener(ShowSettings);
     }
 
     void OnEnable() {
@@ -45,6 +46,10 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
+    }
+
+    void ShowSettings() {
+        maps.Settings.Open();
     }
 
     void SetLevelText(int level) {

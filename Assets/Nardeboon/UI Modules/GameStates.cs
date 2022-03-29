@@ -21,6 +21,7 @@ public class UIMaps : ReflectableClass {
     public UIElement Gameplay;
     public UIElement Win;
     public UIElement Lose;
+    public UIElement Settings;
 }
 
 public abstract class ReflectableClass

@@ -279,7 +279,7 @@ MonoBehaviour:
       rewarded: 
   shortVibrationDurationInMilliseconds: 0
   longVibrationDurationInMilliseconds: 0
-  privacyURL: 
+  privacyURL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
   loadingPanel: {fileID: 587626224}
 --- !u!4 &1520353211
 Transform:

@@ -6,6 +6,7 @@ public class UIElements {
     public Button retryButton;
     public Button reviveButton;
     public Button nextLevelButton;
+    public Button settingsButton;
     public Button privacyButton;
     public Text[] levelTexts;
     public LevelProgressIndicator levelProgressIndicator;
