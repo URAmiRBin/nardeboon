@@ -757,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7519505657309270311}
-  - component: {fileID: 4413836458034938160}
+  - component: {fileID: 8351780901290368592}
   m_Layer: 0
   m_Name: Settings
   m_TagString: Untagged
@@ -785,7 +785,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4413836458034938160
+--- !u!114 &8351780901290368592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -794,10 +794,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1669082971685008408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5417a1deccf5040bb68e052f5ad4bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 45776ed6eac149275b366dac84f35204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hasBackground: 1
+  disabledOptionAlpha: 0.25
+  vibrationButton: {fileID: 7745076960347754367}
+  soundButton: {fileID: 1172640866940728926}
+  noAdsButton: {fileID: 9019415702124587073}
+  privacyButton: {fileID: 6396728595607116571}
 --- !u!1 &2172011950513378365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,7 +2760,6 @@ MonoBehaviour:
     Gameplay: {fileID: 6645205018128533281}
     Win: {fileID: 9023345496180114707}
     Lose: {fileID: 8766996088075964665}
-    Settings: {fileID: 4413836458034938160}
   backgroundPanel: {fileID: 5176213419769250639}
   popupInstance: {fileID: 9113722899384250017, guid: f070a2cc5e7e4a94c908c77010fbb12c, type: 3}
   elements:
@@ -2763,13 +2767,13 @@ MonoBehaviour:
     reviveButton: {fileID: 5215596563338900027}
     nextLevelButton: {fileID: 4473026138298409218}
     settingsButton: {fileID: 7986377464802606146}
-    privacyButton: {fileID: 6396728595607116571}
     levelTexts:
     - {fileID: 7889854866325412031}
     - {fileID: 467391008973468395}
     levelProgressIndicator: {fileID: 5150223500361336041}
     startGame: {fileID: 8782801461326030862}
     coin: {fileID: 988392779130481935}
+    settingsPanel: {fileID: 8351780901290368592}
 --- !u!1 &5366107802260835672
 GameObject:
   m_ObjectHideFlags: 0

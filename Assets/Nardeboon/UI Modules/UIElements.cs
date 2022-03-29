@@ -7,9 +7,9 @@ public class UIElements {
     public Button reviveButton;
     public Button nextLevelButton;
     public Button settingsButton;
-    public Button privacyButton;
     public Text[] levelTexts;
     public LevelProgressIndicator levelProgressIndicator;
     public ButtonDown startGame;
     public Text coin;
+    public SettingsPanel settingsPanel;
 }

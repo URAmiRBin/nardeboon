@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     }
 
     void ShowSettings() {
-        maps.Settings.Open();
+        elements.settingsPanel.Open();
     }
 
     void SetLevelText(int level) {
