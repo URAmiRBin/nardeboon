@@ -20,10 +20,14 @@ public class SettingsPanel : UIElement {
         _onColor = _vibrationImage.color;
         _offColor = new Color(_onColor.r, _onColor.g, _onColor.b, disabledOptionAlpha);
         _vibrationImage.color = _vibrationState ? _onColor : _offColor;
+
+        // TODO: Sound
+        // TODO: NoAds
     }
 
     void Start() {
         vibrationButton.onClick.AddListener(SwitchVibration);
+        // FIXME: Handle privacyButton assignment in here UI Manager should be initialized like other services
     }
 
     void SwitchVibration() {

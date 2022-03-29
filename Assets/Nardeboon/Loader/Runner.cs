@@ -21,7 +21,7 @@ public class Runner : MonoBehaviour {
     public static VibrationManager vibrationManager;
 
     [Header("Privacy")]
-    [SerializeField] string privacyURL;
+    public string privacyURL;
     
 
     [Header("Loading Screen")]
@@ -61,7 +61,6 @@ public class Runner : MonoBehaviour {
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
 
-        if (UIManager.Instance.Elements.settingsPanel == null) Debug.Log("FUCK");
         UIManager.Instance.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
