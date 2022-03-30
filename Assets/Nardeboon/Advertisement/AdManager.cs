@@ -36,16 +36,20 @@ public class AdManager : MonoBehaviour {
 
     public void BuildServices(AdConfig adConfig) {
         services = new List<AdService>();
-        if (adConfig.useAdmob) {
-            var admobAdService = gameObject.AddComponent<AdmobAdService>();
-            admobAdService.SetUnitIds(adConfig.admobUnits);
-            services.Add(admobAdService);
-        }
-        if (adConfig.useUnityAds) {
-            var unityAdsService = gameObject.AddComponent<UnityAdService>();
-            unityAdsService.SetUnitIds(adConfig.unityAdUnits);
-            unityAdsService.gameId = adConfig.unityAdsAppID;
-            services.Add(unityAdsService);
+        foreach(AdServiceConfig adServiceConfig in adConfig.adServices) {
+            switch (adServiceConfig.network) {
+                case AdNetwork.Admob:
+                    var admobAdService = gameObject.AddComponent<AdmobAdService>();
+                    admobAdService.SetUnitIds(adServiceConfig.units);
+                    services.Add(admobAdService);
+                    break;
+                case AdNetwork.Unity:
+                    var unityAdsService = gameObject.AddComponent<UnityAdService>();
+                    unityAdsService.SetUnitIds(adServiceConfig.units);
+                    unityAdsService.gameId = adServiceConfig.appID;
+                    services.Add(unityAdsService);
+                    break;
+            }
         }
     }
 
