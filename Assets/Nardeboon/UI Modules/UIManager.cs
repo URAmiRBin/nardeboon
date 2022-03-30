@@ -11,23 +11,23 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     [SerializeField] Popup popupInstance;
     [SerializeField] UIElements elements;
 
-    [Header("UI Config")]
-    [SerializeField] TutorialType _tutorialFingerType;
-
     static Popup popup;
     GameStates currentState;
     UIElement currentPanel;
     public UIElements Elements { get => elements; }
 
+    public void Initialize(string privacyURL, TutorialType fingerTutorialType) {
+        elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
+        elements.fingerTutorial.Initialize(fingerTutorialType);
+        elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
+        elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
+        elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
+    }
+
     void Awake() {
         UpdateState(defaultState);
         popup =  Instantiate(popupInstance, transform);
         DontDestroyOnLoad(this);
-
-        elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
-        elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
-        elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
-        elements.fingerTutorial.Initialize(_tutorialFingerType);
     }
 
     void OnEnable() {

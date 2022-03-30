@@ -20,13 +20,13 @@ public class Runner : MonoBehaviour {
     [SerializeField] long longVibrationDurationInMilliseconds;
     public static VibrationManager vibrationManager;
 
-    [Header("Privacy")]
-    public string privacyURL;
+    [Header("UI Config")]
+    [SerializeField] string privacyURL;
+    [SerializeField] TutorialType tutorialFingerType;
+    [SerializeField] UIManager uiManagerPrefab;
+    UIManager uiManager;
+    ProgressLoadingScreen loadingPanel;
     
-
-    [Header("Loading Screen")]
-    [SerializeField] ProgressLoadingScreen loadingPanel;
-
     // Dependencies
     public static AnalyticsSystem Analytics {get; private set;}
     
@@ -37,6 +37,10 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
+        uiManager = Instantiate(uiManagerPrefab);
+        uiManager.Initialize(privacyURL, tutorialFingerType);
+        loadingPanel = uiManager.Elements.loadingScreen;
+
         if (useAnalytics) {
             try {
                 // Set GA settings
@@ -69,8 +73,6 @@ public class Runner : MonoBehaviour {
         }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
-
-        UIManager.Instance.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
     IEnumerator LoadGameScene() {
