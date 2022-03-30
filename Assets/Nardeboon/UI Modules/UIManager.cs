@@ -22,7 +22,8 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         DontDestroyOnLoad(this);
 
         elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
-        elements.settingsButton.onClick.AddListener(ShowSettings);
+        elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
+        elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
     }
 
     void OnEnable() {
@@ -46,10 +47,6 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
-    }
-
-    void ShowSettings() {
-        elements.settingsPanel.Open();
     }
 
     void SetLevelText(int level) {

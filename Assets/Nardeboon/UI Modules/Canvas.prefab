@@ -2495,7 +2495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1334125439895686738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2767,6 +2767,7 @@ MonoBehaviour:
     reviveButton: {fileID: 5215596563338900027}
     nextLevelButton: {fileID: 4473026138298409218}
     settingsButton: {fileID: 7986377464802606146}
+    closeSettingsButton: {fileID: 0}
     levelTexts:
     - {fileID: 7889854866325412031}
     - {fileID: 467391008973468395}

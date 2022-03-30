@@ -7,6 +7,7 @@ public class UIElements {
     public Button reviveButton;
     public Button nextLevelButton;
     public Button settingsButton;
+    public Button closeSettingsButton;
     public Text[] levelTexts;
     public LevelProgressIndicator levelProgressIndicator;
     public ButtonDown startGame;
