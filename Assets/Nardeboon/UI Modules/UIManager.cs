@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     [SerializeField] Popup popupInstance;
     [SerializeField] UIElements elements;
 
+    [Header("UI Config")]
+    [SerializeField] TutorialType _tutorialFingerType;
+
     static Popup popup;
     GameStates currentState;
     UIElement currentPanel;
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
         elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
         elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
+        elements.fingerTutorial.Initialize(_tutorialFingerType);
     }
 
     void OnEnable() {

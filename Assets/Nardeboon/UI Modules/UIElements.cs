@@ -13,4 +13,5 @@ public class UIElements {
     public ButtonDown startGame;
     public Text coin;
     public SettingsPanel settingsPanel;
+    public FingerTutorial fingerTutorial;
 }
