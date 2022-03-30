@@ -11,4 +11,5 @@ public class UIElements {
     public LevelProgressIndicator levelProgressIndicator;
     public ButtonDown startGame;
     public Text coin;
+    public FingerTutorial fingerTutorial;
 }
