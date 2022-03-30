@@ -224,13 +224,14 @@ MonoBehaviour:
   gameAnalyticsSecretKey: 
   adConfig:
     isTestBuild: 1
+    iterationType: 0
     adServices:
-    - network: 0
-      appID: 
+    - network: 1
+      appID: 4402151
       units:
-        banner: 
-        interstitial: 
-        rewarded: 
+        banner: dsad
+        interstitial: dsa
+        rewarded: sa
   shortVibrationDurationInMilliseconds: 50
   longVibrationDurationInMilliseconds: 150
   privacyURL: https://www.youtube.com/watch?v=dQw4w9WgXcQ

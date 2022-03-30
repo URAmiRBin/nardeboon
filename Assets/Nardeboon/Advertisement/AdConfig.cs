@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AdConfig {
     public bool isTestBuild;
+    public AdIterationType iterationType;
     public AdServiceConfig[] adServices;
 }
 
@@ -16,6 +17,11 @@ public class AdUnits : ReflectableClass {
 [System.Serializable]
 public enum AdNetwork {
     Admob, Unity,
+}
+
+[System.Serializable]
+public enum AdIterationType {
+    Absolute, Loop
 }
 
 [System.Serializable]

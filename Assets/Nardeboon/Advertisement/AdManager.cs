@@ -11,6 +11,7 @@ public class AdManager : MonoBehaviour {
     List<AdService> _rewardedServices, _interstitialServices;
     int _rewardedNextServiceIndex, _interestialNextServiceIndex;
     bool _bypassForceAds;
+    AdIterationType _iterationType;
 
     public static AdManager Instance { get => _instance; }
 
@@ -35,6 +36,7 @@ public class AdManager : MonoBehaviour {
     }
 
     public void BuildServices(AdConfig adConfig) {
+        _iterationType = adConfig.iterationType;
         services = new List<AdService>();
         foreach(AdServiceConfig adServiceConfig in adConfig.adServices) {
             switch (adServiceConfig.network) {
@@ -64,6 +66,18 @@ public class AdManager : MonoBehaviour {
 
     public void ShowInterstitial(Action success = null, Action fail = null) {
         if (_bypassForceAds) return;
+        switch (_iterationType) {
+            case AdIterationType.Loop:
+                ShowInterstitialLoop(success, fail);
+                break;
+            case AdIterationType.Absolute:
+                ShowInterstitialAbsolute(success, fail);
+                break;
+        }
+    }
+
+    // FIXME: Too many duplicates
+    void ShowInterstitialLoop(Action success = null, Action fail = null) {
         for (int i = 0; i < _interstitialServices.Count; i++) {
             int clampedIndex = ListUtils.ClampListIndex(i + _interestialNextServiceIndex, _interstitialServices.Count);
             if (_interstitialServices[clampedIndex].IsInterstitialReady) {
@@ -75,8 +89,28 @@ public class AdManager : MonoBehaviour {
         fail?.Invoke();
     }
 
+    void ShowInterstitialAbsolute(Action success = null, Action fail = null) {
+        for (int i = 0; i < _interstitialServices.Count; i++) {
+            if (_interstitialServices[i].IsInterstitialReady) {
+                _interstitialServices[i].ShowInterstitial(success, fail);
+                return;
+            }
+        }
+        fail?.Invoke();
+    }
+
     public void ShowRewarded(Action success, Action fail) {
-        // TODO: Show error message
+        switch (_iterationType) {
+            case AdIterationType.Loop:
+                ShowRewardedLoop(success, fail);
+                break;
+            case AdIterationType.Absolute:
+                ShowRewardedAbsolute(success, fail);
+                break;
+        }
+    }
+
+    void ShowRewardedLoop(Action success, Action fail) {
         for (int i = 0; i < _rewardedServices.Count; i++) {
             int clampedIndex = ListUtils.ClampListIndex(i + _rewardedNextServiceIndex, _rewardedServices.Count);
             if (_rewardedServices[clampedIndex].IsRewardedReady) {
@@ -85,6 +119,18 @@ public class AdManager : MonoBehaviour {
                 return;
             }
         }
+        // TODO: Show error message
+        fail?.Invoke();
+    }
+
+    void ShowRewardedAbsolute(Action success, Action fail) {
+        for (int i = 0; i < _rewardedServices.Count; i++) {
+            if (_rewardedServices[i].IsRewardedReady) {
+                _rewardedServices[i].ShowRewarded(success, fail);
+                return;
+            }
+        }
+        // TODO: Show error message
         fail?.Invoke();
     }
 
