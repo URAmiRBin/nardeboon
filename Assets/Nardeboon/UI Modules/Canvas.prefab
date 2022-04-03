@@ -2840,7 +2840,7 @@ MonoBehaviour:
     coin: {fileID: 988392779130481935}
     settingsPanel: {fileID: 8351780901290368592}
     fingerTutorial: {fileID: 8838426597897501105}
-  _tutorialFingerType: 1
+    loadingScreen: {fileID: 1817645451246087473}
 --- !u!1 &5366107802260835672
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,4 +14,5 @@ public class UIElements {
     public Text coin;
     public SettingsPanel settingsPanel;
     public FingerTutorial fingerTutorial;
+    public ProgressLoadingScreen loadingScreen;
 }
