@@ -1,14 +1,15 @@
 using UnityEngine;
 
 public class VibrationManager {
+    private bool _log;
     private long _shortVibrationTimeInMilliseconds = 50;
     private long _longVibrationTimeInMilliseconds = 150;
     private bool _vibration = false;
 
-    public VibrationManager(long shortVibrationDurationInMilliseconds, long longVibrationDurationInMilliseconds) {
+    public VibrationManager(long shortVibrationDurationInMilliseconds, long longVibrationDurationInMilliseconds, bool log) {
         _shortVibrationTimeInMilliseconds = shortVibrationDurationInMilliseconds;
         _longVibrationTimeInMilliseconds = longVibrationDurationInMilliseconds;
-        Vibration.Init();
+        _log = log;
         UIEvents.onVibrationSetEvent += SetVibrationStatus;
     }
 
@@ -28,6 +29,7 @@ public class VibrationManager {
 
     public void Vibrate(long vibrationDuration) {
         if (!_vibration) return;
+        if (_log) Debug.Log("VIBRATING FOR " + vibrationDuration + " milliseconds.");
         // Cancel previous vibration to avoid annoying multi vibrations
         Vibration.Cancel();
         Vibration.Vibrate(vibrationDuration);

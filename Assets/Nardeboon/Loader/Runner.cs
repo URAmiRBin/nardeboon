@@ -16,6 +16,7 @@ public class Runner : MonoBehaviour {
     AdManager adManager;
 
     [Header("Vibration")]
+    [SerializeField] bool logVibrationInEditor;
     [SerializeField] long shortVibrationDurationInMilliseconds;
     [SerializeField] long longVibrationDurationInMilliseconds;
     public static VibrationManager vibrationManager;
@@ -68,7 +69,7 @@ public class Runner : MonoBehaviour {
             Debug.LogError("Can not initialize ad services!");
         }
 
-        vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds);        
+        vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
 
         UIManager.Instance.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
