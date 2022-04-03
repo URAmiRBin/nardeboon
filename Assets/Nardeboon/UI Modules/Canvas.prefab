@@ -847,8 +847,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasBackground: 1
   disabledOptionAlpha: 0.25
-  vibrationButton: {fileID: 0}
-  soundButton: {fileID: 0}
+  vibrationButton: {fileID: 8296298393938840798}
+  soundButton: {fileID: 2116016397303205137}
   noAdsButton: {fileID: 9019415702124587073}
   privacyButton: {fileID: 6396728595607116571}
 --- !u!1 &2172011950513378365
@@ -5185,6 +5185,10 @@ PrefabInstance:
       value: 0.10196079
       objectReference: {fileID: 0}
     - target: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
       propertyPath: handleOffset
       value: 30
       objectReference: {fileID: 0}
@@ -5310,6 +5314,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
+--- !u!114 &2116016397303205137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
+  m_PrefabInstance: {fileID: 2074607307280394081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8f68e8ec44146508b01ef9441697eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2294434905749725063 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224340200432122086, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
@@ -5337,6 +5352,10 @@ PrefabInstance:
     - target: {fileID: 114186334927477426, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
       propertyPath: m_Color.r
       value: 0.10196079
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
       propertyPath: handleOffset
@@ -5469,3 +5488,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224340200432122086, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
   m_PrefabInstance: {fileID: 8265717777601799854}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8296298393938840798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114813106202897008, guid: f736ef895720643b3b2e8a3a5f092df6, type: 3}
+  m_PrefabInstance: {fileID: 8265717777601799854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8f68e8ec44146508b01ef9441697eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

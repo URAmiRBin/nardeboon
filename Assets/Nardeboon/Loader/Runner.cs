@@ -38,10 +38,6 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
-        uiManager = Instantiate(uiManagerPrefab);
-        uiManager.Initialize(privacyURL, tutorialFingerType);
-        loadingPanel = uiManager.Elements.loadingScreen;
-
         if (useAnalytics) {
             try {
                 // Set GA settings
@@ -74,8 +70,12 @@ public class Runner : MonoBehaviour {
         }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
+        
+        uiManager = Instantiate(uiManagerPrefab);
+        uiManager.Initialize(privacyURL, tutorialFingerType);
+        loadingPanel = uiManager.Elements.loadingScreen;
 
-        UIManager.Instance.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
+        uiManager.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
     IEnumerator LoadGameScene() {
