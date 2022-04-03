@@ -579,6 +579,8 @@ GameObject:
   - component: {fileID: 7525075215041628825}
   - component: {fileID: 8352265703969779132}
   - component: {fileID: 4473026138298409218}
+  - component: {fileID: 8458727601790146460}
+  - component: {fileID: 5710290244101456585}
   m_Layer: 5
   m_Name: Next Level
   m_TagString: Untagged
@@ -688,6 +690,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &8458727601790146460
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476032488043448621}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &5710290244101456585
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476032488043448621}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee2aecc73d9ee2b449dcce11555d1bab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1496562089415684184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,6 +1209,7 @@ GameObject:
   - component: {fileID: 2062849177160534625}
   - component: {fileID: 3830325472279111383}
   - component: {fileID: 513190248541675998}
+  - component: {fileID: 3525321091290920028}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1245,6 +1279,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3525321091290920028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830404403704624158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dea2c9027619c4693da99e8eed9a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelButton: {fileID: 1476032488043448621}
+  _fadeDelayInSeconds: 3
 --- !u!1 &2901834915362057930
 GameObject:
   m_ObjectHideFlags: 0
