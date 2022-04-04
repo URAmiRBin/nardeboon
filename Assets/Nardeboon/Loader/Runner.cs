@@ -4,16 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Runner : MonoBehaviour {
-    // More analytics APIs might be added later
-    [Header("Game Analytics")]
-    [SerializeField] bool useAnalytics;
-    [SerializeField] GameObject gameAnalytics;
-    [SerializeField] string gameAnalyticsGameKey;
-    [SerializeField] string gameAnalyticsSecretKey;
+    [SerializeField] AnalyticsConfig analyticsConfig;
 
-    [Header("Advertisement")]
     [SerializeField] AdConfig adConfig;
     AdManager adManager;
+
+    [SerializeField] UIConfig uiConfig;
+    UIManager uiManager;
+    ProgressLoadingScreen loadingPanel;
 
     [Header("Vibration")]
     [SerializeField] bool logVibrationInEditor;
@@ -21,11 +19,7 @@ public class Runner : MonoBehaviour {
     [SerializeField] long longVibrationDurationInMilliseconds;
     public static VibrationManager vibrationManager;
 
-    [Header("UI Config")]
-    [SerializeField] UIConfig uiConfig;
-
-    UIManager uiManager;
-    ProgressLoadingScreen loadingPanel;
+    
     
     // Dependencies
     public static AnalyticsSystem Analytics {get; private set;}
@@ -41,7 +35,7 @@ public class Runner : MonoBehaviour {
         uiManager.Initialize(uiConfig);
         loadingPanel = uiManager.Elements.loadingScreen;
 
-        if (useAnalytics) {
+        if (analyticsConfig.useAnalytics) {
             try {
                 // Set GA settings
                 GameAnalyticsSDK.Setup.Settings gaSettings = Resources.Load<GameAnalyticsSDK.Setup.Settings>("GameAnalytics/Settings");
@@ -50,13 +44,13 @@ public class Runner : MonoBehaviour {
                 if (gaSettings.Platforms.Count == 0) {
                     gaSettings.InfoLogEditor = false;
                     gaSettings.AddPlatform(RuntimePlatform.Android);
-                    gaSettings.UpdateGameKey(0, gameAnalyticsGameKey);
-                    gaSettings.UpdateSecretKey(0, gameAnalyticsSecretKey);
+                    gaSettings.UpdateGameKey(0, analyticsConfig.gameAnalyticsGameKey);
+                    gaSettings.UpdateSecretKey(0, analyticsConfig.gameAnalyticsSecretKey);
                     gaSettings.Build[0] = Application.version;    
                 }
 
                 // Initialize GA
-                Instantiate(gameAnalytics);
+                Instantiate(analyticsConfig.gameAnalytics);
                 Analytics = new GameAnalyticsSystem();
                 Analytics.Initialize();
             } catch (Exception) {

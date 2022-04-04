@@ -218,10 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90f9cc3a125ace4282d2ed9656ed352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAnalytics: 1
-  gameAnalytics: {fileID: 1602661936230679842, guid: 5f31bec79b92fb84788a5072b9719522, type: 3}
-  gameAnalyticsGameKey: 
-  gameAnalyticsSecretKey: 
+  analyticsConfig:
+    useAnalytics: 1
+    gameAnalytics: {fileID: 1602661936230679842, guid: 5f31bec79b92fb84788a5072b9719522, type: 3}
+    gameAnalyticsGameKey: 
+    gameAnalyticsSecretKey: 
   adConfig:
     isTestBuild: 1
     iterationType: 0
@@ -238,9 +239,6 @@ MonoBehaviour:
         banner: dsad
         interstitial: dsa
         rewarded: sa
-  logVibrationInEditor: 1
-  shortVibrationDurationInMilliseconds: 50
-  longVibrationDurationInMilliseconds: 150
   uiConfig:
     privacyURL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
     tutorialFingerType: 1
@@ -255,6 +253,9 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c675899e3780b9f45a9105c6b1c131a5, type: 3}
     bossSpritePassed: {fileID: 21300000, guid: 735991e1ea128df46b997b572c7955f5, type: 3}
     bossSpriteNotPassed: {fileID: 21300000, guid: eb6a5bd14d050be4ea7e40bb9feb80a8, type: 3}
+  logVibrationInEditor: 1
+  shortVibrationDurationInMilliseconds: 50
+  longVibrationDurationInMilliseconds: 150
 --- !u!4 &1520353211
 Transform:
   m_ObjectHideFlags: 0
