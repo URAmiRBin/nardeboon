@@ -7,7 +7,8 @@ public class CoreDouble : MonoBehaviour {
     int level = 1;
 
     void Awake() {
-        UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => Debug.Log("jdsa"));
+        UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => GameEvents.onLevelWin(level++));
+        UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => GameEvents.onStateChange(GameStates.MainMenu));
         UIManager.Instance.Elements.retryButton.onClick.AddListener(() => GameEvents.onStateChange(GameStates.MainMenu));
         UIManager.Instance.Elements.retryButton.onClick.AddListener(() => SceneManager.LoadScene(1));
         UIManager.Instance.Elements.reviveButton.onClick.AddListener(() => AdManager.Instance.ShowRewarded(() => GameEvents.onStateChange(GameStates.Gameplay), () => UIManager.ShowPopup("NO INTERNET BIATCH")));
@@ -16,7 +17,6 @@ public class CoreDouble : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount >= 1) {
             GameEvents.onLevelStart?.Invoke(level);
-            UIManager.Instance.Elements.levelProgressIndicator.SetLevel(level++);
         }
     
         if (Input.GetKeyDown(KeyCode.Keypad1)) {

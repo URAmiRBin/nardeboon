@@ -69,6 +69,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     }
 
     void SetLevelText(int level) {
+        elements.levelProgressIndicator.SetLevel(level + 1);
         foreach(Text levelText in elements.levelTexts) {
             levelText.text = "LEVEL " + (level + 1).ToString();
         }
