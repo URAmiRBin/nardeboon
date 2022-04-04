@@ -7,9 +7,10 @@ public class LevelProgressIndicator : MonoBehaviour {
     [SerializeField] Sprite passedSprite, notPassedSprite;
 
     protected int cap;
-    protected Image[] progressImages;
+    public Image[] progressImages;
 
-    void Awake() {
+    protected virtual void Awake() {
+        Debug.Log("HEYA");
         cap = transform.childCount;
         progressImages = new Image[cap];
         progressImages = transform.GetComponentsInChildren<Image>(); 

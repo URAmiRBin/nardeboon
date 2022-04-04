@@ -753,9 +753,9 @@ RectTransform:
   m_Father: {fileID: 4698081488410322229}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1050, y: -200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 191.352, y: 203.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &92524502812992522
@@ -1325,9 +1325,9 @@ RectTransform:
   m_Father: {fileID: 4698081488410322229}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1350, y: -200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 191.352, y: 203.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2901834915362057943
@@ -1400,9 +1400,9 @@ RectTransform:
   m_Father: {fileID: 4698081488410322229}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 750, y: -200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 191.352, y: 203.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2901834916194390636
@@ -1475,9 +1475,9 @@ RectTransform:
   m_Father: {fileID: 4698081488410322229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 191.352, y: 203.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2901834916832349627
@@ -2186,7 +2186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1353257476259897667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2835,7 +2835,7 @@ MonoBehaviour:
     levelTexts:
     - {fileID: 7889854866325412031}
     - {fileID: 467391008973468395}
-    levelProgressIndicator: {fileID: 5150223500361336041}
+    levelProgressIndicator: {fileID: 1619971467010848425}
     startGame: {fileID: 8782801461326030862}
     coin: {fileID: 988392779130481935}
     settingsPanel: {fileID: 8351780901290368592}
@@ -4726,7 +4726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4698081488410322229}
   - component: {fileID: 4068279497342824265}
-  - component: {fileID: 5150223500361336041}
+  - component: {fileID: 1619971467010848425}
   m_Layer: 5
   m_Name: Progression
   m_TagString: Untagged
@@ -4784,7 +4784,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5150223500361336041
+--- !u!114 &1619971467010848425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4793,12 +4793,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7424503191702993290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7ac43a517ad8b4783d8b358dcccbd5, type: 3}
+  m_Script: {fileID: 11500000, guid: ed58c698b6fae4f4dae728ebaa054e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   passedSprite: {fileID: 21300000, guid: 829212c20ba2ea642ac6037415712f87, type: 3}
   notPassedSprite: {fileID: 21300000, guid: db5cbda2099ae334d9c848cc1f250b01, type: 3}
   progressImages: []
+  _themeSprites:
+  - {fileID: 21300000, guid: 7cc3590aae4bfd74fa199fece6e0c26d, type: 3}
+  - {fileID: 21300000, guid: 5cb029aab0fa27144a51693e87da6a79, type: 3}
+  - {fileID: 21300000, guid: c675899e3780b9f45a9105c6b1c131a5, type: 3}
+  _currentThemeImage: {fileID: 0}
+  _nextThemeImage: {fileID: 0}
 --- !u!1 &7742649635270257918
 GameObject:
   m_ObjectHideFlags: 0
