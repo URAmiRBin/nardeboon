@@ -47,12 +47,12 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
 
     void OnEnable() {
         GameEvents.onStateChange += UpdateState;
-        GameEvents.onLevelWin += SetLevelText;
+        GameEvents.onLevelWin += HandleLevelWin;
     }
 
     void OnDisable() {
         GameEvents.onStateChange -= UpdateState;
-        GameEvents.onLevelWin -= SetLevelText;
+        GameEvents.onLevelWin -= HandleLevelWin;
     }
     
     void UpdateState(GameStates state) {
@@ -68,10 +68,15 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         }
     }
 
+    void HandleLevelWin(int level) {
+        SetLevelText(level + 1);
+        UpdateState(GameStates.MainMenu);
+    }
+
     void SetLevelText(int level) {
-        elements.levelProgressIndicator.SetLevel(level + 1);
+        elements.levelProgressIndicator.SetLevel(level);
         foreach(Text levelText in elements.levelTexts) {
-            levelText.text = "LEVEL " + (level + 1).ToString();
+            levelText.text = "LEVEL " + (level).ToString();
         }
     }
 
