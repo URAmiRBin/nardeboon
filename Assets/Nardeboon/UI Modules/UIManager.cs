@@ -10,18 +10,33 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     [SerializeField] GameObject backgroundPanel;
     [SerializeField] Popup popupInstance;
     [SerializeField] UIElements elements;
+    [SerializeField] GameObject progressionGameObject;
 
     static Popup popup;
     GameStates currentState;
     UIElement currentPanel;
     public UIElements Elements { get => elements; }
 
-    public void Initialize(string privacyURL, TutorialType fingerTutorialType) {
-        elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
-        elements.fingerTutorial.Initialize(fingerTutorialType);
+    public void Initialize(UIConfig config) {
+        elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(config.privacyURL));
+        elements.fingerTutorial.Initialize(config.tutorialFingerType);
         elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
         elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
         elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
+
+        switch (config.progressIndicatorType) {
+            case ProgressIndicatorType.Boss:
+                elements.levelProgressIndicator = progressionGameObject.AddComponent<BossLevelProgressIndicator>().Initialize(config);
+                break;
+            case ProgressIndicatorType.Theme:
+                elements.levelProgressIndicator = progressionGameObject.AddComponent<ThemeLevelProgressIndicator>().Initialize(config);
+                break;
+            default:
+                elements.levelProgressIndicator = progressionGameObject.AddComponent<LevelProgressIndicator>().Initialize(config);
+                break;
+        }
+
+        elements.levelProgressIndicator.SetLevel(0);
     }
 
     void Awake() {
