@@ -9,6 +9,7 @@ public class BossLevelProgressIndicator : LevelProgressIndicator {
         base.Initialize(config);
         _bossSpritePassed = config.bossSpritePassed;
         _bossSpriteNotPassed = config.bossSpriteNotPassed;
+        levelTexts[cap - 1].enabled = false;
         return this;
     }
 

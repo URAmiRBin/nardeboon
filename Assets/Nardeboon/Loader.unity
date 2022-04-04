@@ -246,7 +246,7 @@ MonoBehaviour:
     tutorialFingerType: 1
     uiManagerPrefab: {fileID: 5176213419815781659, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
     showLevelText: 0
-    progressIndicatorType: 0
+    progressIndicatorType: 1
     passedSprite: {fileID: 21300000, guid: 829212c20ba2ea642ac6037415712f87, type: 3}
     notPassedSprite: {fileID: 21300000, guid: 7729c5769760b02478481ba8d631efbf, type: 3}
     themeSprites:

@@ -17,10 +17,12 @@ public class ThemeLevelProgressIndicator : LevelProgressIndicator {
     {
         cap = transform.childCount - 2;
         progressImages = new Image[cap];
+        levelTexts = new Text[cap]; 
         _currentThemeImage = transform.GetChild(0).GetComponent<Image>();
         _nextThemeImage = transform.GetChild(cap + 1).GetComponent<Image>();
         for(int i = 0; i < cap; i++) {
             progressImages[i] = transform.GetChild(i + 1).GetComponent<Image>();
+            levelTexts[i] = transform.GetChild(i + 1).GetComponentInChildren<Text>();
         }
     }
 
