@@ -18,11 +18,11 @@ public class FingerTutorial : MonoBehaviour {
         SetupTutorial();
     }
 
+    void OnEnable() {
+        if (_tutorialType != TutorialType.None) SetupTutorial();
+    }
+
     void SetupTutorial() {
-        if (_tutorialType == TutorialType.None) {
-            Debug.LogWarning("No tutorial type is set, make sure to initialize!");
-            return;
-        }
         _guideText.text = _tutorialType.ToString().ToUpper() + " TO START!";
         _fingerAnimator.SetInteger("type", (int)_tutorialType);
     }
