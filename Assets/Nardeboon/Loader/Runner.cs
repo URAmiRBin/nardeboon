@@ -22,9 +22,8 @@ public class Runner : MonoBehaviour {
     public static VibrationManager vibrationManager;
 
     [Header("UI Config")]
-    [SerializeField] string privacyURL;
-    [SerializeField] TutorialType tutorialFingerType;
-    [SerializeField] UIManager uiManagerPrefab;
+    [SerializeField] UIConfig uiConfig;
+
     UIManager uiManager;
     ProgressLoadingScreen loadingPanel;
     
@@ -38,8 +37,8 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
-        uiManager = Instantiate(uiManagerPrefab);
-        uiManager.Initialize(privacyURL, tutorialFingerType);
+        uiManager = Instantiate(uiConfig.uiManagerPrefab);
+        uiManager.Initialize(uiConfig);
         loadingPanel = uiManager.Elements.loadingScreen;
 
         if (useAnalytics) {
@@ -74,8 +73,6 @@ public class Runner : MonoBehaviour {
         }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
-
-        UIManager.Instance.Elements.settingsPanel.privacyButton?.onClick.AddListener(() => Application.OpenURL(privacyURL));
     }
 
     IEnumerator LoadGameScene() {

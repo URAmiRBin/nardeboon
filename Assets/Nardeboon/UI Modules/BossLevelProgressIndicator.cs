@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossLevelProgressIndicator : LevelProgressIndicator {
-    [SerializeField] Sprite _bossSpritePassed, _bossSpriteNotPassed;
+    Sprite _bossSpritePassed, _bossSpriteNotPassed;
+
+    public override LevelProgressIndicator Initialize(UIConfig config) {
+        base.Initialize(config);
+        _bossSpritePassed = config.bossSpritePassed;
+        _bossSpriteNotPassed = config.bossSpriteNotPassed;
+        return this;
+    }
 
     public override void SetLevel(int level) {
         base.SetLevel(level);

@@ -7,6 +7,12 @@ public class ThemeLevelProgressIndicator : LevelProgressIndicator {
     [SerializeField] Sprite[] _themeSprites;
     Image _currentThemeImage, _nextThemeImage;
 
+    public override LevelProgressIndicator Initialize(UIConfig config) {
+        base.Initialize(config);
+        _themeSprites = config.themeSprites;
+        return this;
+    }
+
     protected override void Awake()
     {
         cap = transform.childCount - 2;
