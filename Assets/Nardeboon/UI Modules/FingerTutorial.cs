@@ -13,9 +13,10 @@ public class FingerTutorial : MonoBehaviour {
     [SerializeField] Animator _fingerAnimator;
     TutorialType _tutorialType = TutorialType.None;
 
-    public void Initialize(TutorialType type) => _tutorialType = type;
-
-    void OnEnable() => SetupTutorial();
+    public void Initialize(TutorialType type) {
+        _tutorialType = type;
+        SetupTutorial();
+    }
 
     void SetupTutorial() {
         if (_tutorialType == TutorialType.None) {
