@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ThemeLevelProgressIndicator : LevelProgressIndicator {
     [SerializeField] Sprite[] _themeSprites;
-    public Image _currentThemeImage, _nextThemeImage;
+    Image _currentThemeImage, _nextThemeImage;
 
     protected override void Awake()
     {
