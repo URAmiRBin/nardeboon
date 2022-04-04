@@ -19,6 +19,7 @@ public class LevelProgressIndicator : MonoBehaviour {
 
     protected int cap;
     protected Image[] progressImages;
+    protected Text[] levelTexts;
 
     public virtual LevelProgressIndicator Initialize(UIConfig config) {
         passedSprite = config.passedSprite;
@@ -30,11 +31,14 @@ public class LevelProgressIndicator : MonoBehaviour {
         cap = transform.childCount;
         progressImages = new Image[cap];
         progressImages = transform.GetComponentsInChildren<Image>(); 
+        levelTexts = transform.GetComponentsInChildren<Text>(); 
     }
 
     public virtual void SetLevel(int level) {
+        int firstLevelInBatch = ((level - 1) / cap) * cap;
         level = (level - 1) % cap;
         for (int i = 0; i < cap; i++) {
+            levelTexts[i].text = (firstLevelInBatch + i + 1).ToString();
             progressImages[i].sprite = i > level ? notPassedSprite : passedSprite;
         }
     }

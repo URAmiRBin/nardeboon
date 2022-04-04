@@ -10,6 +10,7 @@ public class UIConfig {
     public UIManager uiManagerPrefab;
 
     [Header("Levels Progress")]
+    public bool showLevelText;
     public ProgressIndicatorType progressIndicatorType;
     public Sprite passedSprite, notPassedSprite;
     public Sprite[] themeSprites;
