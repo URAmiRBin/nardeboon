@@ -247,13 +247,13 @@ MonoBehaviour:
     uiManagerPrefab: {fileID: 5176213419815781659, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
     progressIndicatorType: 1
     passedSprite: {fileID: 21300000, guid: 829212c20ba2ea642ac6037415712f87, type: 3}
-    notPassedSprite: {fileID: 21300000, guid: 06e3d25b5cb2418409a5a6036e2d3ae9, type: 3}
+    notPassedSprite: {fileID: 21300000, guid: 7729c5769760b02478481ba8d631efbf, type: 3}
     themeSprites:
     - {fileID: 21300000, guid: 7cc3590aae4bfd74fa199fece6e0c26d, type: 3}
     - {fileID: 21300000, guid: 5cb029aab0fa27144a51693e87da6a79, type: 3}
     - {fileID: 21300000, guid: c675899e3780b9f45a9105c6b1c131a5, type: 3}
-    bossSpritePassed: {fileID: 21300000, guid: 4f6ab5e1344f5664f83aee751aa31a98, type: 3}
-    bossSpriteNotPassed: {fileID: 21300000, guid: c0f9b9ac72ded29439df1f3755a29248, type: 3}
+    bossSpritePassed: {fileID: 21300000, guid: 735991e1ea128df46b997b572c7955f5, type: 3}
+    bossSpriteNotPassed: {fileID: 21300000, guid: eb6a5bd14d050be4ea7e40bb9feb80a8, type: 3}
 --- !u!4 &1520353211
 Transform:
   m_ObjectHideFlags: 0
