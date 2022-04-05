@@ -9,7 +9,7 @@ public class Popup : UIElement {
     [SerializeField] Button yesButton, noButton;
     [SerializeField] Text yesText, noText;
 
-    public void AssemblePopup(string message, Action yesCallback = null, Action noCallback = null) { 
+    public void AssemblePopup(string message, Action yesCallback, Action noCallback, string yesText, string noText) { 
         popupMessage.text = message;
         if (yesCallback == null) {
             yesButton.onClick.AddListener(Close);

@@ -83,10 +83,10 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     void LevelStart() => UpdateState(GameStates.MainMenu);
 
     // FIXME: Don't use static, Jamasb told
-    public static void ShowPopup(string message) {
+    public static void ShowPopup(string message, Action yesCallback = null, Action noCallback = null, string yesText = "YES", string noText = "NO") {
         // TODO: Connect to animation system
         if (popup.IsActive) ClosePopup();
-        popup.AssemblePopup(message);
+        popup.AssemblePopup(message, yesCallback, noCallback, yesText, noText);
         popup.Open();
     }
 

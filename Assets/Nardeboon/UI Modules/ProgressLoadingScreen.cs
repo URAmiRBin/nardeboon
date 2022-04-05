@@ -20,6 +20,15 @@ public class ProgressLoadingScreen : MonoBehaviour {
     public void FinishProgress() {
         foreach(Transform child in transform)
             child.gameObject.SetActive(false);
-        GameEvents.onStateChange(GameStates.MainMenu);
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
+            GameEvents.onStateChange(GameStates.MainMenu);
+        } else {
+            UIManager.ShowPopup("Agreement text", () => {
+                PlayerPrefs.SetInt(PlayerPrefKeys.AGREED, 1);
+                UIManager.ClosePopup();
+                GameEvents.onStateChange(GameStates.MainMenu);
+            }
+                , yesText: "I Agree");
+        }
     }
 }
