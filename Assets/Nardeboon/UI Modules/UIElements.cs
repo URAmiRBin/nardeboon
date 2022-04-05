@@ -15,4 +15,5 @@ public class UIElements {
     public SettingsPanel settingsPanel;
     public FingerTutorial fingerTutorial;
     public ProgressLoadingScreen loadingScreen;
+    public AgreementPopup agreementPopup;
 }

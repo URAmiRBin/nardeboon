@@ -241,6 +241,16 @@ MonoBehaviour:
         rewarded: sa
   uiConfig:
     privacyURL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    agreementsText: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis vitae
+      et leo duis. Nec feugiat nisl pretium fusce id velit ut tortor. Ultrices sagittis
+      orci a scelerisque purus semper eget. Ultricies leo integer malesuada nunc.
+      Pellentesque nec nam aliquam sem et tortor consequat id. Ut tortor pretium
+      viverra suspendisse potenti. Tincidunt praesent semper feugiat nibh. Quis ipsum
+      suspendisse ultrices gravida dictum fusce ut placerat. Aenean et tortor at
+      risus viverra. Ultrices tincidunt arcu non sodales neque sodales. Vitae purus
+      faucibus ornare suspendisse sed nisi lacus. Odio pellentesque diam volutpat
+      commodo sed egestas egestas.
     tutorialFingerType: 1
     uiManagerPrefab: {fileID: 5176213419815781659, guid: 271e030da97c7c043b44ac9c617c0281, type: 3}
     showLevelText: 0

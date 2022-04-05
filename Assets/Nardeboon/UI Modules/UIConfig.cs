@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class UIConfig {
     public string privacyURL;
+    [Multiline] public string agreementsText;
     public TutorialType tutorialFingerType;
     public UIManager uiManagerPrefab;
 

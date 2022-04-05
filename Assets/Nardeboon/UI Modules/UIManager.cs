@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.startGame.SetCallback(() => UpdateState(GameStates.Gameplay));
         elements.settingsButton.onClick.AddListener(() => elements.settingsPanel.Open());
         elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
+        elements.agreementPopup.agreeButton.onClick.AddListener(AgreeToConditions);
 
         switch (config.progressIndicatorType) {
             case ProgressIndicatorType.Boss:
@@ -37,6 +38,8 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         }
 
         elements.levelProgressIndicator.SetLevel(0);
+
+        elements.agreementPopup.Initialize(config.agreementsText);
     }
 
     void Awake() {
@@ -88,6 +91,12 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         if (popup.IsActive) ClosePopup();
         popup.AssemblePopup(message, yesCallback, noCallback, yesText, noText);
         popup.Open();
+    }
+
+    void AgreeToConditions() {
+        PlayerPrefs.SetInt(PlayerPrefKeys.AGREED, 1);
+        elements.agreementPopup.Close();
+        UpdateState(GameStates.MainMenu);
     }
 
     public static void ClosePopup() {
