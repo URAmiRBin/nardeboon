@@ -24,7 +24,7 @@ public class ProgressLoadingScreen : MonoBehaviour {
         if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
             GameEvents.onStateChange(GameStates.MainMenu);
         } else {
-            UIManager.Instance.Elements.agreementPopup.Open();
+            UIManager.Instance.ShowAgreements();
         }
     }
 }

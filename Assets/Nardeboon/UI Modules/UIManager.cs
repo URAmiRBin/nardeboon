@@ -99,6 +99,8 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         UpdateState(GameStates.MainMenu);
     }
 
+    public void ShowAgreements() => elements.agreementPopup.Open();
+
     public static void ClosePopup() {
         popup.Close();
     }
