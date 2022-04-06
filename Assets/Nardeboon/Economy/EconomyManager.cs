@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
+    int coinAmount;
+
+    void Awake() {
+        coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 0);
+    }
+
+    void OnEnable() {
+        GameEvents.onCurrencyEarn += AddCoin;
+        GameEvents.onCurrencySpend += SpendCoin;
+    }
+
+    void OnDisable() {
+        GameEvents.onCurrencyEarn -= AddCoin;
+        GameEvents.onCurrencySpend -= SpendCoin;
+    }
+
+    public bool CanSpend(int amount) => coinAmount >= amount;
+
+    void SetCoin(int amount) {
+        if (amount < 0) return;
+        coinAmount = amount;
+        UIManager.Instance.Elements.coin.text = amount.ToString();
+    }
+
+    void AddCoin(int addedAmount) => SetCoin(coinAmount + addedAmount);
+    void SpendCoin(int spentAmount) => SetCoin(coinAmount - spentAmount);
+}
