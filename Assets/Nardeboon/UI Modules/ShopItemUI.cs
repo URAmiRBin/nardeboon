@@ -11,13 +11,17 @@ public class ShopItemUI : MonoBehaviour {
     [SerializeField] Text _priceText;
     bool _hasItem;
     ItemConfig _config;
+    int indexInMenu;
+    ShopItemPopulator shopMenu;
 
     void Awake() {
         _button = GetComponent<Button>();
         _hasItem = EconomyManager.Instance.HasItem(_config);
     }
     
-    public void FillData(ItemBase itemBase) {
+    public void FillData(ItemBase itemBase, int index, ShopItemPopulator populator) {
+        indexInMenu = index;
+        shopMenu = populator;
         itemBase.SetCallback();
         _config = itemBase.config;
         _image.sprite = _config.sprite;
@@ -28,7 +32,8 @@ public class ShopItemUI : MonoBehaviour {
 
     void BuyOrUseItem() {
         if (_hasItem) {
-            _config.useCallback.Invoke();
+            _config.useCallback?.Invoke();
+            shopMenu.Select(indexInMenu);
         } else {
             if (EconomyManager.Instance.CanSpend(_config.cost)) {
                 GameEvents.onCurrencySpend(_config.cost);
@@ -39,5 +44,9 @@ public class ShopItemUI : MonoBehaviour {
                 UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
             }
         }
+    }
+
+    public void ChangeState(bool isHighlight) {
+        GetComponent<Image>().color = isHighlight ? Color.grey : Color.white;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour {
     public ItemConfig config;
-    public void SetCallback() => config.useCallback = Use;
+    public void SetCallback() => config.useCallback += Use;
 
     public virtual void Use() {}
 }
