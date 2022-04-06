@@ -14,7 +14,7 @@ public class ShopItemUI : MonoBehaviour {
         _image = GetComponent<Image>();
         _button = GetComponent<Button>();
         // TODO: Check inventory
-        _hasItem = false;
+        _hasItem = EconomyManager.Instance.HasItem(_config);
     }
     
     public void FillData(ItemConfig itemConfig) {

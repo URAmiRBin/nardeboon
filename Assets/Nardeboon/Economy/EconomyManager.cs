@@ -34,4 +34,11 @@ public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
     void SpendCoin(int spentAmount) => SetCoin(coinAmount - spentAmount);
 
     public void AddToInventory(ItemConfig item) => items.Add(item);
+    
+    public bool HasItem(ItemConfig itemConfig) {
+        for(int i = 0; i < items.Count; i++) {
+            if (itemConfig.name == items[i].name) return true;
+        }
+        return false;
+    }
 }
