@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
     int coinAmount;
+    List<ItemConfig> items = new List<ItemConfig>();
 
     void Awake() {
         coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 0);
+
+        // TODO: Load items from save
     }
 
     void OnEnable() {
@@ -29,4 +32,6 @@ public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
 
     void AddCoin(int addedAmount) => SetCoin(coinAmount + addedAmount);
     void SpendCoin(int spentAmount) => SetCoin(coinAmount - spentAmount);
+
+    public void AddToInventory(ItemConfig item) => items.Add(item);
 }

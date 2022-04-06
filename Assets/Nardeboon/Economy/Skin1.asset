@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Skin1
   m_EditorClassIdentifier: 
   name: Blue
+  sprite: {fileID: 21300000, guid: 4071c70e9c546ba42b50accba370c1b2, type: 3}
+  cost: 2

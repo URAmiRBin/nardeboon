@@ -8,9 +8,7 @@ public class ShopItemPopulator : MonoBehaviour {
     [SerializeField] ItemBase[] shopItems;
 
     void Start() {
-        Debug.Log(shopItems.Length);
         foreach(ItemBase item in shopItems) {
-            Debug.Log("HEY");
             Instantiate(defaultItemPrefab, contentsParent).FillData(item.config);
         }
     }
