@@ -4,5 +4,6 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemConfig", menuName = "Nardeboon/ItemConfig", order = 1)]
 public class ItemConfig : ScriptableObject {
-    [SerializeField] new string name;
+    public new string name;
+    public Sprite sprite;
 }
