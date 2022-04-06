@@ -18,7 +18,6 @@ public class ProgressLoadingScreen : MonoBehaviour {
     }
 
     public void FinishProgress() {
-        PlayerPrefs.DeleteAll();
         foreach(Transform child in transform)
             child.gameObject.SetActive(false);
         if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
