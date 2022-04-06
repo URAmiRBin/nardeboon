@@ -7,7 +7,7 @@ public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
     public List<ItemConfig> items = new List<ItemConfig>();
 
     void Awake() {
-        coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 0);
+        coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 2000);
 
         // TODO: Load items from save
     }

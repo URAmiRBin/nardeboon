@@ -8,20 +8,50 @@ public enum PowerupState {
 }
 
 public class PowerupItemUI : MonoBehaviour {
+    [SerializeField] PowerupItem powerupItem;
     [SerializeField] GameObject priceContainer, watchAdContainer, maxedContainer;
     [SerializeField] Text priceText;
     [SerializeField] Text levelText;
     [SerializeField] Button powerupButton;
+    [SerializeField] Image powerupImage;
+    int maxLevel;
     PowerupState _currentState;
+    int _level;
+    PowerupConfig _config;
 
     void Awake() {
+        FillData(powerupItem);
         powerupButton.onClick.AddListener(Upgrade);
+
+        // TODO: Load level and cost from save
+        _level = 1;
     }
 
-    public void UpdateState(PowerupState state) {
-        _currentState = state;
+    void Start() {
+        UpdateState();
+    }
+
+    void FillData(PowerupItem item) {
+        item.SetCallback();
+        _config = item.config;
+        maxLevel = _config.cost.Length;
+        powerupImage.sprite = _config.sprite;
+    }
+
+    // TODO: Refresh state on panel open
+
+    PowerupState GetState() {
+        if (_level == maxLevel) return PowerupState.MaxedOut; 
+        if (EconomyManager.Instance.CanSpend(_config.cost[_level - 1])) return PowerupState.Purchasable;
+        else return PowerupState.WatchAd;
+    }
+
+    public void UpdateState() {
+        priceText.text = _config.cost[_level - 1].ToString();
+        levelText.text = "LVL " + _level.ToString();        
+        _currentState = GetState();
         DisableAll();
-        switch (state) {
+        switch (_currentState) {
             case PowerupState.Purchasable:
                 priceContainer.SetActive(true);
                 break;
@@ -43,10 +73,21 @@ public class PowerupItemUI : MonoBehaviour {
     void Upgrade() {
         switch (_currentState) {
             case PowerupState.Purchasable:
-                // TODO: Reduce money and activate
+                GameEvents.onCurrencySpend(_config.cost[_level - 1]);
+                _level++;
+                UpdateState();
+                _config.useCallback?.Invoke(_level);
                 break;
             case PowerupState.WatchAd:
-                // TODO: Watch ad and activate
+                AdManager.Instance.ShowRewarded(
+                    () => {
+                        // TODO: Get this from curve
+                        _level++;
+                        UpdateState();
+                        _config.useCallback?.Invoke(_level);  
+                    },
+                    () => UIManager.ShowPopup("No internet")
+                );
                 break;
             case PowerupState.MaxedOut:
                 break;
