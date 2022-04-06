@@ -339,10 +339,6 @@ MonoBehaviour:
   shopItems:
   - {fileID: 4964970911708807359, guid: 1079e476998a3b8beace11ad419c9dd0, type: 3}
   - {fileID: 5064199410115313313, guid: c924ac5d2c8bc9c958fca1852db1a385, type: 3}
-  - {fileID: 4964970911708807359, guid: 1079e476998a3b8beace11ad419c9dd0, type: 3}
-  - {fileID: 5064199410115313313, guid: c924ac5d2c8bc9c958fca1852db1a385, type: 3}
-  - {fileID: 5064199410115313313, guid: c924ac5d2c8bc9c958fca1852db1a385, type: 3}
-  - {fileID: 5064199410115313313, guid: c924ac5d2c8bc9c958fca1852db1a385, type: 3}
 --- !u!1 &7397284827600215729
 GameObject:
   m_ObjectHideFlags: 0

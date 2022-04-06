@@ -9,7 +9,7 @@ public class ShopItemPopulator : MonoBehaviour {
 
     void Start() {
         foreach(ItemBase item in shopItems) {
-            Instantiate(defaultItemPrefab, contentsParent).FillData(item.config);
+            Instantiate(defaultItemPrefab, contentsParent).FillData(item);
         }
     }
 }

@@ -67,6 +67,8 @@ public class Runner : MonoBehaviour {
         }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
+        
+        DontDestroyOnLoad(new GameObject("Economy Manager").AddComponent<EconomyManager>());
     }
 
     IEnumerator LoadGameScene() {

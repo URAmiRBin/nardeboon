@@ -13,23 +13,24 @@ public class ShopItemUI : MonoBehaviour {
     void Awake() {
         _image = GetComponent<Image>();
         _button = GetComponent<Button>();
-        // TODO: Check inventory
         _hasItem = EconomyManager.Instance.HasItem(_config);
     }
     
-    public void FillData(ItemConfig itemConfig) {
-        _config = itemConfig;
-        _image.sprite = itemConfig.sprite;
+    public void FillData(ItemBase itemBase) {
+        itemBase.SetCallback();
+        _config = itemBase.config;
+        _image.sprite = _config.sprite;
         _button.onClick.AddListener(BuyOrUseItem);
     }
 
     void BuyOrUseItem() {
         if (_hasItem) {
-            _config.useCallback?.Invoke();
+            _config.useCallback.Invoke();
         } else {
             if (EconomyManager.Instance.CanSpend(_config.cost)) {
                 GameEvents.onCurrencySpend(_config.cost);
-                EconomyManager.Instance.AddToInventory(null);       
+                EconomyManager.Instance.AddToInventory(_config);    
+                _hasItem = true;   
             } else {
                 UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
             }

@@ -7,5 +7,5 @@ public class ItemConfig : ScriptableObject {
     public new string name;
     public Sprite sprite;
     public int cost;
-    [HideInInspector] public System.Action useCallback, buyCallback;
+    [HideInInspector] public System.Action useCallback;
 }

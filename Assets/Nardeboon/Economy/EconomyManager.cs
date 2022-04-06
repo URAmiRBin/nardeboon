@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
     int coinAmount;
-    List<ItemConfig> items = new List<ItemConfig>();
+    public List<ItemConfig> items = new List<ItemConfig>();
 
     void Awake() {
         coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 0);
