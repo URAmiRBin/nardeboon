@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopItemUI : MonoBehaviour {
-    Image _image;
+    [SerializeField] Image _image;
     Button _button;
+    [SerializeField] GameObject _priceContainer;
+    [SerializeField] Text _priceText;
     bool _hasItem;
     ItemConfig _config;
 
     void Awake() {
-        _image = GetComponent<Image>();
         _button = GetComponent<Button>();
         _hasItem = EconomyManager.Instance.HasItem(_config);
     }
@@ -20,7 +21,9 @@ public class ShopItemUI : MonoBehaviour {
         itemBase.SetCallback();
         _config = itemBase.config;
         _image.sprite = _config.sprite;
+        _priceText.text = _config.cost.ToString();
         _button.onClick.AddListener(BuyOrUseItem);
+        _priceContainer.SetActive(!_hasItem);
     }
 
     void BuyOrUseItem() {
@@ -30,7 +33,8 @@ public class ShopItemUI : MonoBehaviour {
             if (EconomyManager.Instance.CanSpend(_config.cost)) {
                 GameEvents.onCurrencySpend(_config.cost);
                 EconomyManager.Instance.AddToInventory(_config);    
-                _hasItem = true;   
+                _hasItem = true;  
+                _priceContainer.SetActive(!_hasItem);
             } else {
                 UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
             }
