@@ -1,7 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public class CoreEvents {
+    public static Action onCurrentLevelWin;
+    public static Action onCurrentLevelLose;
+}
 
 public class CoreGameManager : MonoBehaviour, ICore {
     int _level;
