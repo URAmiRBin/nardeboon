@@ -26,8 +26,14 @@ public class Runner : MonoBehaviour {
     
     void Awake() {
         DontDestroyOnLoad(this);
+        ConfigPreprocess();
         SetupServices();
         StartCoroutine(LoadGameScene());
+    }
+
+    void ConfigPreprocess() {
+        // TODO: Remove parts according to used packages
+        uiConfig.agreementsText = uiConfig.agreementsText.Replace("****", Application.productName);
     }
 
     void SetupServices() {
