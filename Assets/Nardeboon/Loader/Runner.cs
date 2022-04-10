@@ -38,7 +38,7 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
-        _gameManager = Instantiate(gameManagerPrefab);
+        _gameManager = Instantiate(gameManagerPrefab, transform);
         uiManager = Instantiate(uiConfig.uiManagerPrefab);
         uiManager.Initialize(uiConfig);
         loadingPanel = uiManager.Elements.loadingScreen;

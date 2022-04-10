@@ -30,7 +30,9 @@ public class CoreGameManager : MonoBehaviour, ICore {
     }
 
     void HookButtons() {
-        UIManager.Instance.Elements.reviveButton.onClick.AddListener(ReplayLevel);
+        UIManager.Instance.Elements.reviveButton.onClick.AddListener(Revive);
+        UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => StartLevel(++_level));
+        UIManager.Instance.Elements.retryButton.onClick.AddListener(RestartLevel);    
     }
 
     public void StartGame() {
@@ -54,7 +56,10 @@ public class CoreGameManager : MonoBehaviour, ICore {
     public void LoseLevel() {}
     public void Revive() {}
     public void FreezeGame() {}
-    public void StartLevel(int level) {}
+    public void StartLevel(int level) {
+        SceneManager.LoadScene(1);
+        GameEvents.onStateChange?.Invoke(GameStates.MainMenu);
+    }
 
     public void RestartLevel() => StartLevel(_level);    
 
