@@ -51,11 +51,13 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     void OnEnable() {
         GameEvents.onStateChange += UpdateState;
         GameEvents.onLevelWin += HandleLevelWin;
+        GameEvents.onLevelLose += HandleLevelLose;
     }
 
     void OnDisable() {
         GameEvents.onStateChange -= UpdateState;
         GameEvents.onLevelWin -= HandleLevelWin;
+        GameEvents.onLevelLose -= HandleLevelLose;
     }
     
     void UpdateState(GameStates state) {
@@ -74,6 +76,10 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     void HandleLevelWin(int level) {
         SetLevelText(level + 1);
         GameEvents.onStateChange?.Invoke(GameStates.Win);
+    }
+
+    void HandleLevelLose(int level) {
+        GameEvents.onStateChange?.Invoke(GameStates.Lose);
     }
 
     void SetLevelText(int level) {

@@ -19,10 +19,12 @@ public class CoreGameManager : MonoBehaviour, ICore {
 
     void OnEnable() {
         CoreEvents.onCurrentLevelWin += WinLevel;
+        CoreEvents.onCurrentLevelLose += LoseLevel;
     }
 
     void OnDisable() {
         CoreEvents.onCurrentLevelWin -= WinLevel;
+        CoreEvents.onCurrentLevelLose -= LoseLevel;
     }
 
     public void Initialize() {
@@ -32,7 +34,7 @@ public class CoreGameManager : MonoBehaviour, ICore {
     void HookButtons() {
         UIManager.Instance.Elements.reviveButton.onClick.AddListener(Revive);
         UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => StartLevel(++_level));
-        UIManager.Instance.Elements.retryButton.onClick.AddListener(RestartLevel);    
+        UIManager.Instance.Elements.retryButton.onClick.AddListener(ReplayLevel);    
     }
 
     public void StartGame() {
@@ -53,7 +55,10 @@ public class CoreGameManager : MonoBehaviour, ICore {
         GameEvents.onLevelWin?.Invoke(_level);    
     }
 
-    public void LoseLevel() {}
+    public void LoseLevel() {
+        GameEvents.onLevelLose?.Invoke(_level);
+    }
+
     public void Revive() {}
     public void FreezeGame() {}
     public void StartLevel(int level) {

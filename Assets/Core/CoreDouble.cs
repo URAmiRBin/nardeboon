@@ -11,6 +11,8 @@ public class CoreDouble : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
             CoreEvents.onCurrentLevelWin?.Invoke();
+        } else if (Input.GetKeyDown(KeyCode.Keypad2)) {
+            CoreEvents.onCurrentLevelLose?.Invoke();
         }
     }
 }
