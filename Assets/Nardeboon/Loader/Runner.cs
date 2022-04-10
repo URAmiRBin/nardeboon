@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using com.adjust.sdk;
 
 public class Runner : MonoBehaviour {
     [SerializeField] CoreGameManager gameManagerPrefab;
@@ -62,7 +63,18 @@ public class Runner : MonoBehaviour {
                 Analytics = new GameAnalyticsSystem();
                 Analytics.Initialize();
             } catch (Exception) {
-                Debug.LogError("Can not initialize Analytics!");
+                Debug.LogError("Can not initialize GameAnalytics!");
+            }
+
+            try {
+                if (analyticsConfig.adjustPrefab != null) {
+                    DontDestroyOnLoad(Instantiate(analyticsConfig.adjustPrefab));
+                    AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, AdjustEnvironment.Sandbox);
+                    adjustConfig.setLogLevel(AdjustLogLevel.Verbose);
+                    Adjust.start(adjustConfig);
+                }
+            } catch (Exception) {
+                Debug.LogError("Can not initialize Adjust!");
             }
         }
 
