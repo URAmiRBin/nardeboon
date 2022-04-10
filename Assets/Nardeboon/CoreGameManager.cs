@@ -17,6 +17,14 @@ public class CoreGameManager : MonoBehaviour, ICore {
         _level = 1;
     }
 
+    void OnEnable() {
+        CoreEvents.onCurrentLevelWin += WinLevel;
+    }
+
+    void OnDisable() {
+        CoreEvents.onCurrentLevelWin -= WinLevel;
+    }
+
     public void Initialize() {
         HookButtons();
     }
