@@ -113,6 +113,7 @@ public class Runner : MonoBehaviour {
     }
 
     void OnDestroy() {
-        Analytics.Destroy();
+        GameAnalytics?.Destroy();
+        AdjustAnalytics?.Destroy();
     }
 }
