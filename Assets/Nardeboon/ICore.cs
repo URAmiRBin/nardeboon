@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICore {
+    void Initialize();
     void StartGame();
     void ExitGame();
     void ReplayLevel();

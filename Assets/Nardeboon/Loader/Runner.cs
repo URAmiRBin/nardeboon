@@ -75,6 +75,7 @@ public class Runner : MonoBehaviour {
         }
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
+        _gameManager.Initialize();
     }
 
     IEnumerator LoadGameScene() {

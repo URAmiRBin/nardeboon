@@ -9,7 +9,9 @@ public class CoreGameManager : MonoBehaviour, ICore {
     void Awake() {
         // TODO: Load from saves
         _level = 1;
+    }
 
+    public void Initialize() {
         HookButtons();
     }
 
