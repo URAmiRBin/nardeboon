@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using com.adjust.sdk;
 
 public class Runner : MonoBehaviour {
+    [SerializeField] bool isProductionBuild;
     [SerializeField] CoreGameManager gameManagerPrefab;
     CoreGameManager _gameManager;
 
@@ -69,7 +70,8 @@ public class Runner : MonoBehaviour {
             try {
                 if (analyticsConfig.adjustPrefab != null) {
                     DontDestroyOnLoad(Instantiate(analyticsConfig.adjustPrefab));
-                    AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, AdjustEnvironment.Sandbox);
+                    AdjustEnvironment adjustEnv = isProductionBuild ? AdjustEnvironment.Production : AdjustEnvironment.Sandbox;
+                    AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, adjustEnv);
                     adjustConfig.setLogLevel(AdjustLogLevel.Verbose);
                     Adjust.start(adjustConfig);
                 }
@@ -79,6 +81,7 @@ public class Runner : MonoBehaviour {
         }
 
         try {
+            adConfig.isTestBuild = !isProductionBuild;
             adManager = new GameObject("AdManager").AddComponent<AdManager>();
             adManager.BuildServices(adConfig);
             adManager.InitializeAds(adConfig.isTestBuild);

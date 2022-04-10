@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class AdConfig {
-    public bool isTestBuild;
+    [HideInInspector] public bool isTestBuild;
     public AdIterationType iterationType;
     public AdServiceConfig[] adServices;
 }

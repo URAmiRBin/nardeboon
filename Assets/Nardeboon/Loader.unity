@@ -224,6 +224,8 @@ MonoBehaviour:
     gameAnalytics: {fileID: 1602661936230679842, guid: 5f31bec79b92fb84788a5072b9719522, type: 3}
     gameAnalyticsGameKey: 
     gameAnalyticsSecretKey: 
+    adjustPrefab: {fileID: 115478, guid: a3267720e82aa41c1a05ab29824902b4, type: 3}
+    adjustToken: sdadsadasdds
   adConfig:
     isTestBuild: 1
     iterationType: 0
