@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
 
     void HandleLevelWin(int level) {
         SetLevelText(level + 1);
-        UpdateState(GameStates.MainMenu);
+        GameEvents.onStateChange?.Invoke(GameStates.Win);
     }
 
     void SetLevelText(int level) {
