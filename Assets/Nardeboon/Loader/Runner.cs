@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Runner : MonoBehaviour {
+    [SerializeField] CoreGameManager gameManagerPrefab;
+    CoreGameManager _gameManager;
+
     [SerializeField] AnalyticsConfig analyticsConfig;
 
     [SerializeField] AdConfig adConfig;
@@ -19,8 +22,6 @@ public class Runner : MonoBehaviour {
     [SerializeField] long longVibrationDurationInMilliseconds;
     public static VibrationManager vibrationManager;
 
-    
-    
     // Dependencies
     public static AnalyticsSystem Analytics {get; private set;}
     
@@ -37,6 +38,7 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
+        _gameManager = Instantiate(gameManagerPrefab);
         uiManager = Instantiate(uiConfig.uiManagerPrefab);
         uiManager.Initialize(uiConfig);
         loadingPanel = uiManager.Elements.loadingScreen;
@@ -88,6 +90,7 @@ public class Runner : MonoBehaviour {
             yield return null;
         }
         loadingPanel.FinishProgress();
+        _gameManager.StartGame();
     }
 
     void OnDestroy() {
