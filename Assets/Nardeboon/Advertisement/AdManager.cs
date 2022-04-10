@@ -12,9 +12,7 @@ public class AdManager : MonoBehaviour {
     int _rewardedNextServiceIndex, _interestialNextServiceIndex;
     bool _bypassForceAds;
     AdIterationType _iterationType;
-
-    public static AdManager Instance { get => _instance; }
-
+    
     public bool IsRewardedReady {
         get {
             for (int i = 0; i < _rewardedServices.Count; i++) {

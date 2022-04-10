@@ -3,17 +3,21 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Runner : MonoBehaviour {
+public class Runner : MonoBehaviourSingletion<Runner> {
     [SerializeField] CoreGameManager gameManagerPrefab;
     CoreGameManager _gameManager;
 
     [SerializeField] AnalyticsConfig analyticsConfig;
 
     [SerializeField] AdConfig adConfig;
-    AdManager adManager;
+    public static AdManager AdManager;
 
     [SerializeField] UIConfig uiConfig;
-    UIManager uiManager;
+    public static UIManager UIManager;
+    public static UIElements UIElements {
+        get => UIManager?.Elements;
+    }
+
     ProgressLoadingScreen loadingPanel;
 
     [Header("Vibration")]
@@ -39,9 +43,9 @@ public class Runner : MonoBehaviour {
 
     void SetupServices() {
         _gameManager = Instantiate(gameManagerPrefab, transform);
-        uiManager = Instantiate(uiConfig.uiManagerPrefab);
-        uiManager.Initialize(uiConfig);
-        loadingPanel = uiManager.Elements.loadingScreen;
+        UIManager = Instantiate(uiConfig.uiManagerPrefab);
+        UIManager.Initialize(uiConfig);
+        loadingPanel = UIManager.Elements.loadingScreen;
 
         if (analyticsConfig.useAnalytics) {
             try {
@@ -67,9 +71,9 @@ public class Runner : MonoBehaviour {
         }
 
         try {
-            adManager = new GameObject("AdManager").AddComponent<AdManager>();
-            adManager.BuildServices(adConfig);
-            adManager.InitializeAds(adConfig.isTestBuild);
+            AdManager = new GameObject("AdManager").AddComponent<AdManager>();
+            AdManager.BuildServices(adConfig);
+            AdManager.InitializeAds(adConfig.isTestBuild);
         } catch (Exception) {
             Debug.LogError("Can not initialize ad services!");
         }

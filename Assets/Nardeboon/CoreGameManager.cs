@@ -32,23 +32,23 @@ public class CoreGameManager : MonoBehaviour, ICore {
     }
 
     void HookButtons() {
-        UIManager.Instance.Elements.reviveButton.onClick.AddListener(Revive);
-        UIManager.Instance.Elements.nextLevelButton.onClick.AddListener(() => StartLevel(++_level));
-        UIManager.Instance.Elements.retryButton.onClick.AddListener(ReplayLevel);    
+        Runner.UIElements.reviveButton.onClick.AddListener(Revive);
+        Runner.UIElements.nextLevelButton.onClick.AddListener(() => StartLevel(++_level));
+        Runner.UIElements.retryButton.onClick.AddListener(ReplayLevel);    
     }
 
     public void StartGame() {
         if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
             GameEvents.onStateChange(GameStates.MainMenu);
         } else {
-            UIManager.Instance.ShowAgreements();
+            Runner.UIManager.ShowAgreements();
         }
     }
 
     public void ExitGame() {}
 
     public void ReplayLevel() {
-        AdManager.Instance.ShowInterstitial(RestartLevel, RestartLevel);
+        Runner.AdManager.ShowInterstitial(RestartLevel, RestartLevel);
     }
 
     public void WinLevel() {
