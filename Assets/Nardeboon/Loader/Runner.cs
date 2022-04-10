@@ -25,7 +25,8 @@ public class Runner : MonoBehaviour {
     public static VibrationManager vibrationManager;
 
     // Dependencies
-    public static AnalyticsSystem Analytics {get; private set;}
+    public static AnalyticsSystem GameAnalytics {get; private set;}
+    public static AnalyticsSystem AdjustAnalytics {get; private set;}
     
     void Awake() {
         DontDestroyOnLoad(this);
@@ -60,20 +61,22 @@ public class Runner : MonoBehaviour {
                 }
 
                 // Initialize GA
-                Instantiate(analyticsConfig.gameAnalytics);
-                Analytics = new GameAnalyticsSystem();
-                Analytics.Initialize();
+                Instantiate(analyticsConfig.gameAnalytics, transform);
+                GameAnalytics = new GameAnalyticsSystem();
+                GameAnalytics.Initialize();
             } catch (Exception) {
                 Debug.LogError("Can not initialize GameAnalytics!");
             }
 
             try {
                 if (analyticsConfig.adjustPrefab != null) {
-                    DontDestroyOnLoad(Instantiate(analyticsConfig.adjustPrefab));
+                    Instantiate(analyticsConfig.adjustPrefab, transform);
+                    AdjustAnalytics = new AdjustAnalyticsSystem();
                     AdjustEnvironment adjustEnv = isProductionBuild ? AdjustEnvironment.Production : AdjustEnvironment.Sandbox;
                     AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, adjustEnv);
                     adjustConfig.setLogLevel(AdjustLogLevel.Verbose);
                     Adjust.start(adjustConfig);
+                    AdjustAnalytics.Initialize();
                 }
             } catch (Exception) {
                 Debug.LogError("Can not initialize Adjust!");
