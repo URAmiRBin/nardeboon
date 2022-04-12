@@ -16,7 +16,7 @@ public class ShopItemUI : MonoBehaviour {
 
     void Awake() {
         _button = GetComponent<Button>();
-        _hasItem = EconomyManager.Instance.HasItem(_config);
+        _hasItem = PlayerInventory.Instance.HasItem(_config);
     }
     
     public void FillData(ItemBase itemBase, int index, ShopItemPopulator populator) {
@@ -35,9 +35,9 @@ public class ShopItemUI : MonoBehaviour {
             _config.useCallback?.Invoke();
             shopMenu.Select(indexInMenu);
         } else {
-            if (EconomyManager.Instance.CanSpend(_config.cost)) {
+            if (PlayerInventory.Instance.CanSpend(_config.cost)) {
                 GameEvents.onCurrencySpend(_config.cost);
-                EconomyManager.Instance.AddToInventory(_config);    
+                PlayerInventory.Instance.AddToInventory(_config);    
                 _hasItem = true;  
                 _priceContainer.SetActive(!_hasItem);
             } else {

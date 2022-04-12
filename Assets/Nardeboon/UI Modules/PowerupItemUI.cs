@@ -42,7 +42,7 @@ public class PowerupItemUI : MonoBehaviour {
 
     PowerupState GetState() {
         if (_level == maxLevel) return PowerupState.MaxedOut; 
-        if (EconomyManager.Instance.CanSpend(_config.cost[_level - 1])) return PowerupState.Purchasable;
+        if (PlayerInventory.Instance.CanSpend(_config.cost[_level - 1])) return PowerupState.Purchasable;
         else return PowerupState.WatchAd;
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EconomyManager : MonoBehaviourSingletion<EconomyManager> {
+public class PlayerInventory : MonoBehaviourSingletion<PlayerInventory> {
     int coinAmount;
     public List<ItemConfig> items = new List<ItemConfig>();
 
