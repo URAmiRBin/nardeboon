@@ -7,9 +7,7 @@ public class PlayerInventory : MonoBehaviourSingletion<PlayerInventory> {
     public List<ItemConfig> items = new List<ItemConfig>();
 
     void Awake() {
-        coinAmount = PlayerPrefs.GetInt(PlayerPrefKeys.COIN, 2000);
-
-        // TODO: Load items from save
+        coinAmount = ES3.Load<int>(SaveKeys.COIN, 0);
     }
 
     void OnEnable() {

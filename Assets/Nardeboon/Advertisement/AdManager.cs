@@ -30,7 +30,7 @@ public class AdManager : MonoBehaviour {
         _rewardedServices = new List<AdService>();
 
         // TODO: Load from your own save system whether no ads has been purchased or not
-        _bypassForceAds = PlayerPrefs.GetInt(PlayerPrefKeys.NOADS, 0) != 0;
+        _bypassForceAds = ES3.Load<bool>(SaveKeys.NOADS, false);
     }
 
     public void BuildServices(AdConfig adConfig) {

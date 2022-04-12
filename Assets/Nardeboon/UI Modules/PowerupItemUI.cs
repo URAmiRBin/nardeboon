@@ -22,9 +22,7 @@ public class PowerupItemUI : MonoBehaviour {
     void Awake() {
         FillData(powerupItem);
         powerupButton.onClick.AddListener(Upgrade);
-
-        // TODO: Load level and cost from save
-        _level = 1;
+        _level = ES3.Load<int>(SaveKeys.LEVEL, 1);
     }
 
     void Start() {
