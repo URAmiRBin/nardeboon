@@ -79,7 +79,7 @@ public class PowerupItemUI : MonoBehaviour {
                 _config.useCallback?.Invoke(_level);
                 break;
             case PowerupState.WatchAd:
-                AdManager.Instance.ShowRewarded(
+                Runner.AdManager.ShowRewarded(
                     () => {
                         // TODO: Get this from curve
                         _level++;

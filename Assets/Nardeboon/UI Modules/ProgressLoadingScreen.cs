@@ -20,10 +20,5 @@ public class ProgressLoadingScreen : MonoBehaviour {
     public void FinishProgress() {
         foreach(Transform child in transform)
             child.gameObject.SetActive(false);
-        if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
-            GameEvents.onStateChange(GameStates.MainMenu);
-        } else {
-            UIManager.Instance.ShowAgreements();
-        }
     }
 }

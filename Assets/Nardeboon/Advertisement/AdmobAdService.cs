@@ -82,7 +82,7 @@ public class AdmobAdService : AdService {
     private void HandleOnAdLoaded(object sender, EventArgs args) => _loadTries = 0;
 
     private void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args) {
-        if (_loadTries <= AdManager.Instance.maxTries) {
+        if (_loadTries <= Runner.AdManager.maxTries) {
             RequestBanner(AdSize.Banner);
             _loadTries++;
         }

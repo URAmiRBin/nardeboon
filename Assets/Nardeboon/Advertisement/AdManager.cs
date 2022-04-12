@@ -12,9 +12,7 @@ public class AdManager : MonoBehaviour {
     int _rewardedNextServiceIndex, _interestialNextServiceIndex;
     bool _bypassForceAds;
     AdIterationType _iterationType;
-
-    public static AdManager Instance { get => _instance; }
-
+    
     public bool IsRewardedReady {
         get {
             for (int i = 0; i < _rewardedServices.Count; i++) {
@@ -61,7 +59,8 @@ public class AdManager : MonoBehaviour {
             if (!services[i].excludeRewarded) _rewardedServices.Add(services[i]);
             services[i].Initialize(testMode);
         }
-        bannerProvider = services[0] ?? null;
+
+        if (services.Count != 0) bannerProvider = services[0];
     }
 
     public void ShowInterstitial(Action success = null, Action fail = null) {
@@ -136,9 +135,9 @@ public class AdManager : MonoBehaviour {
 
     public void ShowBanner() {
         if (_bypassForceAds) return;
-        bannerProvider.ShowBanner();
+        bannerProvider?.ShowBanner();
     }
-    public void DestroyBanner() => bannerProvider.HideBanner();
+    public void DestroyBanner() => bannerProvider?.HideBanner();
 
     public void BypassForceAds() {
         _bypassForceAds = true;

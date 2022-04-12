@@ -26,7 +26,7 @@ public class RewardedAdButton : MonoBehaviour {
     }
 
     async Task WaitForRewardedAd(CancellationToken ct) {
-        while (!ct.IsCancellationRequested && !AdManager.Instance.IsRewardedReady) {
+        while (!ct.IsCancellationRequested && !Runner.AdManager.IsRewardedReady) {
             await Task.Yield();
         }
     }
