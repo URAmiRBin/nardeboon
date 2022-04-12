@@ -43,4 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2b131872a24b5539244bf16a1ca9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 977e4c413b1852a4f987ccd43d89861e, type: 2}
+  config:
+    name: Boomb
+    sprite: {fileID: 21300000, guid: 45a6d6830c697e14a85ec93b1fd18f00, type: 3}
+    cost: 64000000c8000000f4010000e8030000d0070000
