@@ -13,7 +13,8 @@ public class InventoryItem : Collectable {
     public int Amount { get => amount; }
     public string Name { get => _item.name; }
     public UnityEngine.Sprite Sprite { get => _item.image; }
-    public int Price { get => _item.cost * amount; }
+    public int Price { get => _item.cost * (IsConsumable ? amount : 1); }
+    public bool IsConsumable { get => _item.consumable; }
 
     public InventoryItem(GameItem item, int amount = 1) {
         _item = item;

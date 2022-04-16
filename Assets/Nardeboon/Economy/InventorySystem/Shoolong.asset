@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shoolong
   description: Main currency of the game
-  consumable: 0
+  consumable: 1
   image: {fileID: 21300000, guid: 336ee62f5e878ff4398d27fcedac0744, type: 3}
   rarity: 0
   cost: 1

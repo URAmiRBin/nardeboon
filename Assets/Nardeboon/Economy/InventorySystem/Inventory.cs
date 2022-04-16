@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviourSingletion<Inventory> {
     void Awake() {
         _items.Add(new InventoryItem(currency));
         // TODO: Load inventory from save
+
+        AddToInventory(2000);
     }
 
     public void AddToInventory(InventoryItem item) {
