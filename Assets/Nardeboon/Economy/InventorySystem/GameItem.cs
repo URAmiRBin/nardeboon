@@ -13,5 +13,6 @@ public class GameItem : ScriptableObject {
     public int cost;
     public UnityEvent artifacts;
 
+    // TODO: Handle multiple uses
     public void Use(int amount = 1) => artifacts?.Invoke();
 }

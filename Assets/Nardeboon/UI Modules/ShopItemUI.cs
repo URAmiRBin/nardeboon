@@ -9,38 +9,36 @@ public class ShopItemUI : MonoBehaviour {
     Button _button;
     [SerializeField] GameObject _priceContainer;
     [SerializeField] Text _priceText;
+    InventoryItem _item;
     bool _hasItem;
-    ItemConfig _config;
     int indexInMenu;
     ShopItemPopulator shopMenu;
 
     void Awake() {
         _button = GetComponent<Button>();
-        _hasItem = PlayerInventory.Instance.HasItem(_config);
     }
     
-    public void FillData(ItemBase itemBase, int index, ShopItemPopulator populator) {
+    public void FillData(InventoryItem item, int index, ShopItemPopulator populator) {
+        _item = item;
         indexInMenu = index;
         shopMenu = populator;
-        itemBase.SetCallback();
-        _config = itemBase.config;
-        _image.sprite = _config.sprite;
-        _priceText.text = _config.cost.ToString();
+        _image.sprite = item.Sprite;
+        _priceText.text = item.Price.ToString();
         _button.onClick.AddListener(BuyOrUseItem);
+        _hasItem = Inventory.Instance.HasItemWithName(_item.Name);
         _priceContainer.SetActive(!_hasItem);
     }
 
     void BuyOrUseItem() {
         if (_hasItem) {
-            _config.useCallback?.Invoke();
+            _item.Use();
             shopMenu.Select(indexInMenu);
         } else {
-            if (PlayerInventory.Instance.CanSpend(_config.cost)) {
-                GameEvents.onCurrencySpend(_config.cost);
-                PlayerInventory.Instance.AddToInventory(_config);    
+            try {
+                Inventory.Instance.BuyItem(_item);
                 _hasItem = true;  
                 _priceContainer.SetActive(!_hasItem);
-            } else {
+            } catch {
                 UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
             }
         }

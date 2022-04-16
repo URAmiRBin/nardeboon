@@ -20,14 +20,17 @@ public class Inventory : MonoBehaviourSingletion<Inventory> {
         else _items[index].Collect(item.Amount);
     }
 
+    public bool HasItemWithName(string name) => _items.Exists(x => x.Name == name);
+
     public void AddToInventory(int amount) => _items[0].Collect(amount);
 
     public void BuyItem(InventoryItem item) {
         try {
             _items[0].Use(item.Price);
+            GameEvents.onCurrencySpend?.Invoke(item.Price);
             AddToInventory(item);
-        } catch (System.InvalidOperationException) {
-            Debug.Log("You don't have enough money to buy " + item.Name);
+        } catch (System.InvalidOperationException e) {
+            throw e;
         }
     }
 }
