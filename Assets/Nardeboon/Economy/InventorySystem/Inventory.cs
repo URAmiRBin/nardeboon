@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviourSingletion<Inventory> {
     [SerializeField] GameItem currency;
-    public List<InventoryItem> _items;
+    public List<InventoryItem> _items = new List<InventoryItem>();
     
     public int Wallet { get => _items[0].Amount; }
+    public string MainCurrency { get => _items[0].Name; }
 
     void Awake() {
         // TODO: Load

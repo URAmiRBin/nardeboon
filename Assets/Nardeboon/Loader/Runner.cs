@@ -61,6 +61,9 @@ public class Runner : MonoBehaviourSingletion<Runner> {
                     gaSettings.Build[0] = Application.version;    
                 }
 
+                if (gaSettings.ResourceCurrencies.Count == 0) gaSettings.ResourceCurrencies.Add(Inventory.Instance.MainCurrency);
+                if (gaSettings.ResourceItemTypes.Count == 0) gaSettings.ResourceItemTypes.Add("Game Item");
+
                 // Initialize GA
                 Instantiate(analyticsConfig.gameAnalytics);
                 Analytics = new GameAnalyticsSystem();

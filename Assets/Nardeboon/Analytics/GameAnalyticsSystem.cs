@@ -1,9 +1,12 @@
 using GameAnalyticsSDK;
 
 public class GameAnalyticsSystem : AnalyticsSystem {
+    string currencyName;
+
     public override void Initialize() {
         base.Initialize();
         GameAnalytics.Initialize();
+        currencyName = Inventory.Instance.MainCurrency;
     }
 
     protected override void SendLevelStartEvent(int level) {
@@ -18,11 +21,13 @@ public class GameAnalyticsSystem : AnalyticsSystem {
     protected override void SendCustomEvent(string eventName, float value) {
         GameAnalytics.NewDesignEvent(eventName, value);
     }
+
+    // FIXME: Do we really analyze these economics? if yes add real values
     protected override void SendCurrencySpendEvent(int value) {
-        GameAnalytics.NewResourceEvent(GAResourceFlowType.Sink, "", value, "", "");
+        GameAnalytics.NewResourceEvent(GAResourceFlowType.Sink, currencyName, value, "Game Item", "1");
     }
     protected override void SendCurrencyEarnEvent(int value) {
-        GameAnalytics.NewResourceEvent(GAResourceFlowType.Source, "", value, "", "");
+        GameAnalytics.NewResourceEvent(GAResourceFlowType.Source, currencyName, value, "Game Item", "1");
     }
     protected override void SendAdFailEvent() {
         GameAnalytics.NewAdEvent(GAAdAction.FailedShow, GAAdType.Undefined, "", "", GAAdError.Unknown);
