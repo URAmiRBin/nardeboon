@@ -35,9 +35,9 @@ public class ShopItemUI : MonoBehaviour {
     void BuyItem() {
         if (!CanBuyItem) return;
         try {
-            Inventory.Instance.BuyItem(_item);
+            Inventory.Instance.BuyItem(new InventoryItem(_item.Config, _item.Amount));
             _priceContainer.SetActive(CanBuyItem);
-        } catch {
+        } catch (System.InvalidOperationException) {
             UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
         }
     }

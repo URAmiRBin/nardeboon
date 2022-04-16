@@ -15,6 +15,7 @@ public class InventoryItem : Collectable {
     public Sprite Sprite { get => _item.image; }
     public int Price { get => _item.cost * (IsConsumable ? amount : 1); }
     public bool IsConsumable { get => _item.consumable; }
+    public GameItem Config { get => _item; }
 
     public InventoryItem(GameItem item, int amount = 1) {
         _item = item;
@@ -24,7 +25,7 @@ public class InventoryItem : Collectable {
     public void Collect(int amount = 1) => this.amount += amount;
 
     public void Use(int amount = 1) {
-       if (amount > this.amount) throw new System.InvalidOperationException();
+        if (amount > this.amount) throw new System.InvalidOperationException();
         this.amount -= amount;
         _item.Use();
     }
