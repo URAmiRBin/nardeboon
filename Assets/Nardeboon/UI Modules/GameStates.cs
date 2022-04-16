@@ -67,3 +67,7 @@ public static class GameEvents {
 public static class UIEvents {
     public static Action<bool> onVibrationSetEvent;
 }
+
+public static class InventoryEvents {
+    public static Action onCoinUpdate;
+}

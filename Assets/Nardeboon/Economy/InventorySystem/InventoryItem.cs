@@ -12,7 +12,7 @@ public class InventoryItem : Collectable {
 
     public int Amount { get => amount; }
     public string Name { get => _item.name; }
-    public UnityEngine.Sprite Sprite { get => _item.image; }
+    public Sprite Sprite { get => _item.image; }
     public int Price { get => _item.cost * (IsConsumable ? amount : 1); }
     public bool IsConsumable { get => _item.consumable; }
 
@@ -24,7 +24,7 @@ public class InventoryItem : Collectable {
     public void Collect(int amount = 1) => this.amount += amount;
 
     public void Use(int amount = 1) {
-        if (amount > this.amount) throw new System.InvalidOperationException();
+       if (amount > this.amount) throw new System.InvalidOperationException();
         this.amount -= amount;
         _item.Use();
     }

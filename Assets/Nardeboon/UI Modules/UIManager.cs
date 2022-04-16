@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.levelProgressIndicator.SetLevel(0);
 
         elements.agreementPopup.Initialize(config.agreementsText);
+        elements.coin.text = Inventory.Instance.Wallet.ToString();
     }
 
     void Awake() {
@@ -71,6 +72,10 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         } catch (NullReferenceException) {
             Debug.LogWarning("State " + state.ToString() + " is not defined.");
         }
+    }
+
+    public void UpdateCoin() {
+        Elements.coin.text = Inventory.Instance.Wallet.ToString();
     }
 
     void HandleLevelWin(int level) {
