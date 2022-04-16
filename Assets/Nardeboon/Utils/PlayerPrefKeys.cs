@@ -7,4 +7,5 @@ public static class SaveKeys {
     public readonly static string NOADS = "FOCKADS";
     public readonly static string COIN = "FLERBO";
     public readonly static string LEVEL = "NOOBNESS";
+    public readonly static string INVENTORY = "KOOLE";
 }

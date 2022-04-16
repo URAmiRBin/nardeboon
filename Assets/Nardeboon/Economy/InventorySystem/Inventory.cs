@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviourSingletion<Inventory> {
     [SerializeField] GameItem currency;
-    public List<InventoryItem> _items = new List<InventoryItem>();
+    public List<InventoryItem> _items;
     
     public int Wallet { get => _items[0].Amount; }
 
     void Awake() {
-        _items.Add(new InventoryItem(currency));
-        // TODO: Load inventory from save
-
-        _items[0].Collect(2000);
+        // TODO: Load
+        if (_items.Count == 0) _items.Add(new InventoryItem(currency));
     }
 
     public void AddToInventory(InventoryItem item) {

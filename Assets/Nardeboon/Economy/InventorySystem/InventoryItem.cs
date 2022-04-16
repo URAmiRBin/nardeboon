@@ -20,7 +20,7 @@ public class InventoryItem : Collectable {
     public InventoryItem(GameItem item, int amount = 0) {
         _item = item;
         this.amount = amount;
-    } 
+    }
 
     public void Collect(int amount = 1) => this.amount += amount;
 
