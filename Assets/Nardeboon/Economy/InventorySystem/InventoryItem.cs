@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public interface Collectable {
     void Collect(int amount = 1);
     void Use(int amount = 1);
@@ -5,8 +7,8 @@ public interface Collectable {
 
 [System.Serializable]
 public class InventoryItem : Collectable {
-    GameItem _item;
-    int amount;
+    [SerializeField] GameItem _item;
+    [SerializeField] int amount;
 
     public int Amount { get => amount; }
     public string Name { get => _item.name; }
