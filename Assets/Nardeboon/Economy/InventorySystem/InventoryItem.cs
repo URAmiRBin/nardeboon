@@ -17,7 +17,7 @@ public class InventoryItem : Collectable {
     public bool IsConsumable { get => _item.consumable; }
     public GameItem Config { get => _item; }
 
-    public InventoryItem(GameItem item, int amount = 1) {
+    public InventoryItem(GameItem item, int amount = 0) {
         _item = item;
         this.amount = amount;
     } 
