@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90846d5f3977b7546a1b6a8e776c1462, type: 3}
   m_Name: RedBall
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  consumable: 0
-  image: {fileID: 0}
+  name: Red Ball
+  description: This is a heavy ball that breaks the ground.
+  consumable: 1
+  image: {fileID: 21300000, guid: d2b1d35503b1f4d4ab01a5673a90ae6d, type: 3}
   rarity: 0
-  cost: 0
+  cost: 100
   artifacts:
     m_PersistentCalls:
       m_Calls: []

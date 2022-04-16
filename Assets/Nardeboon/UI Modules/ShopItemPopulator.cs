@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopItemPopulator : MonoBehaviour {
     [SerializeField] ShopItemUI defaultItemPrefab;
     [SerializeField] Transform contentsParent;
-    [SerializeField] ItemBase[] shopItems;
+    [SerializeField] InventoryItem[] shopItems;
     ShopItemUI[] uiItems;
 
     void Awake() {
