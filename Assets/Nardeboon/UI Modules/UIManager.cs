@@ -25,6 +25,11 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.closeSettingsButton.onClick.AddListener(() => elements.settingsPanel.Close());
         elements.agreementPopup.agreeButton.onClick.AddListener(AgreeToConditions);
 
+        elements.shopButton.onClick.AddListener(() => elements.shopPanel.Open());
+        elements.selectorButton.onClick.AddListener(() => elements.selectorPanel.Open());
+        elements.closeShopPanel.onClick.AddListener(() => elements.shopPanel.Close());
+        elements.closeSelectorPanel.onClick.AddListener(() => elements.selectorPanel.Close());
+
         switch (config.progressIndicatorType) {
             case ProgressIndicatorType.Boss:
                 elements.levelProgressIndicator = progressionGameObject.AddComponent<BossLevelProgressIndicator>().Initialize(config);

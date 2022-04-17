@@ -16,4 +16,10 @@ public class UIElements {
     public FingerTutorial fingerTutorial;
     public ProgressLoadingScreen loadingScreen;
     public AgreementPopup agreementPopup;
+    public Panel shopPanel;
+    public Panel selectorPanel;
+    public Button shopButton;
+    public Button selectorButton;
+    public Button closeShopPanel;
+    public Button closeSelectorPanel;
 }
