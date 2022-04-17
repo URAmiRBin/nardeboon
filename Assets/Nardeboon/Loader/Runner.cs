@@ -83,7 +83,6 @@ public class Runner : MonoBehaviourSingletion<Runner> {
 
         vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
         
-        DontDestroyOnLoad(new GameObject("Inventory").AddComponent<PlayerInventory>());
         _gameManager.Initialize();
     }
 
