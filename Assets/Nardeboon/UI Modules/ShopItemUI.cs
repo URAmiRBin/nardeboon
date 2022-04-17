@@ -5,38 +5,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopItemUI : MonoBehaviour {
-    [SerializeField] Image _image;
-    Button _button;
-    [SerializeField] GameObject _priceContainer;
-    [SerializeField] Text _priceText;
-    InventoryItem _item;
-    int indexInMenu;
-    ShopItemPopulator shopMenu;
+    [SerializeField] protected Image _image;
+    [SerializeField] protected Button _button;
+    [SerializeField] protected GameObject _priceContainer;
+    [SerializeField] protected Text _priceText;
+    protected InventoryItem _item;
+    protected int indexInMenu;
 
-    bool CanBuyItem {
+    protected bool CanClickOnItem {
         get => _item.IsConsumable || !Runner.InventorySystem.HasItemWithName(_item.Name);
     }
 
-    void Awake() {
-        _button = GetComponent<Button>();
-    }
-
-    
-    public void FillData(InventoryItem item, int index, ShopItemPopulator populator) {
+    // FIXME: Action? for real??
+    public virtual void FillData(InventoryItem item, Action callback) {
         _item = item;
-        indexInMenu = index;
-        shopMenu = populator;
         _image.sprite = item.Sprite;
         _priceText.text = item.Price.ToString();
-        _button.onClick.AddListener(BuyItem);
-        _priceContainer.SetActive(CanBuyItem);
+        _button.onClick.AddListener(Click);
+        _priceContainer.SetActive(CanClickOnItem);
     }
 
-    void BuyItem() {
-        if (!CanBuyItem) return;
+    protected virtual void Click() {
+        if (!CanClickOnItem) return;
         try {
             Runner.InventorySystem.BuyItem(new InventoryItem(_item.Config, _item.Amount));
-            _priceContainer.SetActive(CanBuyItem);
+            _priceContainer.SetActive(CanClickOnItem);
         } catch (System.InvalidOperationException) {
             UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
         }

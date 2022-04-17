@@ -15,13 +15,13 @@ public class ShopItemPopulator : MonoBehaviour {
     void Start() {
         for(int i = 0; i < shopItems.Length; i++) {
             uiItems[i] = Instantiate(defaultItemPrefab, contentsParent);
-            uiItems[i].FillData(shopItems[i], i, this);
+            uiItems[i].FillData(shopItems[i], DeselectAll);
         }
     }
 
-    public void Select(int index) {
+    void DeselectAll() {
         for(int i = 0; i < uiItems.Length; i++) {
-            uiItems[i].ChangeState(i == index);
+            uiItems[i].ChangeState(false);
         }
     }
 }
