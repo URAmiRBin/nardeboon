@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using com.adjust.sdk;
 
-public class Runner : MonoBehaviourSingletion<Runner> {
+public class Runner : MonoBehaviour {
+    [SerializeField] bool isProductionBuild;
     [SerializeField] CoreGameManager gameManagerPrefab;
     CoreGameManager _gameManager;
 
@@ -27,7 +29,8 @@ public class Runner : MonoBehaviourSingletion<Runner> {
     public static VibrationManager vibrationManager;
 
     // Dependencies
-    public static AnalyticsSystem Analytics {get; private set;}
+    public static AnalyticsSystem GameAnalytics {get; private set;}
+    public static AnalyticsSystem AdjustAnalytics {get; private set;}
     
     void Awake() {
         DontDestroyOnLoad(this);
@@ -65,15 +68,30 @@ public class Runner : MonoBehaviourSingletion<Runner> {
                 if (gaSettings.ResourceItemTypes.Count == 0) gaSettings.ResourceItemTypes.Add("Game Item");
 
                 // Initialize GA
-                Instantiate(analyticsConfig.gameAnalytics);
-                Analytics = new GameAnalyticsSystem();
-                Analytics.Initialize();
+                Instantiate(analyticsConfig.gameAnalytics, transform);
+                GameAnalytics = new GameAnalyticsSystem();
+                GameAnalytics.Initialize();
             } catch (Exception) {
-                Debug.LogError("Can not initialize Analytics!");
+                Debug.LogError("Can not initialize GameAnalytics!");
+            }
+
+            try {
+                if (analyticsConfig.adjustPrefab != null) {
+                    Instantiate(analyticsConfig.adjustPrefab, transform);
+                    AdjustAnalytics = new AdjustAnalyticsSystem();
+                    AdjustEnvironment adjustEnv = isProductionBuild ? AdjustEnvironment.Production : AdjustEnvironment.Sandbox;
+                    AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, adjustEnv);
+                    adjustConfig.setLogLevel(AdjustLogLevel.Verbose);
+                    Adjust.start(adjustConfig);
+                    AdjustAnalytics.Initialize();
+                }
+            } catch (Exception) {
+                Debug.LogError("Can not initialize Adjust!");
             }
         }
 
         try {
+            adConfig.isTestBuild = !isProductionBuild;
             AdManager = new GameObject("AdManager").AddComponent<AdManager>();
             AdManager.BuildServices(adConfig);
             AdManager.InitializeAds(adConfig.isTestBuild);
@@ -103,6 +121,7 @@ public class Runner : MonoBehaviourSingletion<Runner> {
     }
 
     void OnDestroy() {
-        Analytics.Destroy();
+        GameAnalytics?.Destroy();
+        AdjustAnalytics?.Destroy();
     }
 }
