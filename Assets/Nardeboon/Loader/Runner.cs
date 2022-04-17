@@ -35,7 +35,11 @@ public class Runner : MonoBehaviour {
     [SerializeField] bool logVibrationInEditor;
     [SerializeField] long shortVibrationDurationInMilliseconds;
     [SerializeField] long longVibrationDurationInMilliseconds;
-    public static VibrationManager vibrationManager;
+    public static VibrationManager VibrationManager;
+
+    [Header("Audio")]
+    [SerializeField] AudioManager audioManagerPrefab;
+    public static AudioManager AudioManager;
 
     // Dependencies
     public static AnalyticsSystem GameAnalytics {get; private set;}
@@ -122,7 +126,9 @@ public class Runner : MonoBehaviour {
             Debug.LogError("Can not initialize ad services!");
         }
 
-        vibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
+        VibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
+        AudioManager = Instantiate(audioManagerPrefab, transform);
+        AudioManager.Initialize();
         
         _gameManager.Initialize();
     }

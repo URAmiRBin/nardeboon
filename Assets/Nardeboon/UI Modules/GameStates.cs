@@ -46,6 +46,7 @@ public abstract class ReflectableClass
 public static class NardeboonEvents {
     public static class UIEvents {
         public static Action<bool> onVibrationSetEvent;
+        public static Action<bool> onSoundSetEvent;
         public static Action<GameStates> onStateChange;
     }
 

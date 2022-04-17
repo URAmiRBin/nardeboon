@@ -3,9 +3,22 @@ using UnityEngine;
 
 
 public class AudioManager : MonoBehaviour {
+    [Range(0.0f, 1.0f)] [SerializeField] float MasterSound;
+    [SerializeField] MusicClass Music;
+    [SerializeField] SFXClass SFX;
+    
     private AudioSource musicPlayer;
     private AudioSource sfxPlayer;
-    private bool _isSoundOn;
+    private bool _sound;
+
+    public bool SoundStatus {
+        get => _sound;
+        private set {
+            _sound = value;
+            PlayerPrefs.SetInt(PlayerPrefKeys.SOUND, _sound ? 1 : 0);
+            musicPlayer.mute = _sound;
+        }
+    }
 
     public void Initialize() {
         musicPlayer = gameObject.AddComponent<AudioSource>();
@@ -19,11 +32,17 @@ public class AudioManager : MonoBehaviour {
         sfxPlayer.loop = false;
         sfxPlayer.playOnAwake = false;
         sfxPlayer.volume = 1;
+
+        NardeboonEvents.UIEvents.onSoundSetEvent += SetSoundStatus;
+    }
+
+    void OnDisable() {
+        NardeboonEvents.UIEvents.onSoundSetEvent += SetSoundStatus;
     }
 
     public void PlayMusic(SoundClass clip) {
         musicPlayer.clip = clip.Clip;
-        musicPlayer.mute = !_isSoundOn;
+        musicPlayer.mute = !_sound;
         musicPlayer.volume = clip.Volume * MasterSound;
         musicPlayer.pitch = clip.Pitch;
 
@@ -34,23 +53,15 @@ public class AudioManager : MonoBehaviour {
 
     public void PlaySFX(SoundClass clip, float pitch = 1) {
         sfxPlayer.clip = clip.Clip;
-        sfxPlayer.mute = !_isSoundOn;
+        sfxPlayer.mute = !_sound;
         sfxPlayer.volume = clip.Volume * MasterSound;
         sfxPlayer.pitch = pitch;
         sfxPlayer.panStereo = clip.SoundChanel;
 
-        sfxPlayer.PlayOneShot(clip.Clip, _isSoundOn ? 1 : 0);
+        sfxPlayer.PlayOneShot(clip.Clip, _sound ? 1 : 0);
     }
 
-    public void ChangeState(bool state) {
-        _isSoundOn = state;
-        musicPlayer.mute = _isSoundOn;
-    }
-
-    [Range(0.0f, 1.0f)] public float MasterSound;
-    public MusicClass Music;
-
-    public SFXClass SFX;
+    public void SetSoundStatus(bool state) => SoundStatus = state;
 }
 
 
