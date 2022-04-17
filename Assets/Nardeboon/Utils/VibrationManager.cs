@@ -10,11 +10,11 @@ public class VibrationManager {
         _shortVibrationTimeInMilliseconds = shortVibrationDurationInMilliseconds;
         _longVibrationTimeInMilliseconds = longVibrationDurationInMilliseconds;
         _log = log;
-        UIEvents.onVibrationSetEvent += SetVibrationStatus;
+        NardeboonEvents.UIEvents.onVibrationSetEvent += SetVibrationStatus;
     }
 
     ~VibrationManager() {
-        UIEvents.onVibrationSetEvent -= SetVibrationStatus;
+        NardeboonEvents.UIEvents.onVibrationSetEvent -= SetVibrationStatus;
     }
 
     public bool VibrationStatus {

@@ -38,7 +38,7 @@ public class SettingsPanel : UIElement {
 
     void SetVibrationState(bool state) {
         _vibrationState = state;
-        UIEvents.onVibrationSetEvent?.Invoke(_vibrationState);
+        NardeboonEvents.UIEvents.onVibrationSetEvent?.Invoke(_vibrationState);
         vibrationButton.isOn = _vibrationState;
         // _vibrationImage.color = _vibrationState ? _onColor : _offColor;
     }

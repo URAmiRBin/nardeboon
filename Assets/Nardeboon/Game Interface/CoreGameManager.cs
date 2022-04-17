@@ -39,7 +39,7 @@ public class CoreGameManager : MonoBehaviour, ICore {
 
     public void StartGame() {
         if (PlayerPrefs.GetInt(PlayerPrefKeys.AGREED, 0) == 1) {
-            GameEvents.onStateChange(GameStates.MainMenu);
+            NardeboonEvents.UIEvents.onStateChange(GameStates.MainMenu);
         } else {
             Runner.UIManager.ShowAgreements();
         }
@@ -52,18 +52,18 @@ public class CoreGameManager : MonoBehaviour, ICore {
     }
 
     public void WinLevel() {
-        GameEvents.onLevelWin?.Invoke(_level);    
+        NardeboonEvents.GameLogicEvents.onLevelWin?.Invoke(_level);    
     }
 
     public void LoseLevel() {
-        GameEvents.onLevelLose?.Invoke(_level);
+        NardeboonEvents.GameLogicEvents.onLevelLose?.Invoke(_level);
     }
 
     public void Revive() {}
     public void FreezeGame() {}
     public void StartLevel(int level) {
         SceneManager.LoadScene(1);
-        GameEvents.onStateChange?.Invoke(GameStates.MainMenu);
+        NardeboonEvents.UIEvents.onStateChange?.Invoke(GameStates.MainMenu);
     }
 
     public void RestartLevel() => StartLevel(_level);    

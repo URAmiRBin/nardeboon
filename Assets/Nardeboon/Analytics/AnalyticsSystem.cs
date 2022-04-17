@@ -1,25 +1,25 @@
 public abstract class AnalyticsSystem {
 
     public virtual void Initialize() {
-        GameEvents.onLevelStart += SendLevelStartEvent;
-        GameEvents.onLevelWin += SendLevelWinEvent;
-        GameEvents.onLevelLose += SendLevelLoseEvent;
-        GameEvents.onCustomEvent += SendCustomEvent;
-        GameEvents.onCurrencyEarn += SendCurrencyEarnEvent;
-        GameEvents.onCurrencySpend += SendCurrencySpendEvent;
-        GameEvents.onAdFail += SendAdFailEvent;
-        GameEvents.onAdShow += SendAdShowEvent;
+        NardeboonEvents.GameLogicEvents.onLevelStart += SendLevelStartEvent;
+        NardeboonEvents.GameLogicEvents.onLevelWin += SendLevelWinEvent;
+        NardeboonEvents.GameLogicEvents.onLevelLose += SendLevelLoseEvent;
+        NardeboonEvents.onCustomEvent += SendCustomEvent;
+        NardeboonEvents.EconomyEvents.onCurrencyEarn += SendCurrencyEarnEvent;
+        NardeboonEvents.EconomyEvents.onCurrencySpend += SendCurrencySpendEvent;
+        NardeboonEvents.AdEvents.onAdFail += SendAdFailEvent;
+        NardeboonEvents.AdEvents.onAdShow += SendAdShowEvent;
     }
 
     public virtual void Destroy() {
-        GameEvents.onLevelStart -= SendLevelStartEvent;
-        GameEvents.onLevelWin -= SendLevelWinEvent;
-        GameEvents.onLevelLose -= SendLevelLoseEvent;
-        GameEvents.onCustomEvent -= SendCustomEvent;
-        GameEvents.onCurrencyEarn -= SendCurrencyEarnEvent;
-        GameEvents.onCurrencySpend -= SendCurrencySpendEvent;
-        GameEvents.onAdFail -= SendAdFailEvent;
-        GameEvents.onAdShow -= SendAdShowEvent;
+        NardeboonEvents.GameLogicEvents.onLevelStart -= SendLevelStartEvent;
+        NardeboonEvents.GameLogicEvents.onLevelWin -= SendLevelWinEvent;
+        NardeboonEvents.GameLogicEvents.onLevelLose -= SendLevelLoseEvent;
+        NardeboonEvents.onCustomEvent -= SendCustomEvent;
+        NardeboonEvents.EconomyEvents.onCurrencyEarn -= SendCurrencyEarnEvent;
+        NardeboonEvents.EconomyEvents.onCurrencySpend -= SendCurrencySpendEvent;
+        NardeboonEvents.AdEvents.onAdFail -= SendAdFailEvent;
+        NardeboonEvents.AdEvents.onAdShow -= SendAdShowEvent;
     }
 
     protected abstract void SendLevelStartEvent(int level);

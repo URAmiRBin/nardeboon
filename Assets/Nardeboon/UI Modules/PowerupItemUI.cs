@@ -64,7 +64,7 @@ public class PowerupItemUI : MonoBehaviour {
     void Upgrade() {
         switch (_currentState) {
             case PowerupState.Purchasable:
-                GameEvents.onCurrencySpend(_item.cost[_level - 1]);
+                NardeboonEvents.EconomyEvents.onCurrencySpend(_item.cost[_level - 1]);
                 _level++;
                 UpdateState();
                 _item.Use(_level);

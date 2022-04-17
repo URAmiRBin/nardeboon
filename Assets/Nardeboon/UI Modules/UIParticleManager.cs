@@ -15,7 +15,7 @@ public class UIParticleManager : MonoBehaviour {
     [SerializeField] GameObject viewImage;
     [SerializeField] UIParticleMap particles;
 
-    void OnEnable() => GameEvents.onStateChange += ShowStateParticles;
+    void OnEnable() => NardeboonEvents.UIEvents.onStateChange += ShowStateParticles;
 
     public void ShowUIParticle(UIParticle particleType) {
         ParticleSystem particle = particles[particleType.ToString()] as ParticleSystem;
