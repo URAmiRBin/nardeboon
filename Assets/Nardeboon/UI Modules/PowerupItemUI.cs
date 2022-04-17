@@ -8,7 +8,6 @@ public enum PowerupState {
 }
 
 public class PowerupItemUI : MonoBehaviour {
-    [SerializeField] PowerupItem powerupItem;
     [SerializeField] GameObject priceContainer, watchAdContainer, maxedContainer;
     [SerializeField] Text priceText;
     [SerializeField] Text levelText;
@@ -17,23 +16,17 @@ public class PowerupItemUI : MonoBehaviour {
     int maxLevel;
     PowerupState _currentState;
     int _level;
-    PowerupConfig _config;
+    PowerupItem _item;
 
-    void Awake() {
-        FillData(powerupItem);
-        powerupButton.onClick.AddListener(Upgrade);
-        _level = ES3.Load<int>(SaveKeys.LEVEL, 1);
-    }
+    void Awake() => powerupButton.onClick.AddListener(Upgrade);
 
-    void Start() {
-        UpdateState();
-    }
+    void Start() => UpdateState();
 
     void FillData(PowerupItem item) {
-        item.SetCallback();
-        _config = item.config;
-        maxLevel = _config.cost.Length;
-        powerupImage.sprite = _config.sprite;
+        _level = ES3.Load<int>(SaveKeys.LEVEL, 1);
+        _item = item;
+        maxLevel = _item.cost.Length;
+        powerupImage.sprite = _item.image;
     }
 
     // TODO: Refresh state on panel open
@@ -45,7 +38,7 @@ public class PowerupItemUI : MonoBehaviour {
     }
 
     public void UpdateState() {
-        priceText.text = _config.cost[_level - 1].ToString();
+        priceText.text = _item.cost[_level - 1].ToString();
         levelText.text = "LVL " + _level.ToString();        
         _currentState = GetState();
         DisableAll();
@@ -71,10 +64,10 @@ public class PowerupItemUI : MonoBehaviour {
     void Upgrade() {
         switch (_currentState) {
             case PowerupState.Purchasable:
-                GameEvents.onCurrencySpend(_config.cost[_level - 1]);
+                GameEvents.onCurrencySpend(_item.cost[_level - 1]);
                 _level++;
                 UpdateState();
-                _config.useCallback?.Invoke(_level);
+                _item.Use(_level);
                 break;
             case PowerupState.WatchAd:
                 Runner.AdManager.ShowRewarded(
@@ -82,7 +75,7 @@ public class PowerupItemUI : MonoBehaviour {
                         // TODO: Get this from curve
                         _level++;
                         UpdateState();
-                        _config.useCallback?.Invoke(_level);  
+                        _item.Use(_level);  
                     },
                     () => UIManager.ShowPopup("No internet")
                 );
