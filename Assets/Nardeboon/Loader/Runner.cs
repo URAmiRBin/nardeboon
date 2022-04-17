@@ -20,6 +20,10 @@ public class Runner : MonoBehaviour {
         get => UIManager?.Elements;
     }
 
+    [Header("Economy")]
+    [SerializeField] GameItem mainCurrency;
+    public static Inventory InventorySystem;
+
     ProgressLoadingScreen loadingPanel;
 
     [Header("Vibration")]
@@ -33,6 +37,7 @@ public class Runner : MonoBehaviour {
     public static AnalyticsSystem AdjustAnalytics {get; private set;}
     
     void Awake() {
+        // FIXME: Start the loading process before setting up services not after it
         DontDestroyOnLoad(this);
         ConfigPreprocess();
         SetupServices();
@@ -45,7 +50,13 @@ public class Runner : MonoBehaviour {
     }
 
     void SetupServices() {
+        // FIXME: This function is getting looong
         _gameManager = Instantiate(gameManagerPrefab, transform);
+
+        InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
+        InventorySystem.transform.parent = transform;
+        InventorySystem.Initialize(mainCurrency);
+        
         UIManager = Instantiate(uiConfig.uiManagerPrefab);
         UIManager.Initialize(uiConfig);
         loadingPanel = UIManager.Elements.loadingScreen;
