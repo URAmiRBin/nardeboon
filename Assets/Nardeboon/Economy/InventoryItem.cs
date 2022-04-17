@@ -19,7 +19,7 @@ public class InventoryItem : Collectable {
     public InventoryItemStorageData StorageData => _storageData;
     public GameItem Config { get => _item; }
 
-    public InventoryItem(GameItem item, int amount = 1000) {
+    public InventoryItem(GameItem item, int amount = 0) {
         _item = item;
         this.amount = amount;
         _storageData = new InventoryItemStorageData(Name, Amount);
