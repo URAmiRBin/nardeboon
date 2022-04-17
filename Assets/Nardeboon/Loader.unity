@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90f9cc3a125ace4282d2ed9656ed352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProductionBuild: 0
+  makeEventSystem: 0
   gameManagerPrefab: {fileID: 3213266488033454984, guid: c5b16e2f811e92d4c996c1e794f94f22, type: 3}
   analyticsConfig:
     useAnalytics: 1
@@ -317,9 +319,12 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c675899e3780b9f45a9105c6b1c131a5, type: 3}
     bossSpritePassed: {fileID: 21300000, guid: 735991e1ea128df46b997b572c7955f5, type: 3}
     bossSpriteNotPassed: {fileID: 21300000, guid: eb6a5bd14d050be4ea7e40bb9feb80a8, type: 3}
+  mainCurrency: {fileID: 11400000, guid: 97fdd39b3f1d7fc40934c8d9943638ef, type: 2}
+  easySaveManagerPrefab: {fileID: 107673581648617634, guid: 5914836ee24b38d4e8cf46307cddf538, type: 3}
   logVibrationInEditor: 1
   shortVibrationDurationInMilliseconds: 50
   longVibrationDurationInMilliseconds: 150
+  audioManagerPrefab: {fileID: 0}
 --- !u!4 &1520353211
 Transform:
   m_ObjectHideFlags: 0
