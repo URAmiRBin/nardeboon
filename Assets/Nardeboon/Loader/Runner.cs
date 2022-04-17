@@ -54,11 +54,10 @@ public class Runner : MonoBehaviour {
 
     void SetupServices() {
         // FIXME: This function is getting looong
-        _gameManager = Instantiate(gameManagerPrefab);
-        DontDestroyOnLoad(_gameManager);
+        _gameManager = Instantiate(gameManagerPrefab, transform);
 
         InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
-        DontDestroyOnLoad(InventorySystem);
+        InventorySystem.transform.parent = transform;
         InventorySystem.Initialize(mainCurrency);
         
         UIManager = Instantiate(uiConfig.uiManagerPrefab);
@@ -83,7 +82,7 @@ public class Runner : MonoBehaviour {
                 if (gaSettings.ResourceItemTypes.Count == 0) gaSettings.ResourceItemTypes.Add("Game Item");
 
                 // Initialize GA
-                Instantiate(analyticsConfig.gameAnalytics);
+                Instantiate(analyticsConfig.gameAnalytics).transform.parent = transform;
                 GameAnalytics = new GameAnalyticsSystem();
                 GameAnalytics.Initialize();
             } catch (Exception) {
@@ -92,7 +91,7 @@ public class Runner : MonoBehaviour {
 
             try {
                 if (analyticsConfig.adjustPrefab != null) {
-                    DontDestroyOnLoad(Instantiate(analyticsConfig.adjustPrefab));
+                    Instantiate(analyticsConfig.adjustPrefab, transform);
                     AdjustAnalytics = new AdjustAnalyticsSystem();
                     AdjustEnvironment adjustEnv = isProductionBuild ? AdjustEnvironment.Production : AdjustEnvironment.Sandbox;
                     AdjustConfig adjustConfig = new AdjustConfig(analyticsConfig.adjustToken, adjustEnv);
@@ -108,6 +107,7 @@ public class Runner : MonoBehaviour {
         try {
             adConfig.isTestBuild = !isProductionBuild;
             AdManager = new GameObject("AdManager").AddComponent<AdManager>();
+            AdManager.transform.parent = transform;
             AdManager.BuildServices(adConfig);
             AdManager.InitializeAds(adConfig.isTestBuild);
         } catch (Exception) {
