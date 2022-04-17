@@ -31,15 +31,20 @@ public class SettingsPanel : UIElement {
 
     void Start() {
         vibrationButton.SetAction(SetVibrationState);
+        soundButton.SetAction(SetSoundState);
         // FIXME: Handle privacyButton assignment in here UI Manager should be initialized like other services
     }
-
-    void SwitchVibration() => SetVibrationState(!_vibrationState);
 
     void SetVibrationState(bool state) {
         _vibrationState = state;
         NardeboonEvents.UIEvents.onVibrationSetEvent?.Invoke(_vibrationState);
         vibrationButton.isOn = _vibrationState;
         // _vibrationImage.color = _vibrationState ? _onColor : _offColor;
+    }
+
+    void SetSoundState(bool state) {
+        _soundState = state;
+        NardeboonEvents.UIEvents.onSoundSetEvent?.Invoke(_soundState);
+        soundButton.isOn = _soundState;
     }
 }
