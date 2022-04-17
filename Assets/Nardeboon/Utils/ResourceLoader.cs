@@ -15,3 +15,14 @@ public static class ResourceLoader {
     // TODO: Load async and use in loading process
     public static GameItem[] LoadAllItems() => Resources.LoadAll<GameItem>(itemsPath);
 }
+
+public static class InventoryManager {
+    static GameItem[] items;
+    
+    public static void InitializeItems() {
+        items = ResourceLoader.LoadAllItems();
+        for (int i = 0; i < items.Length; i++) {
+            ItemCallbackSetter.SetCallback(items[i]);
+        }
+    }
+}

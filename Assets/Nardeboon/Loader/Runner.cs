@@ -63,6 +63,7 @@ public class Runner : MonoBehaviour {
             eventSystem.transform.parent = transform;
         }
 
+        InventoryManager.InitializeItems();
         InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
         InventorySystem.transform.parent = transform;
         InventorySystem.Initialize(mainCurrency);
