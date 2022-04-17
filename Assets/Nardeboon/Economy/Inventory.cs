@@ -3,14 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviourSingletion<Inventory> {
-    [SerializeField] GameItem currency;
+    GameItem currency;
     public List<InventoryItem> _items = new List<InventoryItem>();
     List<InventoryItemStorageData> _storageItems;
     
-    public int Wallet { get => _items[0].Amount; }
-    public string MainCurrency { get => _items[0].Name; }
+    public int Wallet {
+        get {
+            if (_items[0] == null) Debug.LogError("Make sure to initialize Inventory System!");
+            return _items[0].Amount;
+        } 
+    }
+    public string MainCurrency {
+        get {
+            if (_items[0] == null) Debug.LogError("Make sure to initialize Inventory System!");
+            return _items[0].Name;
+        }
+    }
 
-    void Awake() {
+    public void Initialize(GameItem mainCurrency) {
+        currency = mainCurrency;
+        SetupInventoryFromSave();
+    }
+
+    void SetupInventoryFromSave() {
         _storageItems = ES3.Load(SaveKeys.INVENTORY, new List<InventoryItemStorageData>());
         
         for(int i = 0; i < _storageItems.Count; i++) {
