@@ -43,31 +43,27 @@ public abstract class ReflectableClass
     }
 }
 
-public static class GameEvents {
-    // Progression events
-    public static Action<int> onLevelStart;
-    public static Action<int> onLevelLose;
-    public static Action<int> onLevelWin;
+public static class NardeboonEvents {
+    public static class UIEvents {
+        public static Action<bool> onVibrationSetEvent;
+        public static Action<GameStates> onStateChange;
+    }
 
-    // Custom events
+    public static class GameLogicEvents {
+        public static Action<int> onLevelStart;
+        public static Action<int> onLevelLose;
+        public static Action<int> onLevelWin;
+    }
+
+    public static class EconomyEvents {
+        public static Action<int> onCurrencySpend;
+        public static Action<int> onCurrencyEarn;
+    }
+
+    public static class AdEvents {
+        public static Action onAdFail;
+        public static Action onAdShow;
+    }
+
     public static Action<string, float> onCustomEvent;
-
-    // Resource events
-    public static Action<int> onCurrencySpend;
-    public static Action<int> onCurrencyEarn;
-
-    // Ads events
-    public static Action onAdFail;
-    public static Action onAdShow;
-
-    // TODO: This should be bound to analytics events like onLevelStart
-    public static Action<GameStates> onStateChange;
-}
-
-public static class UIEvents {
-    public static Action<bool> onVibrationSetEvent;
-}
-
-public static class InventoryEvents {
-    public static Action onCoinUpdate;
 }
