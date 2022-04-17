@@ -3,30 +3,18 @@ using UnityEngine;
 
 
 public class AudioManager : MonoBehaviour {
-    public static AudioManager instance;
-    public static Action<bool> OnSoundSetEvent;
-    public static Action OnSoundChangeEvent;
-
     private AudioSource musicPlayer;
     private AudioSource sfxPlayer;
-
     private bool _isSoundOn;
 
-    public const string MUSICKEY = "SFX";
-
-    private void Awake() {
-        if (instance == null) {
-            instance = this;
-        }
-
-        musicPlayer = new GameObject("Music Player").AddComponent<AudioSource>();
-        musicPlayer.transform.SetParent(transform);
+    public void Initialize() {
+        musicPlayer = gameObject.AddComponent<AudioSource>();
         musicPlayer.spatialBlend = 0;
         musicPlayer.loop = true;
         musicPlayer.volume = 1;
 
-        sfxPlayer = new GameObject("SFX Player").AddComponent<AudioSource>();
-        sfxPlayer.transform.SetParent(transform);
+        sfxPlayer = gameObject.AddComponent<AudioSource>();
+
         sfxPlayer.spatialBlend = 0;
         sfxPlayer.loop = false;
         sfxPlayer.playOnAwake = false;
@@ -44,8 +32,7 @@ public class AudioManager : MonoBehaviour {
         musicPlayer.Play();
     }
 
-    public void PlaySFX(SoundClass clip, float pitch = 1)
-    {
+    public void PlaySFX(SoundClass clip, float pitch = 1) {
         sfxPlayer.clip = clip.Clip;
         sfxPlayer.mute = !_isSoundOn;
         sfxPlayer.volume = clip.Volume * MasterSound;
@@ -85,15 +72,10 @@ public class SoundClass {
 
 [Serializable]
 public class SFXClass {
-    public SoundClass[] shoot;
-    public SoundClass explosion;
     public SoundClass gameover;
     public SoundClass clickUI;
     public SoundClass openUI;
-    public SoundClass starPop;
     public SoundClass win;
-    public SoundClass warning;
-    public SoundClass giantFull;
     public SoundClass coinDling;
 }
 

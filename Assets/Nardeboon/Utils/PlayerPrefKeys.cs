@@ -1,5 +1,6 @@
 public static class PlayerPrefKeys {
     public readonly static string VIBRATION = "EARTHQUAKE";
+    public readonly static string SOUND = "EARRAPE";
     public readonly static string AGREED = "VIRGIN";
 }
 
