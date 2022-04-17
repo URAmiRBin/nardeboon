@@ -45,8 +45,8 @@ public enum GameItemValue {
 
 [System.Serializable]
 public class InventoryItemStorageData {
-    string _name;
-    int _amount;
+    [ES3Serializable] string _name;
+    [ES3Serializable] int _amount;
 
     public int Amount { 
         get => _amount;
