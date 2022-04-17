@@ -6,7 +6,7 @@ public class GameAnalyticsSystem : AnalyticsSystem {
     public override void Initialize() {
         base.Initialize();
         GameAnalytics.Initialize();
-        currencyName = Inventory.Instance.MainCurrency;
+        currencyName = Runner.InventorySystem.MainCurrency;
     }
 
     protected override void SendLevelStartEvent(int level) {

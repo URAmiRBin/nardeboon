@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.levelProgressIndicator.SetLevel(0);
 
         elements.agreementPopup.Initialize(config.agreementsText);
-        elements.coin.text = Inventory.Instance.Wallet.ToString();
+        elements.coin.text = Runner.InventorySystem.Wallet.ToString();
     }
 
     void Awake() {
@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     }
 
     public void UpdateCoin() {
-        Elements.coin.text = Inventory.Instance.Wallet.ToString();
+        Elements.coin.text = Runner.InventorySystem.Wallet.ToString();
     }
 
     void HandleLevelWin(int level) {

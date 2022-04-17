@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviourSingletion<Inventory> {
+public class Inventory : MonoBehaviour {
     GameItem currency;
     public List<InventoryItem> _items = new List<InventoryItem>();
     List<InventoryItemStorageData> _storageItems;

@@ -14,7 +14,7 @@ public class ShopItemUI : MonoBehaviour {
     ShopItemPopulator shopMenu;
 
     bool CanBuyItem {
-        get => _item.IsConsumable || !Inventory.Instance.HasItemWithName(_item.Name);
+        get => _item.IsConsumable || !Runner.InventorySystem.HasItemWithName(_item.Name);
     }
 
     void Awake() {
@@ -35,7 +35,7 @@ public class ShopItemUI : MonoBehaviour {
     void BuyItem() {
         if (!CanBuyItem) return;
         try {
-            Inventory.Instance.BuyItem(new InventoryItem(_item.Config, _item.Amount));
+            Runner.InventorySystem.BuyItem(new InventoryItem(_item.Config, _item.Amount));
             _priceContainer.SetActive(CanBuyItem);
         } catch (System.InvalidOperationException) {
             UIManager.ShowPopup("Not enough money", UIManager.ClosePopup, yesText: "OK");
