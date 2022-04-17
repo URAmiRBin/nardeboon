@@ -3,9 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using com.adjust.sdk;
+using UnityEngine.EventSystems;
 
 public class Runner : MonoBehaviour {
     [SerializeField] bool isProductionBuild;
+    [SerializeField] bool makeEventSystem;
     [SerializeField] CoreGameManager gameManagerPrefab;
     CoreGameManager _gameManager;
 
@@ -55,6 +57,11 @@ public class Runner : MonoBehaviour {
     void SetupServices() {
         // FIXME: This function is getting looong
         _gameManager = Instantiate(gameManagerPrefab, transform);
+
+        if (makeEventSystem) {
+            GameObject eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+            eventSystem.transform.parent = transform;
+        }
 
         InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
         InventorySystem.transform.parent = transform;
