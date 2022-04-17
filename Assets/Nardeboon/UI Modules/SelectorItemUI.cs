@@ -14,5 +14,6 @@ public class SelectorItemUI : ShopItemUI {
     
     protected override void Click() {
         ChangeState(true);
+        _item.Config.Use();
     }
 }
