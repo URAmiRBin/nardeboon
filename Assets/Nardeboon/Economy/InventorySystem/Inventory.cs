@@ -12,6 +12,13 @@ public class Inventory : MonoBehaviourSingletion<Inventory> {
 
     void Awake() {
         _storageItems = ES3.Load(SaveKeys.INVENTORY, new List<InventoryItemStorageData>());
+        
+        for(int i = 0; i < _storageItems.Count; i++) {
+            GameItem item = ResourceLoader.LoadItem(_storageItems[i].Name);
+            if (item == null) continue;
+            _items.Add(new InventoryItem(item, _storageItems[i].Amount));
+        }
+        
         if (_items.Count == 0) AddToInventory(new InventoryItem(currency));
     }
 
