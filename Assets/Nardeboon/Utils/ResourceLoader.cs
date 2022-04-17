@@ -11,4 +11,7 @@ public static class ResourceLoader {
     }
 
     public static GameItem LoadItem(string name) => LoadData<GameItem>(itemsPath + name);
+
+    // TODO: Load async and use in loading process
+    public static GameItem[] LoadAllItems() => Resources.LoadAll<GameItem>(itemsPath);
 }
