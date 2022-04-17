@@ -12,6 +12,7 @@ public class ShopItemPopulator : MonoBehaviour {
         uiItems = new ShopItemUI[shopItems.Length];
     }
 
+    // TODO: ynamically fill data from save data
     void Start() {
         for(int i = 0; i < shopItems.Length; i++) {
             uiItems[i] = Instantiate(defaultItemPrefab, contentsParent);
