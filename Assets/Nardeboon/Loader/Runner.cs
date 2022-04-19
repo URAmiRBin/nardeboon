@@ -137,9 +137,10 @@ public class Runner : MonoBehaviour {
 
     void SetupAdvertisement() {
         try {
+            GameObject adServices = new GameObject("Ad Services");
+            adServices.transform.SetParent(transform);
             adConfig.isTestBuild = !isProductionBuild;
-            AdManager = new GameObject("AdManager").AddComponent<AdManager>();
-            AdManager.transform.SetParent(transform);
+            AdManager = new AdManager(adServices);
             AdManager.BuildServices(adConfig);
             AdManager.InitializeAds(adConfig.isTestBuild);
         } catch (Exception) {

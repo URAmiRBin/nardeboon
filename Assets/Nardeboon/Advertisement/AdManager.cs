@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class AdManager : MonoBehaviour {
-    [SerializeField] AdService bannerProvider;
+public class AdManager {
+    AdService bannerProvider;
     public readonly int maxTries = 3;
     List<AdService> services;
+    GameObject _serviceParent;
 
-    static AdManager _instance;
     List<AdService> _rewardedServices, _interstitialServices;
     int _rewardedNextServiceIndex, _interestialNextServiceIndex;
     bool _bypassForceAds;
@@ -22,10 +22,8 @@ public class AdManager : MonoBehaviour {
         }
     }
 
-    void Awake() {
-        if (_instance != null) Destroy(this);
-        _instance = this;
-        DontDestroyOnLoad(this);
+    public AdManager(GameObject serviceParent) {
+        _serviceParent = serviceParent;
         _interstitialServices = new List<AdService>();
         _rewardedServices = new List<AdService>();
 
@@ -38,12 +36,12 @@ public class AdManager : MonoBehaviour {
         foreach(AdServiceConfig adServiceConfig in adConfig.adServices) {
             switch (adServiceConfig.network) {
                 case AdNetwork.Admob:
-                    var admobAdService = gameObject.AddComponent<AdmobAdService>();
+                    var admobAdService = _serviceParent.AddComponent<AdmobAdService>();
                     admobAdService.SetUnitIds(adServiceConfig.units);
                     services.Add(admobAdService);
                     break;
                 case AdNetwork.Unity:
-                    var unityAdsService = gameObject.AddComponent<UnityAdService>();
+                    var unityAdsService = _serviceParent.AddComponent<UnityAdService>();
                     unityAdsService.SetUnitIds(adServiceConfig.units);
                     unityAdsService.gameId = adServiceConfig.appID;
                     services.Add(unityAdsService);
