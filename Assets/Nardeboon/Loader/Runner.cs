@@ -9,7 +9,7 @@ public class Runner : MonoBehaviour {
     [SerializeField] bool isProductionBuild;
     [SerializeField] bool makeEventSystem;
     [SerializeField] CoreGameManager gameManagerPrefab;
-    CoreGameManager _gameManager;
+    ICore _gameManager;
 
     [SerializeField] AnalyticsConfig analyticsConfig;
 
@@ -75,8 +75,10 @@ public class Runner : MonoBehaviour {
     void SetupUIManager() {
         UIManager = Instantiate(uiConfig.uiManagerPrefab);
         UIManager.Initialize(uiConfig);
-        loadingPanel = UIManager.Elements.loadingScreen;
+        loadingPanel = UIElements.loadingScreen;
         loadingPanel.SetProgress(0);
+        UIElements.settingsButton.onClick.AddListener(() => _gameManager.FreezeGame());
+        UIElements.settingsButton.onClick.AddListener(() => _gameManager.UnFreezeGame());
     }
 
     void SetupEventSystem() {
