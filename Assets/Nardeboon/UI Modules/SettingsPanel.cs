@@ -22,7 +22,7 @@ public class SettingsPanel : UIElement {
         SetVibrationState(_vibrationState);
         _soundState = PlayerPrefs.GetInt(PlayerPrefKeys.SOUND) == 1 ? true : false;
         SetSoundState(_soundState);
-        noAdsButton.interactable = !ES3.Load(SaveKeys.NOADS, false);
+        UpdateNoAdsButtonState();
     }
 
     void Start() {
@@ -43,4 +43,6 @@ public class SettingsPanel : UIElement {
         NardeboonEvents.UIEvents.onSoundSetEvent?.Invoke(_soundState);
         soundButton.isOn = _soundState;
     }
+
+    void UpdateNoAdsButtonState() => noAdsButton.interactable = !ES3.Load(SaveKeys.NOADS, false);
 }
