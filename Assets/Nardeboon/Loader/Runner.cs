@@ -66,12 +66,12 @@ public class Runner : MonoBehaviour {
 
         if (makeEventSystem) {
             GameObject eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-            eventSystem.transform.parent = transform;
+            eventSystem.transform.SetParent(transform);
         }
 
         InventoryManager.InitializeItems();
         InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
-        InventorySystem.transform.parent = transform;
+        InventorySystem.transform.SetParent(transform);
         InventorySystem.Initialize(mainCurrency);
         
         UIManager = Instantiate(uiConfig.uiManagerPrefab);
@@ -96,7 +96,7 @@ public class Runner : MonoBehaviour {
                 if (gaSettings.ResourceItemTypes.Count == 0) gaSettings.ResourceItemTypes.Add("Game Item");
 
                 // Initialize GA
-                Instantiate(analyticsConfig.gameAnalytics).transform.parent = transform;
+                Instantiate(analyticsConfig.gameAnalytics).transform.SetParent(transform);
                 GameAnalytics = new GameAnalyticsSystem();
                 GameAnalytics.Initialize();
             } catch (Exception) {
@@ -121,7 +121,7 @@ public class Runner : MonoBehaviour {
         try {
             adConfig.isTestBuild = !isProductionBuild;
             AdManager = new GameObject("AdManager").AddComponent<AdManager>();
-            AdManager.transform.parent = transform;
+            AdManager.transform.SetParent(transform);
             AdManager.BuildServices(adConfig);
             AdManager.InitializeAds(adConfig.isTestBuild);
         } catch (Exception) {
