@@ -29,7 +29,6 @@ public class AdManager : MonoBehaviour {
         _interstitialServices = new List<AdService>();
         _rewardedServices = new List<AdService>();
 
-        // TODO: Load from your own save system whether no ads has been purchased or not
         _bypassForceAds = ES3.Load<bool>(SaveKeys.NOADS, false);
     }
 
@@ -118,7 +117,6 @@ public class AdManager : MonoBehaviour {
                 return;
             }
         }
-        // TODO: Show error message
         fail?.Invoke();
     }
 
@@ -129,7 +127,6 @@ public class AdManager : MonoBehaviour {
                 return;
             }
         }
-        // TODO: Show error message
         fail?.Invoke();
     }
 

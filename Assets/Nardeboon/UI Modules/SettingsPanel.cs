@@ -44,5 +44,6 @@ public class SettingsPanel : UIElement {
         soundButton.isOn = _soundState;
     }
 
+    // TODO: Connect to purchase no ads
     void UpdateNoAdsButtonState() => noAdsButton.interactable = !ES3.Load(SaveKeys.NOADS, false);
 }
