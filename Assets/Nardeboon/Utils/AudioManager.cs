@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
     [Range(0.0f, 1.0f)] [SerializeField] float MasterSound;
-    [SerializeField] MusicClass Music;
-    [SerializeField] SFXClass SFX;
+    [SerializeField] MusicLibrary Music;
+    [SerializeField] SFXLibrary SFX;
     
     private AudioSource musicPlayer;
     private AudioSource sfxPlayer;
@@ -61,6 +61,22 @@ public class AudioManager : MonoBehaviour {
         sfxPlayer.PlayOneShot(clip.Clip, _sound ? 1 : 0);
     }
 
+    public void PlayMusic(AudioClip clip, bool loop = false) {
+        musicPlayer.clip = clip;
+        musicPlayer.mute = !_sound;
+        musicPlayer.volume = MasterSound;
+        musicPlayer.loop = loop;
+        musicPlayer.Play();
+    }
+
+    public void PlaySFX(AudioClip clip, float pitch = 1) {
+        sfxPlayer.clip = clip;
+        sfxPlayer.mute = !_sound;
+        sfxPlayer.volume = MasterSound;
+        sfxPlayer.pitch = pitch;
+        sfxPlayer.PlayOneShot(clip, _sound ? 1 : 0);
+    }
+
     public void SetSoundStatus(bool state) => SoundStatus = state;
 }
 
@@ -82,7 +98,7 @@ public class SoundClass {
 }
 
 [Serializable]
-public class SFXClass {
+public class SFXLibrary {
     public SoundClass gameover;
     public SoundClass clickUI;
     public SoundClass openUI;
@@ -91,6 +107,6 @@ public class SFXClass {
 }
 
 [Serializable]
-public class MusicClass {
+public class MusicLibrary {
     public SoundClass[] menu;
 }
