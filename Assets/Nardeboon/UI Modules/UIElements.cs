@@ -1,3 +1,4 @@
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -22,4 +23,9 @@ public class UIElements {
     public Button selectorButton;
     public Button closeShopPanel;
     public Button closeSelectorPanel;
+
+    public void AddListenerToAllButtons(UnityAction callback) {
+        // TODO: Store buttons in an array
+        retryButton.onClick.AddListener(callback);
+    }
 }

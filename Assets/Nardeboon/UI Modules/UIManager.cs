@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
 
         elements.agreementPopup.Initialize(config.agreementsText);
         elements.coin.text = Runner.InventorySystem.Wallet.ToString();
+        elements.AddListenerToAllButtons(() => Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.clickUI));
     }
 
     void Awake() {
@@ -80,6 +81,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
     }
 
     public void UpdateCoin() {
+        // FIXME: Just pass the coin amount dude this doesn't need to call the runner
         Elements.coin.text = Runner.InventorySystem.Wallet.ToString();
     }
 

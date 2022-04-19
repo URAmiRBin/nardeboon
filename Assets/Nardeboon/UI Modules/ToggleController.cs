@@ -46,6 +46,10 @@ public class ToggleController : MonoBehaviour
 		toggleAction = action;
 	}
 
+	public void AddAction(Action<bool> action) {
+		toggleAction += action;
+	}
+
 
 	void Start()
 	{
