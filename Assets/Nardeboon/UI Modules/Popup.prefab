@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasBackground: 0
+  playSoundEffect: 1
   popupMessage: {fileID: 5258070978088750924}
   yesButton: {fileID: 1265563357322678602}
   noButton: {fileID: 3104997301302806614}
