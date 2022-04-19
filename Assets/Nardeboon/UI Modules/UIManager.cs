@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
                 break;
         }
 
-        elements.levelProgressIndicator.SetLevel(0);
+        SetLevelText(ES3.Load(SaveKeys.LEVEL, 1));
 
         elements.agreementPopup.Initialize(config.agreementsText);
         elements.AddListenerToAllButtons(() => Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.clickUI));

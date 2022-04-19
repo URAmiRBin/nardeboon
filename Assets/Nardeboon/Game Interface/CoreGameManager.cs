@@ -52,6 +52,7 @@ public class CoreGameManager : MonoBehaviour, ICore {
 
     public void WinLevel() {
         NardeboonEvents.GameLogicEvents.onLevelWin?.Invoke(_level);
+        ES3.Save(SaveKeys.LEVEL, _level + 1);
         Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.win);  
     }
 
