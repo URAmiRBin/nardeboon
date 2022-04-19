@@ -79,9 +79,8 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    public void UpdateCoin() {
-        // FIXME: Just pass the coin amount dude this doesn't need to call the runner
-        Elements.coin.text = Runner.InventorySystem.Wallet.ToString();
+    public void UpdateCoin(string amount) {
+        elements.coin.text = amount;
     }
 
     void HandleLevelWin(int level) {

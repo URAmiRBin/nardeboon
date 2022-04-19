@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour {
     public void Initialize(GameItem mainCurrency) {
         currency = mainCurrency;
         SetupInventoryFromSave();
-        Runner.UIManager.UpdateCoin();
+        Runner.UIManager.UpdateCoin(Wallet.ToString());
     }
 
     void SetupInventoryFromSave() {
@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour {
     public void AddToWallet(int amount) {
         _items[0].Collect(amount);
         NardeboonEvents.EconomyEvents.onCurrencyEarn?.Invoke(amount);
-        Runner.UIManager.UpdateCoin();
+        Runner.UIManager.UpdateCoin(Wallet.ToString());
         _storageItems[0] = _items[0].StorageData;
         ES3.Save(SaveKeys.INVENTORY, _storageItems);
     }
@@ -66,7 +66,7 @@ public class Inventory : MonoBehaviour {
     public void SpendFromWallet(int amount) {
         _items[0].Use(amount);
         NardeboonEvents.EconomyEvents.onCurrencySpend?.Invoke(amount);
-        Runner.UIManager.UpdateCoin();
+        Runner.UIManager.UpdateCoin(Wallet.ToString());
         _storageItems[0] = _items[0].StorageData;
         ES3.Save(SaveKeys.INVENTORY, _storageItems);
     }
