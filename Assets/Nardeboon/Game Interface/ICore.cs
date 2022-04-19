@@ -11,6 +11,7 @@ public interface ICore {
     void LoseLevel();
     void Revive();
     void FreezeGame();
+    void UnFreezeGame();
     void StartLevel(int level);
     void RestartLevel();
     void GetLevelReward();

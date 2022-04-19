@@ -63,6 +63,7 @@ public class CoreGameManager : MonoBehaviour, ICore {
 
     public void Revive() {}
     public void FreezeGame() {}
+    public void UnFreezeGame() {}
     public void StartLevel(int level) {
         SceneManager.LoadScene(1);
         NardeboonEvents.UIEvents.onStateChange?.Invoke(GameStates.MainMenu);
