@@ -38,8 +38,10 @@ public class Runner : MonoBehaviour {
     public static VibrationManager VibrationManager;
 
     [Header("Audio")]
-    [SerializeField] AudioManager audioManagerPrefab;
-    public static AudioManager AudioManager;
+    [SerializeField] AudioConfig audioConfig;
+    public static AudioPlayer AudioPlayer;
+    public static MusicLibrary Musics;
+    public static SFXLibrary SoundEffects;
 
     // Dependencies
     public static AnalyticsSystem GameAnalytics {get; private set;}
@@ -126,9 +128,14 @@ public class Runner : MonoBehaviour {
             Debug.LogError("Can not initialize ad services!");
         }
 
-        VibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);        
-        AudioManager = Instantiate(audioManagerPrefab, transform);
-        AudioManager.Initialize();
+        VibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);
+
+        GameObject audioManagerObject = new GameObject("Audio Manager", typeof(AudioSource), typeof(AudioSource));
+        Musics = audioConfig.musics;
+        SoundEffects = audioConfig.soundEffects;
+        audioManagerObject.transform.SetParent(transform);
+        AudioSource[] audioSources = audioManagerObject.GetComponents<AudioSource>();
+        AudioPlayer = new AudioPlayer(audioConfig.MasterSound, audioSources[0], audioSources[1]);
         
         _gameManager.Initialize();
     }

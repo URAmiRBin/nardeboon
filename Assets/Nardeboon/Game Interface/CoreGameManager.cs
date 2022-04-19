@@ -52,11 +52,13 @@ public class CoreGameManager : MonoBehaviour, ICore {
     }
 
     public void WinLevel() {
-        NardeboonEvents.GameLogicEvents.onLevelWin?.Invoke(_level);    
+        NardeboonEvents.GameLogicEvents.onLevelWin?.Invoke(_level);
+        Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.win);  
     }
 
     public void LoseLevel() {
         NardeboonEvents.GameLogicEvents.onLevelLose?.Invoke(_level);
+        Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.gameover);
     }
 
     public void Revive() {}
