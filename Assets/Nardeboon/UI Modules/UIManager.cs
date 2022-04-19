@@ -45,7 +45,6 @@ public class UIManager : MonoBehaviourSingletion<UIManager> {
         elements.levelProgressIndicator.SetLevel(0);
 
         elements.agreementPopup.Initialize(config.agreementsText);
-        elements.coin.text = Runner.InventorySystem.Wallet.ToString();
         elements.AddListenerToAllButtons(() => Runner.AudioPlayer.PlaySFX(Runner.SoundEffects.clickUI));
     }
 

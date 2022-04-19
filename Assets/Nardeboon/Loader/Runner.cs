@@ -50,8 +50,9 @@ public class Runner : MonoBehaviour {
     void Awake() {
         // FIXME: Start the loading process before setting up services not after it
         DontDestroyOnLoad(this);
+        _gameManager = Instantiate(gameManagerPrefab, transform);
         ConfigPreprocess();
-        SetupServices();
+        StartCoroutine(SetupServices());
         StartCoroutine(LoadGameScene());
     }
 
@@ -60,24 +61,39 @@ public class Runner : MonoBehaviour {
         uiConfig.agreementsText = uiConfig.agreementsText.Replace("****", Application.productName);
     }
 
-    void SetupServices() {
-        // FIXME: This function is getting looong
-        _gameManager = Instantiate(gameManagerPrefab, transform);
+    IEnumerator SetupServices() {
+        SetupUIManager();
+        SetupEventSystem();
+        SetupInventorySystem();
+        SetupAnalytics();
+        SetupAdvertisement();
+        setupAudioAndVibration();
+        _gameManager.Initialize();
+        yield break;
+    }
 
+    void SetupUIManager() {
+        UIManager = Instantiate(uiConfig.uiManagerPrefab);
+        UIManager.Initialize(uiConfig);
+        loadingPanel = UIManager.Elements.loadingScreen;
+        loadingPanel.SetProgress(0);
+    }
+
+    void SetupEventSystem() {
         if (makeEventSystem) {
             GameObject eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
             eventSystem.transform.SetParent(transform);
         }
+    }
 
+    void SetupInventorySystem() {
         InventoryManager.InitializeItems();
         InventorySystem = new GameObject("Inventory System").AddComponent<Inventory>();
         InventorySystem.transform.SetParent(transform);
         InventorySystem.Initialize(mainCurrency);
-        
-        UIManager = Instantiate(uiConfig.uiManagerPrefab);
-        UIManager.Initialize(uiConfig);
-        loadingPanel = UIManager.Elements.loadingScreen;
+    }
 
+    void SetupAnalytics() {
         if (analyticsConfig.useAnalytics) {
             try {
                 // Set GA settings
@@ -117,7 +133,9 @@ public class Runner : MonoBehaviour {
                 Debug.LogError("Can not initialize Adjust!");
             }
         }
+    }
 
+    void SetupAdvertisement() {
         try {
             adConfig.isTestBuild = !isProductionBuild;
             AdManager = new GameObject("AdManager").AddComponent<AdManager>();
@@ -127,7 +145,9 @@ public class Runner : MonoBehaviour {
         } catch (Exception) {
             Debug.LogError("Can not initialize ad services!");
         }
+    }
 
+    void setupAudioAndVibration() {
         VibrationManager = new VibrationManager(shortVibrationDurationInMilliseconds, longVibrationDurationInMilliseconds, logVibrationInEditor);
 
         GameObject audioManagerObject = new GameObject("Audio Manager", typeof(AudioSource), typeof(AudioSource));
@@ -136,8 +156,6 @@ public class Runner : MonoBehaviour {
         audioManagerObject.transform.SetParent(transform);
         AudioSource[] audioSources = audioManagerObject.GetComponents<AudioSource>();
         AudioPlayer = new AudioPlayer(audioConfig.MasterSound, audioSources[0], audioSources[1]);
-        
-        _gameManager.Initialize();
     }
 
     IEnumerator LoadGameScene() {
@@ -149,7 +167,7 @@ public class Runner : MonoBehaviour {
         
         loadingPanel.StartProgress();
         while (!gameLoadOperation.isDone) {
-            loadingPanel.SetProgress(gameLoadOperation.progress);
+            loadingPanel.SetProgress(.9f + gameLoadOperation.progress / 10f);
             yield return null;
         }
         loadingPanel.FinishProgress();

@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour {
     public void Initialize(GameItem mainCurrency) {
         currency = mainCurrency;
         SetupInventoryFromSave();
+        Runner.UIManager.UpdateCoin();
     }
 
     void SetupInventoryFromSave() {
