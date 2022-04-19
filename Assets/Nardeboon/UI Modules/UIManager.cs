@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviourSingletion<UIManager> {
+public class UIManager : MonoBehaviour {
     [SerializeField] GameStates defaultState;
     [SerializeField] UIMaps maps;
     [SerializeField] GameObject backgroundPanel;
