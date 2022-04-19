@@ -1,30 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class AdConfig {
     [HideInInspector] public bool isTestBuild;
     public AdIterationType iterationType;
     public AdServiceConfig[] adServices;
 }
 
-[System.Serializable]
+[Serializable]
 public class AdUnits : ReflectableClass {
     public string banner, interstitial, rewarded;
 }
 
-[System.Serializable]
+[Serializable]
 public enum AdNetwork {
     Admob, Unity,
 }
 
-[System.Serializable]
+[Serializable]
 public enum AdIterationType {
     Absolute, Loop
 }
 
-[System.Serializable]
+[Serializable]
 public class AdServiceConfig {
     public AdNetwork network;
     public string appID;
