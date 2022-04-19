@@ -22,7 +22,7 @@ public class SettingsPanel : UIElement {
         SetVibrationState(_vibrationState);
         _soundState = PlayerPrefs.GetInt(PlayerPrefKeys.SOUND) == 1 ? true : false;
         SetSoundState(_soundState);
-        // TODO: NoAds
+        noAdsButton.interactable = !ES3.Load(SaveKeys.NOADS, false);
     }
 
     void Start() {
