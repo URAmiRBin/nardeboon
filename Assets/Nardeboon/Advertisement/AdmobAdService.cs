@@ -9,6 +9,8 @@ public class AdmobAdService : AdService {
     public override bool IsRewardedReady { get => _rewarded != null && _rewarded.IsLoaded(); }
     public override bool IsInterstitialReady { get => _interstitial != null && _interstitial.IsLoaded(); }
     public override bool IsBannerReady { get => _banner != null; }
+
+    public AdmobAdService(AdUnits units) : base(units) {}
     
     
     public override void Initialize(bool testMode) {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public abstract class AdService : MonoBehaviour {
+public abstract class AdService {
     protected int _loadTries;
 
     public string bannerUnit;
@@ -22,7 +22,7 @@ public abstract class AdService : MonoBehaviour {
     public abstract void ShowInterstitial(Action success, Action fail);
     public abstract void ShowBanner();
     public abstract void HideBanner();
-    public void SetUnitIds(AdUnits units) {
+    public AdService(AdUnits units) {
         bannerUnit = units.banner;
         interstitialUnit = units.interstitial;
         RewardedUnit = units.rewarded;

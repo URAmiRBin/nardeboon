@@ -6,7 +6,6 @@ public class AdManager {
     AdService bannerProvider;
     public readonly int maxTries = 3;
     List<AdService> services;
-    GameObject _serviceParent;
 
     List<AdService> _rewardedServices, _interstitialServices;
     int _rewardedNextServiceIndex, _interestialNextServiceIndex;
@@ -22,27 +21,26 @@ public class AdManager {
         }
     }
 
-    public AdManager(GameObject serviceParent) {
-        _serviceParent = serviceParent;
+    public AdManager(AdConfig config) {
         _interstitialServices = new List<AdService>();
         _rewardedServices = new List<AdService>();
 
         _bypassForceAds = ES3.Load<bool>(SaveKeys.NOADS, false);
+        BuildServices(config);
+        InitializeAds(config.isTestBuild);
     }
 
-    public void BuildServices(AdConfig adConfig) {
+    void BuildServices(AdConfig adConfig) {
         _iterationType = adConfig.iterationType;
         services = new List<AdService>();
         foreach(AdServiceConfig adServiceConfig in adConfig.adServices) {
             switch (adServiceConfig.network) {
                 case AdNetwork.Admob:
-                    var admobAdService = _serviceParent.AddComponent<AdmobAdService>();
-                    admobAdService.SetUnitIds(adServiceConfig.units);
+                    var admobAdService = new AdmobAdService(adServiceConfig.units);
                     services.Add(admobAdService);
                     break;
                 case AdNetwork.Unity:
-                    var unityAdsService = _serviceParent.AddComponent<UnityAdService>();
-                    unityAdsService.SetUnitIds(adServiceConfig.units);
+                    var unityAdsService = new UnityAdService(adServiceConfig.units);
                     unityAdsService.gameId = adServiceConfig.appID;
                     services.Add(unityAdsService);
                     break;
@@ -50,6 +48,7 @@ public class AdManager {
         }
     }
 
+    // TODO: Initialize later if internet is connected in the middle of the session
     public void InitializeAds(bool testMode) {
         for (int i = 0; i < services.Count; i++) {
             if (!services[i].excludeInterstital) _interstitialServices.Add(services[i]);

@@ -9,6 +9,8 @@ public class UnityAdService : AdService, IUnityAdsListener {
     public override bool IsInterstitialReady => Advertisement.IsReady();
     public override bool IsBannerReady => Advertisement.IsReady();
 
+    public UnityAdService(AdUnits units) : base(units) {}
+
     public override void Initialize(bool testMode) {
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);

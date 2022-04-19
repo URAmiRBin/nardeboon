@@ -137,12 +137,8 @@ public class Runner : MonoBehaviour {
 
     void SetupAdvertisement() {
         try {
-            GameObject adServices = new GameObject("Ad Services");
-            adServices.transform.SetParent(transform);
             adConfig.isTestBuild = !isProductionBuild;
-            AdManager = new AdManager(adServices);
-            AdManager.BuildServices(adConfig);
-            AdManager.InitializeAds(adConfig.isTestBuild);
+            AdManager = new AdManager(adConfig);
         } catch (Exception) {
             Debug.LogError("Can not initialize ad services!");
         }
