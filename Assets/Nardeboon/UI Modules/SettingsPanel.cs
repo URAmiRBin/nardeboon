@@ -20,12 +20,8 @@ public class SettingsPanel : UIElement {
     void Awake() {
         _vibrationState = PlayerPrefs.GetInt(PlayerPrefKeys.VIBRATION) == 1 ? true : false;
         SetVibrationState(_vibrationState);
-        // _vibrationImage = vibrationButton.GetComponent<Image>();
-        // _onColor = _vibrationImage.color;
-        // _offColor = new Color(_onColor.r, _onColor.g, _onColor.b, disabledOptionAlpha);
-        // _vibrationImage.color = _vibrationState ? _onColor : _offColor;
-
-        // TODO: Sound
+        _soundState = PlayerPrefs.GetInt(PlayerPrefKeys.SOUND) == 1 ? true : false;
+        SetSoundState(_soundState);
         // TODO: NoAds
     }
 
