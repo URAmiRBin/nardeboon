@@ -33,7 +33,9 @@ public class CoreGameManager : MonoBehaviour, ICore {
     void HookButtons() {
         Runner.UIElements.reviveButton.onClick.AddListener(Revive);
         Runner.UIElements.nextLevelButton.onClick.AddListener(() => StartLevel(++_level));
-        Runner.UIElements.retryButton.onClick.AddListener(ReplayLevel);    
+        Runner.UIElements.retryButton.onClick.AddListener(ReplayLevel);   
+        Runner.UIElements.settingsButton.onClick.AddListener(FreezeGame);
+        Runner.UIElements.closeSettingsButton.onClick.AddListener(UnFreezeGame); 
     }
 
     public void StartGame() {

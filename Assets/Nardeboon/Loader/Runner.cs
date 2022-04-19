@@ -77,8 +77,6 @@ public class Runner : MonoBehaviour {
         UIManager.Initialize(uiConfig);
         loadingPanel = UIElements.loadingScreen;
         loadingPanel.SetProgress(0);
-        UIElements.settingsButton.onClick.AddListener(() => _gameManager.FreezeGame());
-        UIElements.settingsButton.onClick.AddListener(() => _gameManager.UnFreezeGame());
     }
 
     void SetupEventSystem() {
