@@ -13,8 +13,7 @@ public class CoreGameManager : MonoBehaviour, ICore {
     int _level;
 
     void Awake() {
-        // TODO: Load from saves
-        _level = 1;
+        _level = ES3.Load<int>(SaveKeys.LEVEL, 1);
     }
 
     void OnEnable() {
